@@ -28,6 +28,7 @@
     "react-native-dropdown-picker": "^5.1.19",
     "react-native-event-listener": "^1.0.2",
     "react-native-event-listeners": "^1.0.7",
+    "react-native-fs": "^2.18.0",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-input-masking": "^1.2.7",
     "react-native-keyboard-aware-scroll-view": "^0.9.4",

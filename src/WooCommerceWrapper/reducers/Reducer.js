@@ -48,6 +48,7 @@ let initialState = {
     aboutUs: null,
     homeBanners: [],
   },
+  color:'red'
 };
 
 export const Reducer = (state = initialState, action) => {
@@ -139,7 +140,12 @@ export const Reducer = (state = initialState, action) => {
     case 'HOME_PRODUCT_CATEGORY': {
       return {...state, homeproductcategory: action.success, loading: false};
     }
-
+    case 'CHANGE_COLOR':{
+      return {
+        ...state,
+        color:action.color
+      }
+    }
     case 'SUB_CATEGORY': {
       if (action.payload.subcategories.length > 0)
         return {
