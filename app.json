@@ -1,0 +1,12 @@
+{
+  "name": "rnPreviewCRNA",
+  "displayName": "rnPreviewCRNA",
+  "expo": {
+    "name": "rnPreviewCRNA",
+    "slug": "rnPreviewCRNA",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
