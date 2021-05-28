@@ -56,11 +56,10 @@ class App extends React.Component {
             <StatusBar
             
              barStyle="dark-content"
-          
-            >
 
+            >
             </StatusBar>
-            {/* <RootStack /> */}
+            <RootStack />
             <Loader />
           </NavigationContainer>
         </PersistGate>

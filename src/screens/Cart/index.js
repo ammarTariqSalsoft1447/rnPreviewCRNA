@@ -22,6 +22,7 @@ import Api from '../../WooCommerceWrapper/Api';
 import {
   primary_font_color
 } from '../../../config.json'
+import Button from '../../Components/Button';
 
 class Cart extends React.Component {
   state = {
