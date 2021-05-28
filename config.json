@@ -1,0 +1,22 @@
+{
+    "url": "https://dev57.onlinetestingserver.com/cindy-walling/wp-json/wc/v3/",
+    "loginUrl": "https://dev57.onlinetestingserver.com/cindy-walling/api/auth/generate_auth_cookie/?insecure=cool/",
+    "baseUrl": "https://dev57.onlinetestingserver.com/cindy-walling/wp-json/wc/v3/",
+    "consumerKey": "ck_050052e57ef777d2abb6dfdeb75a651eacb42c20",
+    "consumerSecret": "cs_c01d22aad5343eb3d7aeb4ce72645769629b8e4a",
+    "name": "",
+    "primary_heading_color": "#333333",
+    "primary_section_color": "#F7F7F7",
+    "primary_font_color": "#EC0C70",
+    "secondary_font_color": "#92278F",
+    "primaryColor": "#000000",
+    "secondaryColor": "#ffffff",
+    "primary_placeholder_Color": "#BFBFBF",
+    "primary_border_color": "#FFCFE5",
+    "primary_background_color": "rgba(0,0,0,.5)",
+    "secondary_background_color": "#FFF2F8",
+    "primary_message_color": "#00AF41",
+    "drawer_Active_Color": "#FB5378",
+    "drawer_inActive_Color": "#999999",
+    "default_color": "#ccc"
+}
