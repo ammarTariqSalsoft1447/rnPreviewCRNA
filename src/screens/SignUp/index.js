@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, ImageBackground, Image} from 'react-native';
-import {backgrounds, assets} from '../../assets/images';
+import { View, ImageBackground, Image } from 'react-native';
+import { backgrounds, assets } from '../../assets/images';
 import styles from './styles';
 import vh from '../../Units/vh';
 import vw from '../../Units/vw';
@@ -8,8 +8,8 @@ import TextRegular from '../../Components/TextRegular';
 import MainInput from '../../Components/MainInput';
 import CircleBtn from '../../Components/CircleBtn';
 import Alert from '../../Popups/Alert';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {connect} from 'react-redux';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { connect } from 'react-redux';
 import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
 import Toast from 'react-native-toast';
 
@@ -56,35 +56,40 @@ class SignUp extends React.Component {
             resizeMode="contain"
           />
           <View style={styles.container}>
-            <TextRegular style={styles.SignUp}>SIGN UP</TextRegular>
-            <TextRegular style={styles.detail}>
+            <TextRegular style={[styles.SignUp, {
+              color: this.props.ConfigReducer.secondary_font_color
+            }]}>SIGN UP</TextRegular>
+            <TextRegular style={[styles.detail, {
+              color: this.props.ConfigReducer.primary_heading_color,
+
+            }]}>
               Sign up your Account
             </TextRegular>
             <MainInput
               placeholder="First Name"
               style={styles.field}
-              onChangeText={(text) => this.setState({first_name: text})}
+              onChangeText={(text) => this.setState({ first_name: text })}
               value={this.state.first_name}
             />
 
             <MainInput
               placeholder="Last Name"
               style={styles.field}
-              onChangeText={(text) => this.setState({last_name: text})}
+              onChangeText={(text) => this.setState({ last_name: text })}
               value={this.state.last_name}
             />
 
             <MainInput
               placeholder="User Name"
               style={styles.field}
-              onChangeText={(text) => this.setState({username: text})}
+              onChangeText={(text) => this.setState({ username: text })}
               value={this.state.username}
             />
 
             <MainInput
               placeholder="Phone no."
               style={styles.field}
-              onChangeText={(text) => this.setState({phoneNo: text})}
+              onChangeText={(text) => this.setState({ phoneNo: text })}
               keyboardType="numeric"
               value={this.state.phoneNo}
             />
@@ -92,7 +97,7 @@ class SignUp extends React.Component {
             <MainInput
               placeholder="Email Address"
               style={styles.field}
-              onChangeText={(text) => this.setState({email: text})}
+              onChangeText={(text) => this.setState({ email: text })}
               value={this.state.email}
               keyboardType="email-address"
             />
@@ -101,7 +106,7 @@ class SignUp extends React.Component {
               placeholder="Password"
               secureTextEntry={true}
               style={styles.field}
-              onChangeText={(text) => this.setState({password: text})}
+              onChangeText={(text) => this.setState({ password: text })}
               value={this.state.password}
             />
 
@@ -109,14 +114,16 @@ class SignUp extends React.Component {
               placeholder="Re-enter Password"
               secureTextEntry={true}
               style={styles.field}
-              onChangeText={(text) => this.setState({confirm: text})}
+              onChangeText={(text) => this.setState({ confirm: text })}
               value={this.state.confirm}
             />
 
             <CircleBtn onPress={() => this.onPress()} />
 
             <View style={styles.row}>
-              <TextRegular style={styles.haveAccount}>
+              <TextRegular style={[styles.haveAccount,{
+                color:this.props.ConfigReducer.primary_heading_color
+              }]}>
                 Already have an account?
               </TextRegular>
               <TextRegular

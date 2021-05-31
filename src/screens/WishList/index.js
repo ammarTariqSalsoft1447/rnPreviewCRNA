@@ -33,9 +33,6 @@ import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 import Toast from "react-native-toast";
 
 import { store } from "../../WooCommerceWrapper/store";
-const state = store.getState();
-const config = state.ConfigReducer;
-const { drawer_inActive_Color, default_color } = config;
 const data = [
   { image: samplePictures.prod1 },
   { image: samplePictures.prod2 },
@@ -121,7 +118,7 @@ class Products extends React.Component {
         }}
       >
         {this.state.refreshing ? null : (
-          <Text style={{ color: drawer_inActive_Color }}>
+          <Text style={{ color: this.props.ConfigReducer.drawer_inActive_Color }}>
             No Item in the Wishlsit
           </Text>
         )}
@@ -200,7 +197,7 @@ class Products extends React.Component {
             style={{
               paddingHorizontal: 1 * vw,
               paddingVertical: 0.5 * vh,
-              backgroundColor: default_color,
+              backgroundColor: this.props.ConfigReducer.default_color,
               borderRadius: 1 * vw,
             }}
             onPress={this.onSelector}
