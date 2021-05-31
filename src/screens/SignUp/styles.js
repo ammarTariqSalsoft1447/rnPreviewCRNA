@@ -1,12 +1,14 @@
 import {StyleSheet} from 'react-native';
 import vh from '../../Units/vh';
 import vw from '../../Units/vw';
-import {
+import { store } from '../../WooCommerceWrapper/store';
+const state = store.getState()
+const config = state.ConfigReducer
+const {
   secondary_font_color,
   primary_heading_color,
   primary_font_color,
-} from '../../../config.json';
-
+}  = config
 export default StyleSheet.create({
   bg: {flex: 1, width: '100%'},
   logo: {

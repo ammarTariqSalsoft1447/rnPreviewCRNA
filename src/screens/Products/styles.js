@@ -1,17 +1,12 @@
 import {StyleSheet} from 'react-native';
 import vh from '../../Units/vh';
 import vw from '../../Units/vw';
-import {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-} from '../../../config.json';
-
+import { store } from '../../WooCommerceWrapper/store';
+const state = store.getState()
+const config = state.ConfigReducer
+const {
+  primaryColor
+}  = config
 export default StyleSheet.create({
   header: {
     flexDirection: 'row',

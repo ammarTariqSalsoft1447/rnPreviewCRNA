@@ -26,7 +26,18 @@ import ProductItem from '../../Components/ProductItem';
 import Button from '../../Components/Button';
 import {connect} from 'react-redux';
 import DropDown from '../../Components/DropDown';
-import {
+import { store } from '../../WooCommerceWrapper/store';
+import Toast from 'react-native-toast';
+import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
+
+
+
+// const data = [{ image: samplePictures.prod1 }, { image: samplePictures.prod2 }, { image: samplePictures.prod1 }, { image: samplePictures.prod2 },
+// { image: samplePictures.prod1 }, { image: samplePictures.prod2 }, { image: samplePictures.prod1 }, { image: samplePictures.prod2 }]
+const data = [];
+const state = store.getState()
+const config = state.ConfigReducer
+const {
   primary_heading_color,
   primary_section_color,
   primary_font_color,
@@ -35,16 +46,13 @@ import {
   secondaryColor,
   primary_placeholder_Color,
   primary_border_color,
-  default_color
-} from '../../../config.json';
-import Toast from 'react-native-toast';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
-
-
-// const data = [{ image: samplePictures.prod1 }, { image: samplePictures.prod2 }, { image: samplePictures.prod1 }, { image: samplePictures.prod2 },
-// { image: samplePictures.prod1 }, { image: samplePictures.prod2 }, { image: samplePictures.prod1 }, { image: samplePictures.prod2 }]
-const data = [];
-
+  primary_background_color,
+  secondary_background_color,
+  primary_message_color,
+  drawer_Active_Color,
+  drawer_inActive_Color,
+  default_color,
+} = config
 class Products extends React.Component {
   state = {
     activeSlide: 1,

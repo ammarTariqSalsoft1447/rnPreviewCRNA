@@ -42,7 +42,13 @@ import Toast from 'react-native-toast';
 import DropDown from '../../Components/DropDown';
 import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
 import ImagePreview from '../../Popups/ImagePreview';
-import {
+
+import TouchableHOC from '../../Components/TouchableHOC';
+
+import { store } from '../../WooCommerceWrapper/store';
+const state = store.getState()
+const config = state.ConfigReducer
+const {
   primary_heading_color,
   primary_section_color,
   primary_font_color,
@@ -50,11 +56,14 @@ import {
   primaryColor,
   secondaryColor,
   primary_placeholder_Color,
-  primary_border_color
-} from '../../../config.json';
-import TouchableHOC from '../../Components/TouchableHOC';
-
-
+  primary_border_color,
+  primary_background_color,
+  secondary_background_color,
+  primary_message_color,
+  drawer_Active_Color,
+  drawer_inActive_Color,
+  default_color,
+} = config
 const features = [
   {text: 'Fashionable For any wardrobe'},
   {text: 'It has two-sided pockets'},
