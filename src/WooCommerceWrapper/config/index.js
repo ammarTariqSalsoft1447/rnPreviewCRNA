@@ -1,4 +1,7 @@
-import configs from '../../../config.json'
+
+import { store } from '../../WooCommerceWrapper/store';
+const state = store.getState()
+const configs = state.ConfigReducer
 export const config = {
 // url: "https://dev62.onlinetestingserver.com/testingserver/",
 // url: 'https://pinkpoppy-boutique.com/',

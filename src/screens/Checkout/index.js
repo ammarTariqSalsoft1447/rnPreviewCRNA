@@ -28,14 +28,27 @@ import Payment from '../../Popups/Payment';
 import { connect } from 'react-redux';
 import Toast from 'react-native-toast';
 import DropDown from '../../Components/DropDown';
-import {
-  primary_font_color,
-  secondaryColor,
-  primaryColor,
-  default_color
-} from '../../../config.json'
 import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
 
+import { store } from '../../WooCommerceWrapper/store';
+const state = store.getState()
+const config = state.ConfigReducer
+const {
+  primary_heading_color,
+  primary_section_color,
+  primary_font_color,
+  secondary_font_color,
+  primaryColor,
+  secondaryColor,
+  primary_placeholder_Color,
+  primary_border_color,
+  primary_background_color,
+  secondary_background_color,
+  primary_message_color,
+  drawer_Active_Color,
+  drawer_inActive_Color,
+  default_color,
+} = config
 class Checkout extends React.Component {
   state = {
     step: 1,

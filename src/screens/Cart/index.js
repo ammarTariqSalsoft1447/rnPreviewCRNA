@@ -19,11 +19,28 @@ import {connect} from 'react-redux';
 import Toast from 'react-native-toast';
 import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
 import Api from '../../WooCommerceWrapper/Api';
-import {
-  primary_font_color
-} from '../../../config.json'
+
 import Button from '../../Components/Button';
 
+import { store } from '../../WooCommerceWrapper/store';
+const state = store.getState()
+const config = state.ConfigReducer
+const {
+  primary_heading_color,
+  primary_section_color,
+  primary_font_color,
+  secondary_font_color,
+  primaryColor,
+  secondaryColor,
+  primary_placeholder_Color,
+  primary_border_color,
+  primary_background_color,
+  secondary_background_color,
+  primary_message_color,
+  drawer_Active_Color,
+  drawer_inActive_Color,
+  default_color,
+} = config
 class Cart extends React.Component {
   state = {
     refreshing: false,

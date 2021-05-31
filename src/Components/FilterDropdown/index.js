@@ -6,9 +6,7 @@ import vh from '../../Units/vh';
 import { Fonts } from '../../assets/fonts';
 import { icons } from '../../assets/images/index';
 import DropDownPicker from 'react-native-dropdown-picker';
-import {
-  secondaryColor
-} from '../../../config.json'
+
 export default class CategoryDraopdown extends React.Component {
   state = {
     country: '',
