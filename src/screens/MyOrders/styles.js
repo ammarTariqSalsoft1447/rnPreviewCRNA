@@ -1,42 +1,27 @@
-import {StyleSheet} from 'react-native';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { StyleSheet } from "react-native";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { primary_heading_color, primary_font_color, secondaryColor } = config;
 export default StyleSheet.create({
   btn: {
-    width: '33.3333%',
+    width: "33.3333%",
     height: vh * 6,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     backgroundColor: secondaryColor,
     borderRightWidth: vw * 0.06,
-    borderRightColor: 'rgba(112,112,112,.2)',
+    borderRightColor: "rgba(112,112,112,.2)",
   },
-  btnTxt: {fontSize: vh * 2, color: primary_heading_color},
-  pinkBg: {backgroundColor: primary_font_color},
-  whiteTxt: {color: secondaryColor},
+  btnTxt: { fontSize: vh * 2, color: primary_heading_color },
+  pinkBg: { backgroundColor: primary_font_color },
+  whiteTxt: { color: secondaryColor },
   tabs: {
-    flexDirection: 'row',
-    width: '100%',
-    shadowColor: '#000',
+    flexDirection: "row",
+    width: "100%",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
@@ -55,9 +40,9 @@ export default StyleSheet.create({
     borderBottomRightRadius: vw * 2,
   },
   card: {
-    width: '100%',
+    width: "100%",
     backgroundColor: secondaryColor,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 1,
@@ -68,8 +53,8 @@ export default StyleSheet.create({
     elevation: 3,
     paddingHorizontal: vw * 5,
     paddingVertical: vh * 1.5,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginBottom: vh * 2,
   },
   orderTxt: {
@@ -78,14 +63,14 @@ export default StyleSheet.create({
     marginBottom: vh * 1.5,
   },
   statusCont: {
-    backgroundColor: '#FFB507',
+    backgroundColor: "#FFB507",
     height: vh * 4.5,
     borderRadius: vh * 2.25,
     width: vw * 25,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
-  statusTxt: {color: secondaryColor, fontSize: vh * 1.8},
-  price: {color: primary_font_color, fontSize: vh * 2.7},
-  priceCont: {alignItems: 'center', justifyContent: 'space-between'},
+  statusTxt: { color: secondaryColor, fontSize: vh * 1.8 },
+  price: { color: primary_font_color, fontSize: vh * 2.7 },
+  priceCont: { alignItems: "center", justifyContent: "space-between" },
 });

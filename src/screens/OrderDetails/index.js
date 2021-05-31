@@ -1,45 +1,35 @@
-import React from 'react';
-import { View, RefreshControl } from 'react-native';
-import { backgrounds, assets, samplePictures, icons } from '../../assets/images';
-import styles from './styles';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import TextSemi from '../../Components/TextSemi';
-import ImageButton from '../../Components/ImageButton';
-import MainInput from '../../Components/MainInput';
-import ChangePassword from '../../Popups/changePassword';
-import Alert from '../../Popups/Alert';
-import TextMedium from '../../Components/TextMedium';
-import CircularBook from '../../Components/CircularBook';
-import TouchableHOC from '../../Components/TouchableHOC';
-import { FlatList, ScrollView, TextInput } from 'react-native-gesture-handler';
-import CartItem from '../../Components/CartItem';
-import TextRegular from '../../Components/TextRegular';
-import { connect } from 'react-redux';
-import moment from 'moment';
+import React from "react";
+import { View, RefreshControl } from "react-native";
+import {
+  backgrounds,
+  assets,
+  samplePictures,
+  icons,
+} from "../../assets/images";
+import styles from "./styles";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import TextSemi from "../../Components/TextSemi";
+import ImageButton from "../../Components/ImageButton";
+import MainInput from "../../Components/MainInput";
+import ChangePassword from "../../Popups/changePassword";
+import Alert from "../../Popups/Alert";
+import TextMedium from "../../Components/TextMedium";
+import CircularBook from "../../Components/CircularBook";
+import TouchableHOC from "../../Components/TouchableHOC";
+import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
+import CartItem from "../../Components/CartItem";
+import TextRegular from "../../Components/TextRegular";
+import { connect } from "react-redux";
+import moment from "moment";
 
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Toast from 'react-native-toast';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Toast from "react-native-toast";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { primary_heading_color, primaryColor } = config;
 class OrderDetails extends React.Component {
   state = {
     singleorderDetails: {},
@@ -51,11 +41,11 @@ class OrderDetails extends React.Component {
       id,
       (Success) => {
         if (Success) {
-          Toast.show('Order Cancelled successfully!');
-          this.props.navigation.navigate('Home');
+          Toast.show("Order Cancelled successfully!");
+          this.props.navigation.navigate("Home");
         }
       },
-      (error) => { },
+      (error) => {}
     );
   };
 
@@ -67,7 +57,7 @@ class OrderDetails extends React.Component {
     this.props.SingleOrder(
       this.props.route.params.id,
       (Success) => {
-        console.log('Success singleordrer', Success);
+        console.log("Success singleordrer", Success);
         this.setState({
           singleorderDetails: Success,
           refreshing: false,
@@ -75,15 +65,15 @@ class OrderDetails extends React.Component {
       },
       (error) => {
         Toast.show(error);
-      },
+      }
     );
   };
   componentDidMount() {
-    this.props.navigation.addListener('focus', this._getSingleOrderDetails);
+    this.props.navigation.addListener("focus", this._getSingleOrderDetails);
   }
 
   componentWillUnmount() {
-    this.props.navigation.removeListener('focus');
+    this.props.navigation.removeListener("focus");
   }
 
   state = { edit: true, current: 0 };
@@ -98,7 +88,8 @@ class OrderDetails extends React.Component {
             refreshing={this.state.refreshing}
             onRefresh={this._getSingleOrderDetails}
           />
-        }>
+        }
+      >
         {this.state.singleorderDetails == null ? null : (
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.orderRow}>
@@ -107,7 +98,7 @@ class OrderDetails extends React.Component {
               </TextMedium>
               <TextMedium style={styles.text}>
                 {moment(this.state.singleorderDetails.date_created).format(
-                  'DD-MMM-YYYY',
+                  "DD-MMM-YYYY"
                 )}
               </TextMedium>
             </View>
@@ -116,9 +107,9 @@ class OrderDetails extends React.Component {
               text="Cancel Order?"
               ref={(e) => (this.placeorder = e)}
               icon={icons.caution}
-              onSuccess2={() => { }}
+              onSuccess2={() => {}}
               onSuccess={(id) => this.onCancelOrder(id)}
-            // onSuccess={() => { this.orderSuccess.show() }} //place order here, write function
+              // onSuccess={() => { this.orderSuccess.show() }} //place order here, write function
             />
             {this.state.singleorderDetails.line_items.map((item) => (
               <CartItem item={item} cross={true} orderDetailCart={true} />
@@ -188,7 +179,8 @@ class OrderDetails extends React.Component {
                   color: primaryColor,
                   fontSize: vh * 2.2,
                   marginBottom: vh * 0.5,
-                }}>
+                }}
+              >
                 ADDRESS DETAILS:
               </TextMedium>
               <TextRegular
@@ -196,7 +188,8 @@ class OrderDetails extends React.Component {
                   color: primary_heading_color,
                   fontSize: vh * 1.9,
                   marginBottom: vh * 2,
-                }}>
+                }}
+              >
                 {this.state.singleorderDetails.billing.address_1}
               </TextRegular>
               <TextMedium
@@ -204,7 +197,8 @@ class OrderDetails extends React.Component {
                   color: primaryColor,
                   fontSize: vh * 2.2,
                   marginBottom: vh * 0.5,
-                }}>
+                }}
+              >
                 ADDITIONAL NOTES:
               </TextMedium>
               <TextRegular
@@ -212,19 +206,20 @@ class OrderDetails extends React.Component {
                   color: primary_heading_color,
                   fontSize: vh * 1.9,
                   marginBottom: vh * 2,
-                }}>
+                }}
+              >
                 {this.state.singleorderDetails.customer_note}
               </TextRegular>
 
-              {this.state.singleorderDetails.status == 'pending' &&
-                this.props.Reducer.userId != null ? (
-                  <Button
-                    title="Cancel Order"
-                    onPress={() => {
-                      this.placeorder.show(this.state.singleorderDetails.id);
-                    }}
-                  />
-                ) : null}
+              {this.state.singleorderDetails.status == "pending" &&
+              this.props.Reducer.userId != null ? (
+                <Button
+                  title="Cancel Order"
+                  onPress={() => {
+                    this.placeorder.show(this.state.singleorderDetails.id);
+                  }}
+                />
+              ) : null}
             </View>
           </KeyboardAwareScrollView>
         )}
@@ -235,5 +230,5 @@ class OrderDetails extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(OrderDetails);

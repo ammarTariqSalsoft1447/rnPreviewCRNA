@@ -1,59 +1,49 @@
-import React, { Component } from 'react';
-import { View, Modal, Image, TouchableOpacity } from 'react-native';
-import styles from './styles';
-import { icons, assets, backgrounds, samplePictures } from '../../assets/images';
+import React, { Component } from "react";
+import { View, Modal, Image, TouchableOpacity } from "react-native";
+import styles from "./styles";
+import {
+  icons,
+  assets,
+  backgrounds,
+  samplePictures,
+} from "../../assets/images";
 
-import Button from '../../Components/Button';
-import TouchableHOC from '../../Components/TouchableHOC';
+import Button from "../../Components/Button";
+import TouchableHOC from "../../Components/TouchableHOC";
 
-import TextRegular from '../../Components/TextRegular';
-import TextSemi from '../../Components/TextSemi';
-import MainInput from '../../Components/MainInput';
-import MaskInput from '../../Components/MaskInput';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Toast from 'react-native-toast';
-import { connect } from 'react-redux';
-import DateTimePickerModal from 'react-native-modal-datetime-picker';
-import moment from 'moment';
-import vh from '../../Units/vh';
+import TextRegular from "../../Components/TextRegular";
+import TextSemi from "../../Components/TextSemi";
+import MainInput from "../../Components/MainInput";
+import MaskInput from "../../Components/MaskInput";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Toast from "react-native-toast";
+import { connect } from "react-redux";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import moment from "moment";
+import vh from "../../Units/vh";
 
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { primary_background_color } = config;
 class Alert extends Component {
   constructor(props) {
     super(props);
     this.state = {
       focused: this.props.value ? true : false,
-      text: '',
+      text: "",
       visible: false,
       imagesShown: false,
 
-      cardName: '',
-      cardNumber: '',
+      cardName: "",
+      cardNumber: "",
       cardExpMonth: 23,
-      expiryValue: '',
-      cardCvc: '',
+      expiryValue: "",
+      cardCvc: "",
       expiry: false,
-      expiryValue: '',
+      expiryValue: "",
     };
   }
   hideDatePicker = () => {
@@ -61,8 +51,8 @@ class Alert extends Component {
   };
 
   handleConfirm = (date) => {
-    console.warn('A date has been picked: ', date);
-    this.setState({ expiryValue: moment(date).format('MM/YY') });
+    console.warn("A date has been picked: ", date);
+    this.setState({ expiryValue: moment(date).format("MM/YY") });
     this.hideDatePicker();
   };
   show = (data) => {
@@ -95,7 +85,6 @@ class Alert extends Component {
   };
   onChangeCVV = (text) => {
     this.setState({ cardCvc: text });
-
   };
 
   onChangeExpiryDate = ({ nativeEvent }) => {
@@ -103,27 +92,27 @@ class Alert extends Component {
   };
   onSuccess = () => {
     if (!this.state.cardName) {
-      return Toast.show('Cardholder  name is required');
+      return Toast.show("Cardholder  name is required");
     }
     if (!this.state.cardNumber) {
-      return Toast.show('Card Number is required');
+      return Toast.show("Card Number is required");
     }
     if (!this.state.cardCvc) {
-      return Toast.show('Card CVV is required');
+      return Toast.show("Card CVV is required");
     }
 
-    if (this.state.expiryValue == '') {
-      return Toast.show('Card Expiry Date is required');
+    if (this.state.expiryValue == "") {
+      return Toast.show("Card Expiry Date is required");
     }
 
     let Data = {
-      'card[name]': this.state.cardNumber,
-      'card[number]': this.state.cardNumber,
-      'card[exp_month]': this.state.expiryValue.split('/')[0],
-      'card[exp_year]': this.state.expiryValue.split('/')[1],
+      "card[name]": this.state.cardNumber,
+      "card[number]": this.state.cardNumber,
+      "card[exp_month]": this.state.expiryValue.split("/")[0],
+      "card[exp_year]": this.state.expiryValue.split("/")[1],
       // 'card[exp_month]':this.state.expiryValue,
       // 'card[exp_year]' : this.state.expiryValue,
-      'card[cvc]': this.state.cardCvc,
+      "card[cvc]": this.state.cardCvc,
       amount: this.props.total,
     };
     this.setState({ visible: false });
@@ -135,28 +124,31 @@ class Alert extends Component {
       },
       (error) => {
         // this.setState({visible: true});
-      },
+      }
     );
   };
   render() {
     return (
       <Modal
-        key={'cbt'}
+        key={"cbt"}
         visible={this.state.visible}
         transparent={true}
-
-        animationType="fade">
+        animationType="fade"
+      >
         <TouchableOpacity
-        onPress={() => this.hide()}
-        style={{
-
-          height: 100 * vh, width: 100 * vh, position: 'absolute',
-          top: 0, backgroundColor: primary_background_color
-
-        }} />
+          onPress={() => this.hide()}
+          style={{
+            height: 100 * vh,
+            width: 100 * vh,
+            position: "absolute",
+            top: 0,
+            backgroundColor: primary_background_color,
+          }}
+        />
         <KeyboardAwareScrollView
-showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.modalTouchable}>
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.modalTouchable}
+        >
           <View style={styles.imageBg}>
             <TouchableHOC style={styles.crossContainer} onPress={this.onCross}>
               <Image
@@ -193,7 +185,6 @@ showsVerticalScrollIndicator={false}
                 keyboardType="number-pad"
                 onChangeText={this.onChangeText}
                 maskFormat="DDDD-DDDD-DDDD-DDDD"
-
               />
 
               <MainInput
@@ -203,7 +194,6 @@ showsVerticalScrollIndicator={false}
                 value={this.state.cardCvc}
                 onChangeText={this.onChangeCVV}
                 maxLength={3}
-
               />
 
               <MaskInput
@@ -218,7 +208,8 @@ showsVerticalScrollIndicator={false}
               <Button
                 btnContainer={styles.yesBtn}
                 onPress={this.onSuccess}
-                title="PAY"></Button>
+                title="PAY"
+              ></Button>
             </View>
           </View>
         </KeyboardAwareScrollView>
@@ -238,5 +229,5 @@ export default connect(
   reduxProps.mapStateToProps,
   reduxProps.mapDispatchToProps,
   null,
-  { forwardRef: true },
+  { forwardRef: true }
 )(Alert);

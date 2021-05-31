@@ -1,55 +1,45 @@
-import React from 'react';
-import {View, ImageBackground, Image, FlatList} from 'react-native';
-import {backgrounds, assets, icons, samplePictures} from '../../assets/images';
-import styles from './styles';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import TextRegular from '../../Components/TextRegular';
-import TextSemi from '../../Components/TextSemi';
-import CircularBook from '../../Components/CircularBook';
-import MainInput from '../../Components/MainInput';
-import CircleBtn from '../../Components/CircleBtn';
-import Alert from '../../Popups/Alert';
-import TextMedium from '../../Components/TextMedium';
-import FilterDropdown from '../../Components/FilterDropdown';
-import TouchableHOC from '../../Components/TouchableHOC';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
-import { store } from '../../WooCommerceWrapper/store';
+import React from "react";
+import { View, ImageBackground, Image, FlatList } from "react-native";
+import {
+  backgrounds,
+  assets,
+  icons,
+  samplePictures,
+} from "../../assets/images";
+import styles from "./styles";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import TextRegular from "../../Components/TextRegular";
+import TextSemi from "../../Components/TextSemi";
+import CircularBook from "../../Components/CircularBook";
+import MainInput from "../../Components/MainInput";
+import CircleBtn from "../../Components/CircleBtn";
+import Alert from "../../Popups/Alert";
+import TextMedium from "../../Components/TextMedium";
+import FilterDropdown from "../../Components/FilterDropdown";
+import TouchableHOC from "../../Components/TouchableHOC";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
+import { store } from "../../WooCommerceWrapper/store";
 
-import {connect} from 'react-redux';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { connect } from "react-redux";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { primary_heading_color, primary_section_color } = config;
 
 const data = [
-  {name: 'Bags', image: samplePictures.cat1},
-  {name: 'Accessories1', image: samplePictures.cat2},
-  {name: 'Clothing', image: samplePictures.cat3},
-  {name: 'Shoes', image: samplePictures.cat4},
-  {name: 'Bags', image: samplePictures.cat1},
-  {name: 'Jwellery', image: samplePictures.cat2},
+  { name: "Bags", image: samplePictures.cat1 },
+  { name: "Accessories1", image: samplePictures.cat2 },
+  { name: "Clothing", image: samplePictures.cat3 },
+  { name: "Shoes", image: samplePictures.cat4 },
+  { name: "Bags", image: samplePictures.cat1 },
+  { name: "Jwellery", image: samplePictures.cat2 },
 ];
 
 class Categories extends React.Component {
   componentDidMount() {
     // this.props.Reducer.productcategory
     this.props.navigation.addListener(
-      'focus',
+      "focus",
       () => {
         this.props.AllCategories(
           (success) => {
@@ -57,10 +47,10 @@ class Categories extends React.Component {
               refreshing: false,
             });
           },
-          (error) => {},
+          (error) => {}
         );
       },
-      () => {},
+      () => {}
     );
   }
 
@@ -68,12 +58,12 @@ class Categories extends React.Component {
     // this.props.navigation.removeListener("focus")
   }
 
-  _renderItem = ({item, index}) => {
-    console.log('item123', item);
+  _renderItem = ({ item, index }) => {
+    console.log("item123", item);
     return (
       <TouchableHOC
         onPress={() =>
-          this.props.navigation.navigate('Products', {
+          this.props.navigation.navigate("Products", {
             categoryID: item.id,
             categoryName: item.name,
           })
@@ -85,12 +75,17 @@ class Categories extends React.Component {
           marginRight: vw * 3,
           marginBottom: vh * 2,
           borderRadius: vw * 1,
-        }}>
-        <View style={{marginLeft: vw * 3, marginTop: vh * 1}}>
-          <TextSemi style={{color: primary_heading_color, fontSize: vh * 1.8}}>
+        }}
+      >
+        <View style={{ marginLeft: vw * 3, marginTop: vh * 1 }}>
+          <TextSemi
+            style={{ color: primary_heading_color, fontSize: vh * 1.8 }}
+          >
             {item.name}
           </TextSemi>
-          <TextRegular style={{color: primary_heading_color, fontSize: vh * 1.5}}>
+          <TextRegular
+            style={{ color: primary_heading_color, fontSize: vh * 1.5 }}
+          >
             {item.count} items
           </TextRegular>
         </View>
@@ -99,10 +94,10 @@ class Categories extends React.Component {
         <Image
           source={
             item.image == null
-              ? require('../../assets/images/placeholder.png')
-              : {uri: item.image?.src}
+              ? require("../../assets/images/placeholder.png")
+              : { uri: item.image?.src }
           }
-          style={{width: '100%', height: vh * 14}}
+          style={{ width: "100%", height: vh * 14 }}
           resizeMode="contain"
         />
       </TouchableHOC>
@@ -110,7 +105,7 @@ class Categories extends React.Component {
   };
   render() {
     return (
-      <View style={{flex: 1, paddingHorizontal: vw * 5, marginTop: vh * 3}}>
+      <View style={{ flex: 1, paddingHorizontal: vw * 5, marginTop: vh * 3 }}>
         {this.props.Reducer.productcategory.length == 0 ? null : (
           <FlatList
             showsVerticalScrollIndicator={false}
@@ -127,5 +122,5 @@ class Categories extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(Categories);

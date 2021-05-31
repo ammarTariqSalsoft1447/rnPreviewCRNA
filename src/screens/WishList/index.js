@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   ImageBackground,
@@ -7,54 +7,44 @@ import {
   RefreshControl,
   Text,
   TouchableOpacity,
-} from 'react-native';
-import {backgrounds, assets, icons, samplePictures} from '../../assets/images';
-import styles from './styles';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import DropDown from '../../Components/DropDown';
-import TextSemi from '../../Components/TextSemi';
-import CircularBook from '../../Components/CircularBook';
-import MainInput from '../../Components/MainInput';
-import CircleBtn from '../../Components/CircleBtn';
-import Alert from '../../Popups/Alert';
-import TextMedium from '../../Components/TextMedium';
-import FilterDropdown from '../../Components/FilterDropdown';
-import TouchableHOC from '../../Components/TouchableHOC';
-import ProductItem from '../../Components/ProductItem';
-import {connect} from 'react-redux';
+} from "react-native";
+import {
+  backgrounds,
+  assets,
+  icons,
+  samplePictures,
+} from "../../assets/images";
+import styles from "./styles";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import DropDown from "../../Components/DropDown";
+import TextSemi from "../../Components/TextSemi";
+import CircularBook from "../../Components/CircularBook";
+import MainInput from "../../Components/MainInput";
+import CircleBtn from "../../Components/CircleBtn";
+import Alert from "../../Popups/Alert";
+import TextMedium from "../../Components/TextMedium";
+import FilterDropdown from "../../Components/FilterDropdown";
+import TouchableHOC from "../../Components/TouchableHOC";
+import ProductItem from "../../Components/ProductItem";
+import { connect } from "react-redux";
 
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
-import Toast from 'react-native-toast';
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
+import Toast from "react-native-toast";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { drawer_inActive_Color, default_color } = config;
 const data = [
-  {image: samplePictures.prod1},
-  {image: samplePictures.prod2},
-  {image: samplePictures.prod1},
-  {image: samplePictures.prod2},
-  {image: samplePictures.prod1},
-  {image: samplePictures.prod2},
-  {image: samplePictures.prod1},
-  {image: samplePictures.prod2},
+  { image: samplePictures.prod1 },
+  { image: samplePictures.prod2 },
+  { image: samplePictures.prod1 },
+  { image: samplePictures.prod2 },
+  { image: samplePictures.prod1 },
+  { image: samplePictures.prod2 },
+  { image: samplePictures.prod1 },
+  { image: samplePictures.prod2 },
 ];
 class Products extends React.Component {
   state = {
@@ -68,7 +58,7 @@ class Products extends React.Component {
         item={item}
         onRerender={(id) => this.check(id)}
         onPress={() =>
-          this.props.navigation.navigate('ProductDetail', {
+          this.props.navigation.navigate("ProductDetail", {
             productID: item.item.id,
             imgSrc: item.item.images[0].src,
           })
@@ -87,32 +77,32 @@ class Products extends React.Component {
   };
 
   componentDidMount() {
-    this.props.navigation.addListener('focus', () => {
+    this.props.navigation.addListener("focus", () => {
       this._getWishList();
     });
   }
 
   componentWillUnmount() {
-    this.props.navigation.removeListener('focus');
+    this.props.navigation.removeListener("focus");
   }
 
   onSort = (data) => {
     this.setState({
       filter: data,
     });
-    if (data.value == 'on_sale') {
+    if (data.value == "on_sale") {
       let param = {
         on_sale: true,
       };
 
       this._getWishList(param);
-    } else if (data.value == 'asc' || data.value == 'desc') {
+    } else if (data.value == "asc" || data.value == "desc") {
       let param = {
         order: data.value,
       };
 
       this._getWishList(param);
-    } else if (data.value == 'date') {
+    } else if (data.value == "date") {
       let param = {
         orderby: data.value,
       };
@@ -125,12 +115,15 @@ class Products extends React.Component {
     return (
       <View
         style={{
-          justifyContent: 'center',
-          alignItems: 'center',
+          justifyContent: "center",
+          alignItems: "center",
           flex: 1,
-        }}>
+        }}
+      >
         {this.state.refreshing ? null : (
-          <Text style={{color: drawer_inActive_Color}}>No Item in the Wishlsit</Text>
+          <Text style={{ color: drawer_inActive_Color }}>
+            No Item in the Wishlsit
+          </Text>
         )}
       </View>
     );
@@ -148,7 +141,7 @@ class Products extends React.Component {
         (success) => {
           if (params) {
             if (success.length <= 0) {
-              return Toast.show('No products found for this filer');
+              return Toast.show("No products found for this filer");
             } else {
               this.setState({
                 allproduct: success,
@@ -162,36 +155,36 @@ class Products extends React.Component {
             });
           }
         },
-        (error) => {},
+        (error) => {}
       );
     } else {
-      Toast.show('No Item in the Wishlsit');
+      Toast.show("No Item in the Wishlsit");
     }
   };
 
   onSelector = () => {
     let _options = [
-      {label: 'On Sale', value: 'on_sale'},
-      {label: 'A to Z', value: 'asc'},
-      {label: 'Z to A', value: 'desc'},
-      {label: 'Newest', value: 'date'},
+      { label: "On Sale", value: "on_sale" },
+      { label: "A to Z", value: "asc" },
+      { label: "Z to A", value: "desc" },
+      { label: "Newest", value: "date" },
     ];
 
     if (this.DropDownRef) {
       this.DropDownRef.show(
-        'label',
+        "label",
         _options,
-        'Select a variation',
+        "Select a variation",
         (data) => this.onSort(data),
         null,
-        null,
+        null
       );
     }
   };
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <DropDown ref={(_ref) => (this.DropDownRef = _ref)} />
         <View style={styles.header}>
           <View style={styles.headerInner}>
@@ -210,9 +203,10 @@ class Products extends React.Component {
               backgroundColor: default_color,
               borderRadius: 1 * vw,
             }}
-            onPress={this.onSelector}>
-            <TextSemi style={{fontSize: vh * 2}}>
-              {this.state.filter?.label ?? 'Latest'}
+            onPress={this.onSelector}
+          >
+            <TextSemi style={{ fontSize: vh * 2 }}>
+              {this.state.filter?.label ?? "Latest"}
             </TextSemi>
           </TouchableOpacity>
 
@@ -242,5 +236,5 @@ class Products extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(Products);

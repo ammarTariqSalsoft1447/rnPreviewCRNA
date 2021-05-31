@@ -1,34 +1,19 @@
-import React from 'react';
-import { Text, View, TextInput } from 'react-native';
-import TextMedium from '../TextMedium';
-import styles from './styles';
-import Ripple from 'react-native-material-ripple';
-import IconButton from '../IconButton';
-import { icons } from '../../assets/images';
-import vh from '../../Units/vh';
-import TextRegular from '../TextRegular';
-import RNInputMasking from 'react-native-input-masking';
-import { Fonts } from '../../assets/fonts';
+import React from "react";
+import { Text, View, TextInput } from "react-native";
+import TextMedium from "../TextMedium";
+import styles from "./styles";
+import Ripple from "react-native-material-ripple";
+import IconButton from "../IconButton";
+import { icons } from "../../assets/images";
+import vh from "../../Units/vh";
+import TextRegular from "../TextRegular";
+import RNInputMasking from "react-native-input-masking";
+import { Fonts } from "../../assets/fonts";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { primary_placeholder_Color } = config;
 class MainInput extends React.Component {
   constructor(props) {
     super(props);
@@ -58,7 +43,7 @@ class MainInput extends React.Component {
     if (this.props.label) {
       return (
         <View style={[styles.labelContainer, this.props.labelContainer]}>
-          <TextRegular style={styles.label}>{this.props.label}</TextRegular>
+          <TextRegular style={styles.label}>{[this.props.label, this.props.ConfigReducer.primary_heading_color]}</TextRegular>
         </View>
       );
     }
@@ -86,7 +71,7 @@ class MainInput extends React.Component {
             blurOnSubmit={true}
             // multiline={true}
             secureTextEntry={secure}
-            textColor={'#050E37'}
+            textColor={"#050E37"}
             textSize={1.5 * vh}
             fontFamily={Fonts.BR}
             // style={{height}}

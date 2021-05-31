@@ -1,27 +1,17 @@
-import {StyleSheet} from 'react-native';
-import vw from '../../Units/vw';
-import vh from '../../Units/vh';
-import {Fonts} from '../../assets/fonts';
+import { StyleSheet } from "react-native";
+import vw from "../../Units/vw";
+import vh from "../../Units/vh";
+import { Fonts } from "../../assets/fonts";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
 const {
-  primary_heading_color,
-  primary_section_color,
   primary_font_color,
-  secondary_font_color,
   primaryColor,
   secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
   drawer_inActive_Color,
-  default_color,
-} = config
+} = config;
 
 export default StyleSheet.create({
   prodCont: {
@@ -39,13 +29,13 @@ export default StyleSheet.create({
     elevation: 3,
   },
   prodImg: {
-    width: '100%',
+    width: "100%",
     height: vh * 15,
   },
   prodImg_1: {
-    width: '100%',
+    width: "100%",
     height: vh * 15,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   heart: {
     width: vw * 5,
@@ -53,18 +43,22 @@ export default StyleSheet.create({
     marginTop: vh * 1.5,
     marginRight: vw * 3,
   },
-  detailContainer: {paddingHorizontal: vw * 3, paddingTop: vh * 1.5},
-  prodName: {color: primaryColor, fontSize: vh * 2},
-  catName: {color: drawer_inActive_Color, fontSize: vh * 2},
-  prodDetail: {color: drawer_inActive_Color, fontSize: vh * 1.9, paddingTop: vh * 1.5},
+  detailContainer: { paddingHorizontal: vw * 3, paddingTop: vh * 1.5 },
+  prodName: { color: primaryColor, fontSize: vh * 2 },
+  catName: { color: drawer_inActive_Color, fontSize: vh * 2 },
+  prodDetail: {
+    color: drawer_inActive_Color,
+    fontSize: vh * 1.9,
+    paddingTop: vh * 1.5,
+  },
   actionCont: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginTop: vh * 1.5,
     paddingHorizontal: vw * 2.5,
     marginBottom: vh * 1,
   },
-  price: {color: primary_font_color, fontSize: vh * 2.5},
-  cart: {width: vw * 5, height: vh * 2.5},
+  price: { color: primary_font_color, fontSize: vh * 2.5 },
+  cart: { width: vw * 5, height: vh * 2.5 },
 });

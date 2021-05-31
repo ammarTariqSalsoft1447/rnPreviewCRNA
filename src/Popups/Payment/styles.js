@@ -1,62 +1,52 @@
-import {StyleSheet} from 'react-native';
-import {Fonts} from '../../assets/fonts';
-import vw from '../../Units/vw';
-import vh from '../../Units/vh';
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
+import { StyleSheet } from "react-native";
+import { Fonts } from "../../assets/fonts";
+import vw from "../../Units/vw";
+import vh from "../../Units/vh";
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
 const {
   primary_heading_color,
-  primary_section_color,
-  primary_font_color,
   secondary_font_color,
-  primaryColor,
   secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
   primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+} = config;
 export default StyleSheet.create({
   modalTouchable: {
     // backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     flex: 1,
     // height:vh*80,
     // width:vw*100
   },
   modalContainer: {
-    width: '100%',
+    width: "100%",
     backgroundColor: secondaryColor,
     borderRadius: 3 * vw,
     paddingTop: vh * 2,
     paddingBottom: vh * 4,
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: vw * 8,
   },
-  check: {width: vw * 15, height: vh * 5, marginBottom: vh * 1},
-  title: {fontSize: vw * 5, marginVertical: vh * 1},
+  check: { width: vw * 15, height: vh * 5, marginBottom: vh * 1 },
+  title: { fontSize: vw * 5, marginVertical: vh * 1 },
   Message: {
     fontSize: vw * 4.3,
-    textAlign: 'center',
+    textAlign: "center",
     color: primary_heading_color,
     marginTop: vh * 1.5,
   },
-  redirect: {fontSize: vw * 3.5, marginTop: vh * 3},
+  redirect: { fontSize: vw * 3.5, marginTop: vh * 3 },
   login: {
     fontSize: vw * 3.5,
-    textDecorationLine: 'underline',
+    textDecorationLine: "underline",
     color: primary_message_color,
   },
-  BtnContainer: {marginTop: vh * 3, width: '50%'},
-  cross: {width: vw * 3, height: vh * 2},
+  BtnContainer: { marginTop: vh * 3, width: "50%" },
+  cross: { width: vw * 3, height: vh * 2 },
   imageBg: {
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 3,
@@ -71,8 +61,8 @@ export default StyleSheet.create({
     // minHeight:vh*20,
   },
   crossContainer: {
-    alignItems: 'flex-end',
-    alignSelf: 'flex-end',
+    alignItems: "flex-end",
+    alignSelf: "flex-end",
     paddingTop: vh * 1.5,
     paddingRight: vw * 3,
   },
@@ -80,34 +70,34 @@ export default StyleSheet.create({
   //   width: vw * 3,
 
   // },
-  container: {alignItems: 'center', justifyContent: 'center'},
-  checkMark: {width: vw * 10, height: vh * 5, marginBottom: vh * 1},
+  container: { alignItems: "center", justifyContent: "center" },
+  checkMark: { width: vw * 10, height: vh * 5, marginBottom: vh * 1 },
   text: {
     fontSize: vh * 2,
-    width: '95%',
-    textAlign: 'center',
+    width: "95%",
+    textAlign: "center",
     color: primary_heading_color,
   },
   amount: {
     fontSize: vh * 3.5,
-    width: '95%',
-    textAlign: 'center',
+    width: "95%",
+    textAlign: "center",
     color: secondary_font_color,
     marginBottom: vh * 2,
   },
   btnsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginTop: vh * 3,
-    width: '80%',
+    width: "80%",
   },
   yesBtn: {
     backgroundColor: secondary_font_color,
-    width: '44%',
+    width: "44%",
     height: vh * 5.4,
   },
   noBtn: {
-    width: '44%',
+    width: "44%",
     backgroundColor: secondaryColor,
     color: secondary_font_color,
     borderWidth: vw * 0.3,
@@ -116,9 +106,9 @@ export default StyleSheet.create({
   },
   request: {
     backgroundColor: secondary_font_color,
-    width: '50%',
+    width: "50%",
     marginTop: vh * 2,
     height: vh * 5,
   },
-  input: {width: '90%', marginBottom: vh * 2},
+  input: { width: "90%", marginBottom: vh * 2 },
 });

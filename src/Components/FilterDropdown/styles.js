@@ -1,37 +1,22 @@
-import {StyleSheet} from 'react-native';
-import vw from '../../Units/vw';
-import vh from '../../Units/vh';
-import {Fonts} from '../../assets/fonts';
+import { StyleSheet } from "react-native";
+import vw from "../../Units/vw";
+import vh from "../../Units/vh";
+import { Fonts } from "../../assets/fonts";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { secondaryColor } = config;
 
 export default StyleSheet.create({
-  picker: {width: vw * 2.5, height: vh * 1.8},
+  picker: { width: vw * 2.5, height: vh * 1.8 },
   containerStyle: {
     height: vh * 4,
 
     // paddingVertical:vh*2,
 
-    alignItems: 'center',
-    width: '40%',
+    alignItems: "center",
+    width: "40%",
   },
   PickerStyle: {
     backgroundColor: secondaryColor,
@@ -62,15 +47,15 @@ export default StyleSheet.create({
     // borderBottomColor: 'rgba(0,0,0,.2)',
     paddingHorizontal: vw * 3,
     paddingVertical: vh * 0.4,
-    justifyContent: 'flex-start',
+    justifyContent: "flex-start",
   },
   labelStyle: {
-    color: '#666666',
+    color: "#666666",
     fontFamily: Fonts.BR,
     fontSize: vh * 1.7,
   },
   placeholder: {
-    color: '#666666',
+    color: "#666666",
     fontFamily: Fonts.BR,
     fontSize: vh * 1.7,
   },

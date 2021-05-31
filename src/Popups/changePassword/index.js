@@ -98,7 +98,7 @@ class Feedback extends React.Component {
                   style={styles.checkMark}
                   resizeMode="contain"
                 />
-                <TextSemi style={styles.feedback}>Update Password</TextSemi>
+                <TextSemi style={[styles.feedback, this.props.ConfigReducer.feedback]}>Update Password</TextSemi>
                 {/* <MainInput style={styles.field} secureTextEntry={true} placeholder="Old Password"/> */}
 
                 <MainInput

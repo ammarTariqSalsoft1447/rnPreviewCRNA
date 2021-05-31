@@ -1,42 +1,33 @@
-import { StyleSheet } from 'react-native';
-import { Fonts } from '../../assets/fonts';
-import vw from '../../Units/vw';
-import vh from '../../Units/vh';
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
+import { StyleSheet } from "react-native";
+import { Fonts } from "../../assets/fonts";
+import vw from "../../Units/vw";
+import vh from "../../Units/vh";
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
 const {
   primary_heading_color,
-  primary_section_color,
-  primary_font_color,
   secondary_font_color,
-  primaryColor,
   secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
   primary_message_color,
-  drawer_Active_Color,
   drawer_inActive_Color,
-  default_color,
-} = config
+} = config;
 export default StyleSheet.create({
   modalTouchable: {
-    backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "red",
+    alignItems: "center",
+    justifyContent: "center",
     // flex: 1,
     height: vh * 100,
     width: vw * 100,
   },
   modalContainer: {
-    width: '100%',
+    width: "100%",
     backgroundColor: secondaryColor,
     borderRadius: 3 * vw,
     paddingTop: vh * 2,
     paddingBottom: vh * 4,
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: vw * 8,
   },
   check: { width: vw * 15, height: vh * 5, marginBottom: vh * 1 },
@@ -44,21 +35,21 @@ export default StyleSheet.create({
   Message: {
     color: primary_heading_color,
     fontSize: vh * 1.8,
-    width: '80%',
-    alignSelf: 'flex-start',
+    width: "80%",
+    alignSelf: "flex-start",
     marginVertical: vh * 2,
   },
   redirect: { fontSize: vw * 3.5, marginTop: vh * 3 },
   login: {
     fontSize: vw * 3.5,
-    textDecorationLine: 'underline',
+    textDecorationLine: "underline",
     color: primary_message_color,
   },
-  BtnContainer: { marginTop: vh * 3, width: '50%' },
+  BtnContainer: { marginTop: vh * 3, width: "50%" },
   cross: { width: vw * 3, height: vh * 2 },
   imageBg: {
-    backgroundColor: 'yellow',
-    shadowColor: '#000',
+    backgroundColor: "yellow",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 3,
@@ -73,41 +64,45 @@ export default StyleSheet.create({
     // minHeight:vh*20,
   },
   crossContainer: {
-    alignItems: 'flex-end',
-    alignSelf: 'flex-end',
+    alignItems: "flex-end",
+    alignSelf: "flex-end",
     paddingTop: vh * 1.5,
     paddingRight: vw * 3,
     // backgroundColor: 'red',
     height: 5 * vh,
     width: 10 * vw,
     marginTop: 2 * vh,
-    marginRight: 2 * vw
+    marginRight: 2 * vw,
   },
   // cross:{
   //   width: vw * 3,
 
   // },
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingHorizontal: vw * 6,
   },
   checkMark: { width: vw * 10, height: vh * 5 },
   text: {
     fontSize: vh * 2.2,
-    width: '95%',
-    textAlign: 'center',
+    width: "95%",
+    textAlign: "center",
     color: primary_heading_color,
   },
   btnsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
     marginTop: vh * 2,
-    width: '80%',
+    width: "80%",
   },
-  yesBtn: { backgroundColor: '#FF4343', width: '48%' },
-  noBtn: { width: '48%' },
-  request: { backgroundColor: secondary_font_color, width: '45%', marginTop: vh * 2 },
+  yesBtn: { backgroundColor: "#FF4343", width: "48%" },
+  noBtn: { width: "48%" },
+  request: {
+    backgroundColor: secondary_font_color,
+    width: "45%",
+    marginTop: vh * 2,
+  },
   feedback: { color: primary_heading_color, fontSize: vh * 2.5 },
   description: {
     color: drawer_inActive_Color,
@@ -116,17 +111,17 @@ export default StyleSheet.create({
     marginBottom: vh * 0.8,
   },
   txtArea: {
-    width: '100%',
+    width: "100%",
     borderRadius: vw * 1,
     height: vh * 15,
     marginBottom: vh * 1,
-    textAlignVertical: 'top',
+    textAlignVertical: "top",
   },
-  field: { width: '100%', marginBottom: vh * 1 },
+  field: { width: "100%", marginBottom: vh * 1 },
   btn: {
-    width: '40%',
+    width: "40%",
     height: vh * 5.5,
-    alignSelf: 'flex-end',
+    alignSelf: "flex-end",
     marginTop: vh * 1,
   },
 });

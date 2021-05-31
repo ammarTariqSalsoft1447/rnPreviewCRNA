@@ -1,49 +1,34 @@
-import React from 'react';
-import {View, ImageBackground, Image, TouchableOpacity} from 'react-native';
-import {backgrounds, assets, icons} from '../../assets/images';
-import styles from './styles';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import TextRegular from '../../Components/TextRegular';
-import ImageButton from '../../Components/ImageButton';
-import MainInput from '../../Components/MainInput';
-import ChangePassword from '../../Popups/changePassword';
-import Alert from '../../Popups/Alert';
-import TextMedium from '../../Components/TextMedium';
-import CircularBook from '../../Components/CircularBook';
-import TouchableHOC from '../../Components/TouchableHOC';
-import {TextInput} from 'react-native-gesture-handler';
-import {connect} from 'react-redux';
-import Toast from 'react-native-toast';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
+import React from "react";
+import { View, ImageBackground, Image, TouchableOpacity } from "react-native";
+import { backgrounds, assets, icons } from "../../assets/images";
+import styles from "./styles";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import TextRegular from "../../Components/TextRegular";
+import ImageButton from "../../Components/ImageButton";
+import MainInput from "../../Components/MainInput";
+import ChangePassword from "../../Popups/changePassword";
+import Alert from "../../Popups/Alert";
+import TextMedium from "../../Components/TextMedium";
+import CircularBook from "../../Components/CircularBook";
+import TouchableHOC from "../../Components/TouchableHOC";
+import { TextInput } from "react-native-gesture-handler";
+import { connect } from "react-redux";
+import Toast from "react-native-toast";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { primary_font_color, primaryColor, secondary_background_color } = config;
 class ProfileDetails extends React.Component {
   state = {
     edit: false,
     updatedUser: {
-      id: '',
-      first_name: '',
-      last_name: '',
-      phone: '',
+      id: "",
+      first_name: "",
+      last_name: "",
+      phone: "",
     },
   };
 
@@ -64,33 +49,34 @@ class ProfileDetails extends React.Component {
       },
       (error) => {
         Toast.show(error);
-      },
+      }
     );
   };
 
   _onBackPress = () => {
     // alert('ok')
-    this.setState({edit: false}, () => {
+    this.setState({ edit: false }, () => {
       this.props.navigation.setOptions({
-        title: 'PROFILE DETAILS',
+        title: "PROFILE DETAILS",
         headerleft: () => {
           return (
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
-                style={{marginLeft: 5.5 * vw, backgroundColor: 'red'}}
+                style={{ marginLeft: 5.5 * vw, backgroundColor: "red" }}
                 onPress={() => navigation.openDrawer()}
                 hitSlop={{
                   top: 2 * vh,
                   left: 2 * vw,
                   right: 2 * vw,
                   bottom: 2 * vh,
-                }}>
+                }}
+              >
                 <Image
                   source={!this.state.edit ? assets.menu : assets.arrowBack}
                   style={{
                     width: 5.5 * vw,
                     height: 4 * vh,
-                    resizeMode: 'contain',
+                    resizeMode: "contain",
                     tintColor: primary_font_color,
                   }}
                 />
@@ -103,14 +89,14 @@ class ProfileDetails extends React.Component {
   };
 
   _editPtofile = () => {
-    this.setState({edit: true}, () => {
+    this.setState({ edit: true }, () => {
       this.props.navigation.setOptions({
-        title: 'UPDATE PROFILE',
+        title: "UPDATE PROFILE",
         headerLeft: () => {
           return (
-            <View style={{flexDirection: 'row'}}>
+            <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
-                style={{marginLeft: 5.5 * vw}}
+                style={{ marginLeft: 5.5 * vw }}
                 onPress={
                   this.state.edit
                     ? () => this._onBackPress()
@@ -121,13 +107,14 @@ class ProfileDetails extends React.Component {
                   left: 2 * vw,
                   right: 2 * vw,
                   bottom: 2 * vh,
-                }}>
+                }}
+              >
                 <Image
                   source={!this.state.edit ? assets.menu : assets.arrowBack}
                   style={{
                     width: 5.5 * vw,
                     height: 4 * vh,
-                    resizeMode: 'contain',
+                    resizeMode: "contain",
                     tintColor: !this.state.edit
                       ? primary_font_color
                       : primaryColor,
@@ -149,20 +136,20 @@ class ProfileDetails extends React.Component {
           <MainInput
             style={styles.input}
             value={this.state.updatedUser.first_name}
-            onChangeText={(text) => this._onChangeText('first_name', text)}
+            onChangeText={(text) => this._onChangeText("first_name", text)}
           />
           <TextRegular style={styles.label}>Last Name</TextRegular>
           <MainInput
             style={styles.input}
             value={this.state.updatedUser.last_name}
-            onChangeText={(text) => this._onChangeText('last_name', text)}
+            onChangeText={(text) => this._onChangeText("last_name", text)}
           />
           <TextRegular style={styles.label}>Phone Number</TextRegular>
 
           <MainInput
             style={styles.input}
             value={this.state.updatedUser.phone}
-            onChangeText={(text) => this._onChangeText('phone', text)}
+            onChangeText={(text) => this._onChangeText("phone", text)}
           />
 
           <TextRegular style={styles.label}>Email</TextRegular>
@@ -222,7 +209,7 @@ class ProfileDetails extends React.Component {
   };
 
   componentDidMount() {
-    this.props.navigation.addListener('focus', () => {
+    this.props.navigation.addListener("focus", () => {
       this.setState({
         updatedUser: {
           id: this.props.Reducer.userInfo.id,
@@ -235,7 +222,7 @@ class ProfileDetails extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.navigation.removeListener('focus');
+    this.props.navigation.removeListener("focus");
   }
 
   render() {
@@ -246,7 +233,8 @@ class ProfileDetails extends React.Component {
           paddingHorizontal: vw * 8,
           paddingTop: vh * 4,
           backgroundColor: secondary_background_color,
-        }}>
+        }}
+      >
         {this.props.Reducer.userInfo == null ? null : (
           <>
             <ChangePassword
@@ -259,7 +247,7 @@ class ProfileDetails extends React.Component {
             />
 
             <Alert
-              text={'Your password has been\nupdated successfully'}
+              text={"Your password has been\nupdated successfully"}
               onSuccess={() => {}}
               ref={(e) => (this.changeSuccess = e)}
             />
@@ -274,5 +262,5 @@ class ProfileDetails extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(ProfileDetails);

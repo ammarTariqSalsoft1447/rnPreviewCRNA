@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   ImageBackground,
@@ -6,48 +6,33 @@ import {
   Text,
   ScrollView,
   RefreshControl,
-} from 'react-native';
-import styles from './styles';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import Alert from '../../Popups/Alert';
-import TextMedium from '../../Components/TextMedium';
-import TouchableHOC from '../../Components/TouchableHOC';
-import CircularBook from '../../Components/CircularBook';
-import CartItem from '../../Components/CartItem';
-import {connect} from 'react-redux';
-import Toast from 'react-native-toast';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
-import Api from '../../WooCommerceWrapper/Api';
+} from "react-native";
+import styles from "./styles";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import Alert from "../../Popups/Alert";
+import TextMedium from "../../Components/TextMedium";
+import TouchableHOC from "../../Components/TouchableHOC";
+import CircularBook from "../../Components/CircularBook";
+import CartItem from "../../Components/CartItem";
+import { connect } from "react-redux";
+import Toast from "react-native-toast";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
+import Api from "../../WooCommerceWrapper/Api";
 
-import Button from '../../Components/Button';
+import Button from "../../Components/Button";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { primary_font_color } = config;
 class Cart extends React.Component {
   state = {
     refreshing: false,
   };
   ß;
   checkout = () => {
-    this.props.navigation.navigate('Checkout');
+    this.props.navigation.navigate("Checkout");
   };
   getProducts = () => {
     if (this.props.Reducer.cart.length > 0) {
@@ -67,7 +52,7 @@ class Cart extends React.Component {
           this.setState({
             refreshing: false,
           });
-        },
+        }
       );
 
       // var productsToFetch = [];
@@ -89,11 +74,11 @@ class Cart extends React.Component {
     }
   };
   componentDidMount() {
-    this.props.navigation.addListener('focus', this.getProducts);
+    this.props.navigation.addListener("focus", this.getProducts);
   }
 
   componentWillUnmount() {
-    this.props.navigation.removeListener('focus');
+    this.props.navigation.removeListener("focus");
   }
   getSubTotal = () => {
     var total = 0;
@@ -108,31 +93,33 @@ class Cart extends React.Component {
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{flex: 1, paddingHorizontal: vw * 5, paddingTop: vh * 2}}
+        style={{ flex: 1, paddingHorizontal: vw * 5, paddingTop: vh * 2 }}
         refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
             onRefresh={this.getProducts}
           />
-        }>
+        }
+      >
         {this.props.Reducer.cart.length == 0 || this.state.refreshing ? (
           <View
             style={{
               height: 100 * vh,
-              alignItems: 'center',
-              justifyContent: 'space-around',
-            }}>
+              alignItems: "center",
+              justifyContent: "space-around",
+            }}
+          >
             <Text>
               {this.state.refreshing
-                ? ' Getting Products '
-                : 'Cart is empty! please add some products'}
+                ? " Getting Products "
+                : "Cart is empty! please add some products"}
             </Text>
 
             {this.state.refreshing === false && (
               <Button
                 title="Shop More"
-                onPress={() => this.props.navigation.navigate('Products')}
-                btnContainer={{width: '41%'}}
+                onPress={() => this.props.navigation.navigate("Products")}
+                btnContainer={{ width: "41%" }}
               />
             )}
           </View>
@@ -166,8 +153,9 @@ class Cart extends React.Component {
               <View
                 style={[
                   styles.detailItem,
-                  {borderBottomWidth: 0, marginBottom: 0},
-                ]}>
+                  { borderBottomWidth: 0, marginBottom: 0 },
+                ]}
+              >
                 <CircularBook style={styles.detailTxt}>Total</CircularBook>
                 <CircularBook style={styles.detailTxt}>
                   ${this.getSubTotal().toFixed(2)}
@@ -177,20 +165,24 @@ class Cart extends React.Component {
 
             <View
               style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
+                flexDirection: "row",
+                justifyContent: "space-between",
                 marginTop: vh * 2,
                 marginBottom: 4 * vh,
-              }}>
+              }}
+            >
               <Button
                 title="Shop More"
-                onPress={() => this.props.navigation.navigate('Products')}
-                btnContainer={{width: '41%'}}
+                onPress={() => this.props.navigation.navigate("Products")}
+                btnContainer={{ width: "41%" }}
               />
               <Button
                 title="Proceed To Checkout"
                 onPress={() => this.checkout()}
-                btnContainer={{width: '56%', backgroundColor: primary_font_color}}
+                btnContainer={{
+                  width: "56%",
+                  backgroundColor: primary_font_color,
+                }}
               />
             </View>
           </>
@@ -202,5 +194,5 @@ class Cart extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(Cart);

@@ -13,7 +13,7 @@ export default class extends React.Component {
                 ellipsizeMode='tail'
                 allowFontScaling={false}
                 {...this.props}
-                style={[styles.text, this.props.style]}
+                style={[styles.text, this.props.style, this.props.ConfigReducer.primary_heading_color]}
             >{this.props.children}</Text>
         )
     }

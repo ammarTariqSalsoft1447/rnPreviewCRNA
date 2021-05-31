@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   ImageBackground,
@@ -10,68 +10,53 @@ import {
   TouchableOpacity,
   Text,
   Modal,
-} from 'react-native';
+} from "react-native";
 import images, {
   backgrounds,
   assets,
   icons,
   samplePictures,
-} from '../../assets/images';
-import styles from './styles';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import TextRegular from '../../Components/TextRegular';
-import FilterDropdown from '../../Components/FilterDropdown';
-import TextSemi from '../../Components/TextSemi';
-import CircularBook from '../../Components/CircularBook';
+} from "../../assets/images";
+import styles from "./styles";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import TextRegular from "../../Components/TextRegular";
+import FilterDropdown from "../../Components/FilterDropdown";
+import TextSemi from "../../Components/TextSemi";
+import CircularBook from "../../Components/CircularBook";
 
-import TextMedium from '../../Components/TextMedium';
-import Quantity from '../../Components/Quantity';
-import ImageButton from '../../Components/ImageButton';
-import Carousel, {Pagination} from 'react-native-snap-carousel';
-import Button from '../../Components/Button';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import ProductItem from '../../Components/ProductItem';
-import StarRating from 'react-native-star-rating';
-import Feedback from '../../Popups/Feedback';
-import Alert from '../../Popups/Alert';
-import {connect} from 'react-redux';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import HTML from 'react-native-render-html';
-import Toast from 'react-native-toast';
-import DropDown from '../../Components/DropDown';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
-import ImagePreview from '../../Popups/ImagePreview';
+import TextMedium from "../../Components/TextMedium";
+import Quantity from "../../Components/Quantity";
+import ImageButton from "../../Components/ImageButton";
+import Carousel, { Pagination } from "react-native-snap-carousel";
+import Button from "../../Components/Button";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import ProductItem from "../../Components/ProductItem";
+import StarRating from "react-native-star-rating";
+import Feedback from "../../Popups/Feedback";
+import Alert from "../../Popups/Alert";
+import { connect } from "react-redux";
+import { SafeAreaView } from "react-native-safe-area-context";
+import HTML from "react-native-render-html";
+import Toast from "react-native-toast";
+import DropDown from "../../Components/DropDown";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
+import ImagePreview from "../../Popups/ImagePreview";
 
-import TouchableHOC from '../../Components/TouchableHOC';
+import TouchableHOC from "../../Components/TouchableHOC";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { primary_font_color, primaryColor } = config;
 const features = [
-  {text: 'Fashionable For any wardrobe'},
-  {text: 'It has two-sided pockets'},
-  {text: 'Suitable for lounging work or on the go'},
+  { text: "Fashionable For any wardrobe" },
+  { text: "It has two-sided pockets" },
+  { text: "Suitable for lounging work or on the go" },
 ];
 
 const dummayImage = [
-  {image: 'https://pesmcopt.com/admin-media/images/dummy-product-image.jpg'},
+  { image: "https://pesmcopt.com/admin-media/images/dummy-product-image.jpg" },
 ];
 class ProductDetail extends React.Component {
   state = {
@@ -89,7 +74,7 @@ class ProductDetail extends React.Component {
       <ProductItem
         item={item}
         onPress={(id) =>
-          this.props.navigation.push('ProductDetail', {productID: id})
+          this.props.navigation.push("ProductDetail", { productID: id })
         }
       />
     );
@@ -100,15 +85,15 @@ class ProductDetail extends React.Component {
     return (
       <TouchableOpacity onPress={() => this.imagepreview.show(item.item.src)}>
         <Image
-          source={{uri: item.item.src}}
-          style={{width: '100%', height: vh * 25}}
+          source={{ uri: item.item.src }}
+          style={{ width: "100%", height: vh * 25 }}
           resizeMode="cover"
         />
       </TouchableOpacity>
     );
   };
   addToCart = () => {
-    const {id} = this.state.singleProductDetails;
+    const { id } = this.state.singleProductDetails;
 
     this.checkVariations();
 
@@ -126,12 +111,12 @@ class ProductDetail extends React.Component {
         if (val.variation) {
           if (this.state.variationList.length <= 0) {
             tempFlag = true;
-            return Toast.show('Please select variations');
+            return Toast.show("Please select variations");
           }
 
           if (!this.state.variationFlag) {
             tempFlag = true;
-            return Toast.show('Cannot avail these variations, select other !');
+            return Toast.show("Cannot avail these variations, select other !");
           }
         }
       });
@@ -156,25 +141,25 @@ class ProductDetail extends React.Component {
       }
 
       console.log(
-        'this.props.Reducer.addedVariation ',
+        "this.props.Reducer.addedVariation ",
         this.props.Reducer.addedVariation,
-        this.props.Reducer,
+        this.props.Reducer
       );
 
       this.props.AddToCart(
         Product,
         (success) => {
           if (success) {
-            Toast.show('Added to cart');
+            Toast.show("Added to cart");
             this.success.show();
           }
         },
         (error) => {
           if (error) {
-            Toast.show('Already in cart');
+            Toast.show("Already in cart");
           }
         },
-        this.state.singleProductDetails,
+        this.state.singleProductDetails
       );
     }
   };
@@ -195,7 +180,7 @@ class ProductDetail extends React.Component {
     this.setState({
       refreshing: true,
     });
-    const {productID} = this.props.route.params;
+    const { productID } = this.props.route.params;
     this.props.SingleProduct(
       productID,
       (success) => {
@@ -204,7 +189,7 @@ class ProductDetail extends React.Component {
           refreshing: false,
         });
       },
-      () => {},
+      () => {}
     );
   };
 
@@ -212,9 +197,9 @@ class ProductDetail extends React.Component {
     this.setState({
       refreshing: true,
     });
-    const {productID} = this.props.route.params;
+    const { productID } = this.props.route.params;
     this.props.navigation.addListener(
-      'focus',
+      "focus",
       () => {
         this.props.SingleProduct(
           productID,
@@ -232,13 +217,13 @@ class ProductDetail extends React.Component {
                   singleProductDetails: success,
                   refreshing: false,
                 });
-              },
+              }
             );
           },
-          (fail) => {},
+          (fail) => {}
         );
       },
-      () => {},
+      () => {}
     );
 
     // this.props.navigation.addListener('blur', () => {
@@ -248,19 +233,19 @@ class ProductDetail extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.navigation.removeListener('focus');
+    this.props.navigation.removeListener("focus");
     // this.props.navigation.removeListener('blur');
   }
 
   _onVariationDropDown = (_options, name) => {
     if (this.DropDownRef) {
       this.DropDownRef.show(
-        'title',
+        "title",
         _options,
-        'Select a variation',
+        "Select a variation",
         (data) => this.handleVariations(data.title, name),
         null,
-        null,
+        null
       );
     }
   };
@@ -279,7 +264,7 @@ class ProductDetail extends React.Component {
               },
               check: true,
             }),
-            this.checkVariations,
+            this.checkVariations
           );
           // setTimeout(() => this.checkVariations(), 400)
         } else {
@@ -291,12 +276,12 @@ class ProductDetail extends React.Component {
               },
               check: false,
             }),
-            this.checkVariations,
+            this.checkVariations
           );
         }
       } else {
         this.setState({
-          variationList: [...this.state.variationList, {[name]: option}],
+          variationList: [...this.state.variationList, { [name]: option }],
           check: false,
         });
       }
@@ -319,7 +304,7 @@ class ProductDetail extends React.Component {
           }
 
           if (check === true && val.attributes.length == index + 1) {
-            this.setState({variationFlag: true, variationProduct: val});
+            this.setState({ variationFlag: true, variationProduct: val });
           }
         });
       });
@@ -345,17 +330,18 @@ class ProductDetail extends React.Component {
           }
 
           return (
-            <View style={[styles.row, {elevation: 10, marginTop: vh * 3}]}>
+            <View style={[styles.row, { elevation: 10, marginTop: vh * 3 }]}>
               {value.options.length === 0 ? null : (
                 <>
-                  <TextSemi style={{fontSize: vh * 2}}>{value.name}</TextSemi>
+                  <TextSemi style={{ fontSize: vh * 2 }}>{value.name}</TextSemi>
                   <TouchableOpacity
                     onPress={() =>
                       this._onVariationDropDown(_options, value.name)
-                    }>
-                    <TextSemi style={{fontSize: vh * 2}}>
+                    }
+                  >
+                    <TextSemi style={{ fontSize: vh * 2 }}>
                       {this.state.variationList[value.name] ??
-                        'Select variation'}
+                        "Select variation"}
                     </TextSemi>
                   </TouchableOpacity>
                 </>
@@ -371,8 +357,8 @@ class ProductDetail extends React.Component {
 
   render() {
     console.log(
-      'this.state.singleProductDetails',
-      this.state.singleProductDetails,
+      "this.state.singleProductDetails",
+      this.state.singleProductDetails
     );
 
     let data = null;
@@ -380,7 +366,7 @@ class ProductDetail extends React.Component {
     else data = this.state.singleProductDetails;
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         {!this.state.refreshing && this.state.singleProductDetails ? (
           <>
             <Feedback
@@ -410,7 +396,7 @@ class ProductDetail extends React.Component {
               itemWidth={vw * 100}
               inactiveSlideOpacity={1}
               inactiveSlideScale={1}
-              onSnapToItem={(index) => this.setState({activeSlide: index})}
+              onSnapToItem={(index) => this.setState({ activeSlide: index })}
               initialScrollIndex={this.state.activeSlide}
               style={{}}
             />
@@ -422,26 +408,32 @@ class ProductDetail extends React.Component {
                 right: 5 * vw,
               }}
               onPress={() => this.props.navigation.goBack()}
-              style={{position: 'absolute', top: vh * 3}}>
+              style={{ position: "absolute", top: vh * 3 }}
+            >
               <Image
                 source={icons.arrowHeader}
-                style={{width: vw * 6.5, height: vh * 6, marginLeft: 5.5 * vw}}
+                style={{
+                  width: vw * 6.5,
+                  height: vh * 6,
+                  marginLeft: 5.5 * vw,
+                }}
                 resizeMode="contain"
               />
             </TouchableHOC>
 
             <View style={styles.card}>
               <ScrollView
-                style={{flex: 1}}
+                style={{ flex: 1 }}
                 showsVerticalScrollIndicator={false}
                 refreshControl={
                   <RefreshControl
                     refreshing={this.state.refreshing}
                     onRefresh={() => this._onRefresh()}
                     tintColor="black"
-                    colors={['black']}
+                    colors={["black"]}
                   />
-                }>
+                }
+              >
                 <Pagination
                   dotsLength={
                     this.state.singleProductDetails.images == undefined
@@ -455,7 +447,7 @@ class ProductDetail extends React.Component {
                   dotStyle={styles.dot}
                   onScrollToIndexFailed={() => {}}
                   inactiveDotStyle={styles.inactiveDot}
-                  dotContainerStyle={{marginHorizontal: vw * 0.3}}
+                  dotContainerStyle={{ marginHorizontal: vw * 0.3 }}
                   inactiveDotOpacity={1}
                   inactiveDotScale={1}
                 />
@@ -517,21 +509,22 @@ class ProductDetail extends React.Component {
                     fontSize: vh * 2.4,
                     marginTop: vh * 3,
                     marginBottom: vh * 1.5,
-                  }}>
+                  }}
+                >
                   Description
                 </TextMedium>
 
                 <HTML
-                  containerStyle={{paddingHorizontal: 5 * vw}}
-                  baseFontStyle={{fontSize: 3 * vw, color: '#1D1D1D'}}
+                  containerStyle={{ paddingHorizontal: 5 * vw }}
+                  baseFontStyle={{ fontSize: 3 * vw, color: "#1D1D1D" }}
                   html={
                     this.state.singleProductDetails
                       ? this.state.singleProductDetails.description == undefined
-                        ? ''
+                        ? ""
                         : this.state.singleProductDetails.description
-                      : '<h1></h1>'
+                      : "<h1></h1>"
                   }
-                  tagsStyles={{img: {height: 25 * vh, width: 80 * vw}}}
+                  tagsStyles={{ img: { height: 25 * vh, width: 80 * vw } }}
                 />
 
                 <View style={styles.row}>
@@ -539,41 +532,41 @@ class ProductDetail extends React.Component {
                     disabled={true}
                     maxStars={5}
                     rating={parseInt(
-                      this.state.singleProductDetails.average_rating,
+                      this.state.singleProductDetails.average_rating
                     )}
                     selectedStar={(rating) => this.onStarRatingPress(rating)}
                     fullStar={icons.star}
                     emptyStar={icons.emptyStar}
                     starSize={vh * 2.2}
-                    buttonStyle={{marginRight: vw * 1.8}}
+                    buttonStyle={{ marginRight: vw * 1.8 }}
                   />
 
                   <Button
                     onPress={() =>
                       this.feedback.show(
                         this.state.singleProductDetails.id,
-                        parseInt(
-                          this.state.singleProductDetails.average_rating,
-                        ),
+                        parseInt(this.state.singleProductDetails.average_rating)
                       )
                     }
                     title="Add a Review"
-                    btnContainer={{width: '40%', height: vh * 5.5}}
+                    btnContainer={{ width: "40%", height: vh * 5.5 }}
                   />
                 </View>
                 <View
                   style={{
-                    flexDirection: 'row',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center",
                     marginBottom: vh * 2,
-                  }}>
+                  }}
+                >
                   <TextMedium
                     style={{
                       color: primaryColor,
                       fontSize: vh * 2.4,
                       marginTop: vh * 3,
-                    }}>
+                    }}
+                  >
                     RELATED PRODUCTS
                   </TextMedium>
 
@@ -582,9 +575,9 @@ class ProductDetail extends React.Component {
                     onPress={() => this.props.navigation.pop()}
                     btnContainer={{
                       backgroundColor: primary_font_color,
-                      width: '30%',
+                      width: "30%",
                       height: vh * 3.5,
-                      alignSelf: 'flex-end',
+                      alignSelf: "flex-end",
                     }}
                   />
                 </View>
@@ -603,21 +596,21 @@ class ProductDetail extends React.Component {
             </View>
           </>
         ) : (
-          <View style={{flex: 1, alignItems: 'center'}}>
+          <View style={{ flex: 1, alignItems: "center" }}>
             <Image
               source={
                 this.props.route.params.imgSrc
-                  ? {uri: this.props.route.params.imgSrc}
-                  : require('../../assets/images/banner.png')
+                  ? { uri: this.props.route.params.imgSrc }
+                  : require("../../assets/images/banner.png")
               }
-              style={{width: '100%', height: vh * 25}}
+              style={{ width: "100%", height: vh * 25 }}
               resizeMode="cover"
             />
 
             <ActivityIndicator
               size="large"
               color="black"
-              style={{marginTop: 4 * vh}}
+              style={{ marginTop: 4 * vh }}
             />
           </View>
         )}
@@ -628,5 +621,5 @@ class ProductDetail extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(ProductDetail);

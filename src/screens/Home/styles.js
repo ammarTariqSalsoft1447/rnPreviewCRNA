@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
+import { StyleSheet } from "react-native";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
 const {
   primary_heading_color,
   primary_section_color,
@@ -13,44 +13,38 @@ const {
   secondaryColor,
   primary_placeholder_Color,
   primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+} = config;
 
 export default StyleSheet.create({
   headerContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     backgroundColor: secondaryColor,
     paddingHorizontal: vw * 3,
     height: vh * 9,
-    alignItems: 'flex-end',
+    alignItems: "flex-end",
     paddingBottom: vh * 1,
-    justifyContent: 'space-between',
+    justifyContent: "space-between",
   },
   headerInner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
   },
-  menu: {width: vw * 8, height: vh * 3},
+  menu: { width: vw * 8, height: vh * 3 },
   searchbar: {
-    flexDirection: 'row',
+    flexDirection: "row",
     width: vw * 84,
     paddingHorizontal: vw * 3,
     height: vh * 5,
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    alignItems: "center",
+    justifyContent: "space-between",
     borderColor: primary_border_color,
     borderWidth: vw * 0.2,
     borderRadius: vh * 2.5,
   },
-  input: {color: primary_placeholder_Color, fontSize: vh * 2, padding: 0},
-  search: {width: vw * 4, height: vh * 5},
+  input: { color: primary_placeholder_Color, fontSize: vh * 2, padding: 0 },
+  search: { width: vw * 4, height: vh * 5 },
   dot: {
     width: vw * 8,
     height: vh * 1,
@@ -66,13 +60,13 @@ export default StyleSheet.create({
   banner: {
     width: vw * 92,
     height: vh * 22,
-    alignSelf: 'center',
-    justifyContent: 'center',
+    alignSelf: "center",
+    justifyContent: "center",
   },
   bannerTxt: {
     color: secondaryColor,
     fontSize: vh * 2.7,
-    width: '50%',
+    width: "50%",
     marginLeft: vw * 5,
   },
   categories: {
@@ -90,60 +84,60 @@ export default StyleSheet.create({
     paddingHorizontal: vw * 4,
     paddingTop: vh * 1.5,
     paddingBottom: vh * 2.5,
-    alignSelf: 'center',
+    alignSelf: "center",
     borderRadius: vw * 3,
   },
   catHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
-  categoriesTxt: {color: primary_heading_color, fontSize: vh * 2.2},
-  viewAll: {color: primary_font_color, fontSize: vh * 1.7},
+  categoriesTxt: { color: primary_heading_color, fontSize: vh * 2.2 },
+  viewAll: { color: primary_font_color, fontSize: vh * 1.7 },
   catRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginTop: vh * 1,
-    width: '100%',
-    alignSelf: 'center',
-    flexWrap: 'wrap',
+    width: "100%",
+    alignSelf: "center",
+    flexWrap: "wrap",
   },
   cat1: {
-    width: '32%',
+    width: "32%",
     backgroundColor: primary_section_color,
-    alignItems: 'center',
+    alignItems: "center",
     paddingVertical: vh * 2,
     borderRadius: vw * 1,
     height: vh * 17,
     marginBottom: vh * 1,
     paddingHorizontal: vw * 2,
   },
-  carImg1: {width: vw * 20, height: vh * 10},
-  catTxt1: {color: primary_font_color, fontSize: vh * 1.5, marginTop: vh * 1},
+  carImg1: { width: vw * 20, height: vh * 10 },
+  catTxt1: { color: primary_font_color, fontSize: vh * 1.5, marginTop: vh * 1 },
   catRow2: {
-    flexDirection: 'row',
-    width: '64%',
+    flexDirection: "row",
+    width: "64%",
     backgroundColor: primary_section_color,
     paddingVertical: vh * 2,
     borderRadius: vw * 1,
     height: vh * 17,
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: vh * 1,
     paddingHorizontal: vw * 2,
   },
   catTxt2: {
     color: secondary_font_color,
     fontSize: vh * 2.8,
-    width: '40%',
+    width: "40%",
     marginLeft: vw * 5,
   },
   catTxt3: {
     color: secondary_font_color,
     fontSize: vh * 2.4,
-    width: '40%',
+    width: "40%",
     marginLeft: vw * 5,
   },
-  catImg2: {width: '55%', height: vh * 16},
+  catImg2: { width: "55%", height: vh * 16 },
 });

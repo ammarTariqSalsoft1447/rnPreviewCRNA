@@ -1,68 +1,55 @@
-import React from 'react';
-import {Image, Text, View} from 'react-native';
-import TextMedium from '../TextMedium';
-import styles from './styles';
-import TouchableHOC from '../../Components/TouchableHOC';
-import {connect} from 'react-redux';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
-import {icons} from '../../assets/images';
-import vw from '../../Units/vw';
-import vh from '../../Units/vh';
+import React from "react";
+import { Image, Text, View } from "react-native";
+import TextMedium from "../TextMedium";
+import styles from "./styles";
+import TouchableHOC from "../../Components/TouchableHOC";
+import { connect } from "react-redux";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
+import { icons } from "../../assets/images";
+import vw from "../../Units/vw";
+import vh from "../../Units/vh";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { primary_font_color, secondaryColor } = config;
 
 const CartButton = (props) => {
   let cartLength = props.Reducer.cartProduct.length;
 
   if (cartLength > 9) {
-    cartLength = '9+';
+    cartLength = "9+";
   }
 
   return (
-    <TouchableHOC style={{}} onPress={() => props.navigation.navigate('Cart')}>
+    <TouchableHOC style={{}} onPress={() => props.navigation.navigate("Cart")}>
       <Image
         source={icons.cart}
-        style={{width: 4.5 * vw, height: 4 * vh, resizeMode: 'contain'}}
+        style={{ width: 4.5 * vw, height: 4 * vh, resizeMode: "contain" }}
       />
 
       {props.Reducer.cartProduct.length > 0 && (
         <View
           style={{
-            position: 'absolute',
+            position: "absolute",
             width: 3.5 * vw,
             height: 3.5 * vw,
             backgroundColor: primary_font_color,
             right: -1.5 * vw,
             top: -0.2 * vh,
             borderRadius: 1.75 * vw,
-            justifyContent: 'center',
-            alignItems: 'center',
-            overflow: 'hidden',
-          }}>
+            justifyContent: "center",
+            alignItems: "center",
+            overflow: "hidden",
+          }}
+        >
           <TextMedium
             style={{
               color: secondaryColor,
               fontSize: 1.3 * vh,
-              textAlign: 'center',
-            }}>
+              textAlign: "center",
+            }}
+          >
             {cartLength}
           </TextMedium>
         </View>

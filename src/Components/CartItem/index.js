@@ -1,19 +1,19 @@
-import React from 'react';
-import {Image, View, ImageBackground, Text} from 'react-native';
-import styles from './styles';
-import vw from '../../Units/vw';
-import vh from '../../Units/vh';
-import {Fonts} from '../../assets/fonts';
-import {icons, samplePictures} from '../../assets/images/index';
-import DropDownPicker from 'react-native-dropdown-picker';
-import TextMedium from '../TextMedium';
-import CircularBook from '../CircularBook';
-import Alert from '../../Popups/Alert';
-import Quantity from '../Quantity';
-import TouchableHOC from '../../Components/TouchableHOC';
-import ProductItem from '../ProductItem';
-import {connect} from 'react-redux';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
+import React from "react";
+import { Image, View, ImageBackground, Text } from "react-native";
+import styles from "./styles";
+import vw from "../../Units/vw";
+import vh from "../../Units/vh";
+import { Fonts } from "../../assets/fonts";
+import { icons, samplePictures } from "../../assets/images/index";
+import DropDownPicker from "react-native-dropdown-picker";
+import TextMedium from "../TextMedium";
+import CircularBook from "../CircularBook";
+import Alert from "../../Popups/Alert";
+import Quantity from "../Quantity";
+import TouchableHOC from "../../Components/TouchableHOC";
+import ProductItem from "../ProductItem";
+import { connect } from "react-redux";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 
 class CartItem extends React.Component {
   state = {};
@@ -31,7 +31,7 @@ class CartItem extends React.Component {
   //calculating the quantity of product from cart array
   calculateQuantity = () => {
     let index = this.props.Reducer.cart.findIndex(
-      (x) => x.product_id === this.props.item.id,
+      (x) => x.product_id === this.props.item.id
     );
     return this.props.Reducer.cart[index].quantity;
     // const foundItem = this.props.Reducer.cart.find(val => {
@@ -43,14 +43,14 @@ class CartItem extends React.Component {
 
   render() {
     return (
-      <View style={styles.card}>
+      <View style={[styles.card, this.props.ConfigReducer.secondaryColor]}>
         {/* here checking if iamges exist or not */}
         {this.props.item.images && (
           <Image
             source={
               this.props.item.images.length == 0
-                ? {uri: 'https://via.placeholder.com/300/09f/fff.png'}
-                : {uri: this.props.item.images[0].src}
+                ? { uri: "https://via.placeholder.com/300/09f/fff.png" }
+                : { uri: this.props.item.images[0].src }
             }
             style={styles.img}
             resizeMode="cover"
@@ -61,7 +61,8 @@ class CartItem extends React.Component {
           {this.props.cross ? null : (
             <TouchableHOC
               onPress={() => this._removeFromCart(this.props.item.id)}
-              style={{alignSelf: 'flex-end'}}>
+              style={{ alignSelf: "flex-end" }}
+            >
               <Image
                 source={icons.crossBorder}
                 style={styles.cross}
@@ -69,7 +70,11 @@ class CartItem extends React.Component {
               />
             </TouchableHOC>
           )}
-          <TextMedium style={styles.name}>{this.props.item.name}</TextMedium>
+          <TextMedium
+            style={[styles.name, this.props.ConfigReducer.primaryColor]}
+          >
+            {this.props.item.name}
+          </TextMedium>
           <View style={styles.priceContainer}>
             <CircularBook style={styles.price}>
               $ {parseFloat(this.props.item.price).toFixed(2)}
@@ -96,5 +101,5 @@ class CartItem extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(CartItem);

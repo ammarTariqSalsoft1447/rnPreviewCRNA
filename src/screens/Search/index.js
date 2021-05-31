@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   ImageBackground,
@@ -7,44 +7,29 @@ import {
   TextInput,
   FlatList,
   RefreshControl,
-} from 'react-native';
-import {backgrounds, assets} from '../../assets/images';
-import styles from './styles';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import ProductItem from '../../Components/ProductItem';
-import TextRegular from '../../Components/TextRegular';
-import PlayBold from '../../Components/PlayBold';
-import MainInput from '../../Components/MainInput';
-import CircleBtn from '../../Components/CircleBtn';
-import Alert from '../../Popups/Alert';
-import TextMedium from '../../Components/TextMedium';
-import TouchableHOC from '../../Components/TouchableHOC';
-import {connect} from 'react-redux';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
+} from "react-native";
+import { backgrounds, assets } from "../../assets/images";
+import styles from "./styles";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import ProductItem from "../../Components/ProductItem";
+import TextRegular from "../../Components/TextRegular";
+import PlayBold from "../../Components/PlayBold";
+import MainInput from "../../Components/MainInput";
+import CircleBtn from "../../Components/CircleBtn";
+import Alert from "../../Popups/Alert";
+import TextMedium from "../../Components/TextMedium";
+import TouchableHOC from "../../Components/TouchableHOC";
+import { connect } from "react-redux";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
-const {
-  primary_heading_color,
-  primary_section_color,
-  primary_font_color,
-  secondary_font_color,
-  primaryColor,
-  secondaryColor,
-  primary_placeholder_Color,
-  primary_border_color,
-  primary_background_color,
-  secondary_background_color,
-  primary_message_color,
-  drawer_Active_Color,
-  drawer_inActive_Color,
-  default_color,
-} = config
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
+const { secondary_font_color, primary_placeholder_Color } = config;
 class Search extends React.Component {
   state = {
-    searchProduct: '',
+    searchProduct: "",
     searchedProducts: [],
   };
   _renderItem = (item, index) => {
@@ -52,7 +37,7 @@ class Search extends React.Component {
       <ProductItem
         item={item}
         onPress={(id) =>
-          this.props.navigation.navigate('ProductDetail', {productID: id})
+          this.props.navigation.navigate("ProductDetail", { productID: id })
         }
       />
     );
@@ -74,22 +59,22 @@ class Search extends React.Component {
           searchedProducts: success,
         });
       },
-      (err) => {},
+      (err) => {}
     );
   };
   render() {
     return (
-      <View style={{flex: 1, paddingHorizontal: vw * 5}}>
+      <View style={{ flex: 1, paddingHorizontal: vw * 5 }}>
         <View style={styles.searchbar}>
           <TextInput
             placeholder="Search Products"
             placeholderTextColor={primary_placeholder_Color}
-            selectionColor= {secondary_font_color}
+            selectionColor={secondary_font_color}
             style={styles.input}
             value={this.state.searchProduct}
             autoCorrect={false}
             onChangeText={(text) => {
-              this.setState({searchProduct: text}, () => {
+              this.setState({ searchProduct: text }, () => {
                 this._onSearch();
               });
             }}
@@ -114,7 +99,7 @@ class Search extends React.Component {
               refreshing={this.state.refreshing}
               // onRefresh={() => this._onRefresh()}
               tintColor="black"
-              colors={['black']}
+              colors={["black"]}
             />
           }
         />
@@ -125,5 +110,5 @@ class Search extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(Search);
