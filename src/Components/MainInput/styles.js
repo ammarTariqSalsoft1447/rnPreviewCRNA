@@ -2,10 +2,7 @@ import { StyleSheet } from 'react-native';
 import vh from '../../Units/vh';
 import vw from '../../Units/vw';
 import { Fonts } from '../../assets/fonts';
-// import {
-//   primary_heading_color,
-//   primary_border_color
-// } from '../../../config.json';
+
 import { store } from '../../WooCommerceWrapper/store';
 const state = store.getState()
 const config = state.ConfigReducer
