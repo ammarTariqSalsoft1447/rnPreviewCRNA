@@ -76,7 +76,12 @@ class CartItem extends React.Component {
             {this.props.item.name}
           </TextMedium>
           <View style={styles.priceContainer}>
-            <CircularBook style={styles.price}>
+            <CircularBook
+              style={[
+                styles.price,
+                this.props.ConfigReducer.primary_font_color,
+              ]}
+            >
               $ {parseFloat(this.props.item.price).toFixed(2)}
             </CircularBook>
 

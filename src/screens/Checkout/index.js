@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   View,
   ImageBackground,
@@ -8,31 +8,31 @@ import {
   LayoutAnimation,
   ActivityIndicator,
   TouchableOpacity,
-} from 'react-native';
-import { icons } from '../../assets/images';
-import styles from './styles';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import Alert from '../../Popups/Alert';
-import TextMedium from '../../Components/TextMedium';
-import TextSemi from '../../Components/TextSemi';
-import TouchableHOC from '../../Components/TouchableHOC';
-import FilterDropdown from '../../Components/FilterDropdown';
-import CircularBook from '../../Components/CircularBook';
-import CartItem from '../../Components/CartItem';
-import MainInput from '../../Components/MainInput';
-import Button from '../../Components/Button';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import TextRegular from '../../Components/TextRegular';
-import Payment from '../../Popups/Payment';
-import { connect } from 'react-redux';
-import Toast from 'react-native-toast';
-import DropDown from '../../Components/DropDown';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
+} from "react-native";
+import { icons } from "../../assets/images";
+import styles from "./styles";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import Alert from "../../Popups/Alert";
+import TextMedium from "../../Components/TextMedium";
+import TextSemi from "../../Components/TextSemi";
+import TouchableHOC from "../../Components/TouchableHOC";
+import FilterDropdown from "../../Components/FilterDropdown";
+import CircularBook from "../../Components/CircularBook";
+import CartItem from "../../Components/CartItem";
+import MainInput from "../../Components/MainInput";
+import Button from "../../Components/Button";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import TextRegular from "../../Components/TextRegular";
+import Payment from "../../Popups/Payment";
+import { connect } from "react-redux";
+import Toast from "react-native-toast";
+import DropDown from "../../Components/DropDown";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 
-import { store } from '../../WooCommerceWrapper/store';
-const state = store.getState()
-const config = state.ConfigReducer
+import { store } from "../../WooCommerceWrapper/store";
+const state = store.getState();
+const config = state.ConfigReducer;
 const {
   primary_heading_color,
   primary_section_color,
@@ -48,23 +48,23 @@ const {
   drawer_Active_Color,
   drawer_inActive_Color,
   default_color,
-} = config
+} = config;
 class Checkout extends React.Component {
   state = {
     step: 1,
     filter: {},
     discount: false,
     user: true,
-    Address: '',
-    coupon: '',
+    Address: "",
+    coupon: "",
     visible: true,
-    customer_note: '',
+    customer_note: "",
 
-    first_name: '',
-    last_name: '',
-    address_1: '',
-    email: '',
-    phone: '',
+    first_name: "",
+    last_name: "",
+    address_1: "",
+    email: "",
+    phone: "",
   };
   userfields = () => {
     if (this.props.Reducer.userId == null) {
@@ -106,16 +106,34 @@ class Checkout extends React.Component {
     if (this.props.Reducer.userId == null) {
       return (
         <View style={styles.signupRow}>
-          <TextMedium style={styles.newhere}>New Here?</TextMedium>
+          <TextMedium
+            style={[
+              styles.newhere,
+              {
+                color: this.props.ConfigReducer.primaryColor,
+              },
+            ]}
+          >
+            New Here?
+          </TextMedium>
           <TouchableHOC
-            onPress={() => this.props.navigation.navigate('SignUp')}>
-            <TextMedium style={styles.signup}>Sign Up</TextMedium>
+            onPress={() => this.props.navigation.navigate("SignUp")}
+          >
+            <TextMedium
+              style={[
+                styles.signup,
+                {
+                  color: this.props.ConfigReducer.primary_font_color,
+                },
+              ]}
+            >
+              Sign Up
+            </TextMedium>
           </TouchableHOC>
         </View>
       );
     } else {
-      return null
-
+      return null;
     }
   };
   calculateTotalAmount = () => {
@@ -135,7 +153,7 @@ class Checkout extends React.Component {
 
   onOkPress = (id) => {
     this.props.navigation.popToTop();
-    this.props.navigation.navigate('OrderDetails', { id: id });
+    this.props.navigation.navigate("OrderDetails", { id: id });
   };
 
   //calcualting coupon
@@ -149,7 +167,7 @@ class Checkout extends React.Component {
         this.state.coupon,
         (success) => {
           if (success === undefined || success.length == 0) {
-            Toast.show('Invalid Coupon');
+            Toast.show("Invalid Coupon");
 
             this.setState({
               visible: true,
@@ -160,46 +178,46 @@ class Checkout extends React.Component {
             });
           }
         },
-        (error) => { },
+        (error) => {}
       );
       // this.props.SingleCoupon()
     } else {
-      Toast.show('Please add coupon first');
+      Toast.show("Please add coupon first");
     }
   };
   _removeCoupon = () => {
     this.props.EmptyCoupon();
 
     this.setState({
-      coupon: '',
+      coupon: "",
     });
   };
 
   onContinue = () => {
-    console.log('continue', this.props.Reducer.cartDetail);
+    console.log("continue", this.props.Reducer.cartDetail);
     if (this.props.Reducer.userId == null) {
       if (!this.state.first_name) {
-        return Toast.show('First name is required');
+        return Toast.show("First name is required");
       }
       if (!this.state.last_name) {
-        return Toast.show('Last name is required');
+        return Toast.show("Last name is required");
       }
       if (!this.state.email) {
-        return Toast.show('Email is required');
+        return Toast.show("Email is required");
       }
       if (!this.state.phone) {
-        return Toast.show('Phone no is required');
+        return Toast.show("Phone no is required");
       }
 
       if (!this.state.address_1) {
-        return Toast.show('Billing Address required');
+        return Toast.show("Billing Address required");
       }
       if (!this.props.Reducer.cartDetail.payment_method) {
-        return Toast.show('Payment Method required');
+        return Toast.show("Payment Method required");
       }
 
       this.props.ManageCart(
-        'BILLING_VIEW',
+        "BILLING_VIEW",
         {
           anonymous: true,
           first_name: this.state.first_name,
@@ -209,29 +227,29 @@ class Checkout extends React.Component {
           address: this.state.address_1,
           customer_note: this.state.customer_note,
         },
-        (success) => { },
-        (error) => { },
+        (success) => {},
+        (error) => {}
       );
 
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
       this.setState({ step: 2 });
     } else {
       if (!this.state.address_1) {
-        return Toast.show('Billing Address required');
+        return Toast.show("Billing Address required");
       }
       if (!this.props.Reducer.cartDetail.payment_method) {
-        return Toast.show('Payment Method required');
+        return Toast.show("Payment Method required");
       }
 
       this.props.ManageCart(
-        'BILLING_VIEW',
+        "BILLING_VIEW",
         {
           anonymous: false,
           address: this.state.address_1,
           customer_note: this.state.customer_note,
         },
-        (success) => { },
-        (error) => { },
+        (success) => {},
+        (error) => {}
       );
 
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -247,29 +265,29 @@ class Checkout extends React.Component {
 
   onplaceorder = () => {
     this.props.ManageCart(
-      'PRODUCT_VIEW',
-      (success) => { },
-      (error) => { },
+      "PRODUCT_VIEW",
+      (success) => {},
+      (error) => {}
     );
 
     // this.props.ManageCart('BILLING_VIEW', this.props.Reducer.userInfo, (success) => { }, (error) => { })
-    console.log('cartDetail', {
+    console.log("cartDetail", {
       ...this.props.Reducer.cartDetail,
       set_paid: true,
     });
     this.props.ManageCart(
-      'CONFIRM_VIEW',
+      "CONFIRM_VIEW",
       { ...this.props.Reducer.cartDetail, set_paid: true },
       (success) => {
         // console.log('anony mous order succes ::', success);
 
         if (success) {
-          Toast.show('Order Placed Successfully');
+          Toast.show("Order Placed Successfully");
           this.paymentSuccess.show(success.id);
           //    this.props.navigation.navigate('OrderDetails',{id:success.id})
         }
       },
-      (error) => { },
+      (error) => {}
     );
     //    this.props.ManageCart('PRODUCT_VIEW',(success) =>{},(error) =>{})
   };
@@ -282,58 +300,46 @@ class Checkout extends React.Component {
     return total;
   };
   _onDone = (data) => {
-    console.log(data, 'payment data');
+    console.log(data, "payment data");
     this.setState({
       filter: data,
     });
 
     this.props.ManageCart(
-      'PAYMENT_VIEW',
+      "PAYMENT_VIEW",
       data,
-      (success) => { },
-      (error) => { },
+      (success) => {},
+      (error) => {}
     );
   };
   _onPlaceOrder = () => {
-
     if (this.state.filter) {
-      if (this.state.filter.label == 'Credit Cards') {
+      if (this.state.filter.label == "Credit Cards") {
         this.CardPayment.show();
-
       } else {
         this.props.ManageCart(
-          'PAYMENT_VIEW',
-          { label: 'Cash on delivery', value: 'cod' },
+          "PAYMENT_VIEW",
+          { label: "Cash on delivery", value: "cod" },
           (success) => {
             this.onplaceorder();
           },
-          (error) => { },
+          (error) => {}
         );
       }
-
     } else {
-      Toast.show('Please Select payment method')
-
-
+      Toast.show("Please Select payment method");
     }
-
-
-
-
   };
 
-
   _selectMethod = (item) => {
-
-
     if (this.DropDownRef) {
       this.DropDownRef.show(
-        'label',
+        "label",
         this.props.Reducer.paymentmethods,
-        'Select payment method',
+        "Select payment method",
         (data) => this._onDone(data),
         null,
-        null,
+        null
       );
     }
   };
@@ -344,7 +350,14 @@ class Checkout extends React.Component {
         return (
           <View style={{ paddingHorizontal: vw * 5 }}>
             {this.userfields()}
-            <TextMedium style={styles.label}>Enter Your Address</TextMedium>
+            <TextMedium
+              style={[
+                styles.label,
+                { color: this.props.ConfigReducer.primary_heading_color },
+              ]}
+            >
+              Enter Your Address
+            </TextMedium>
             <MainInput
               placeholder="Enter Your Address Here"
               style={styles.txtArea}
@@ -352,7 +365,14 @@ class Checkout extends React.Component {
               onChangeText={(text) => this.setState({ address_1: text })}
             />
 
-            <TextMedium style={styles.label}>Additional Notes</TextMedium>
+            <TextMedium
+              style={[
+                styles.label,
+                { color: this.props.ConfigReducer.primary_heading_color },
+              ]}
+            >
+              Additional Notes
+            </TextMedium>
 
             <MainInput
               placeholder="Enter Your Additional Notes Here"
@@ -362,13 +382,20 @@ class Checkout extends React.Component {
             />
 
             <View style={styles.paymentRow}>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <Image
                   source={icons.card}
                   style={styles.card}
                   resizeMode="contain"
                 />
-                <TextMedium style={styles.methodHeading}>
+                <TextMedium
+                  style={[
+                    styles.methodHeading,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   Payment Method
                 </TextMedium>
               </View>
@@ -381,9 +408,10 @@ class Checkout extends React.Component {
                     backgroundColor: default_color,
                     borderRadius: 1 * vw,
                   }}
-                  onPress={this._selectMethod}>
+                  onPress={this._selectMethod}
+                >
                   <TextSemi style={{ fontSize: vh * 2 }}>
-                    {this.state.filter?.label ?? 'Select'}
+                    {this.state.filter?.label ?? "Select"}
                   </TextSemi>
                 </TouchableOpacity>
 
@@ -418,30 +446,88 @@ class Checkout extends React.Component {
             ))}
 
             {this.props.Reducer.cartProduct.length > 0 && (
-              <View style={styles.detailCont}>
+              <View
+                style={[
+                  styles.detailCont,
+                  { backgroundColor: this.props.ConfigReducer.secondaryColor },
+                ]}
+              >
                 <View style={styles.detailItem}>
-                  <CircularBook style={styles.detailTxt}>
+                  <CircularBook
+                    style={[
+                      styles.detailTxt,
+                      {
+                        color: this.props.ConfigReducer.primaryColor,
+                      },
+                    ]}
+                  >
                     Sub Total
                   </CircularBook>
-                  <CircularBook style={styles.detailTxt}>
+                  <CircularBook
+                    style={[
+                      styles.detailTxt,
+                      {
+                        color: this.props.ConfigReducer.primaryColor,
+                      },
+                    ]}
+                  >
                     ${this.getSubTotal().toFixed(2)}
                   </CircularBook>
                 </View>
                 <View style={styles.detailItem}>
-                  <CircularBook style={styles.detailTxt}>Discount</CircularBook>
-                  <CircularBook style={styles.detailTxt}>
+                  <CircularBook
+                    style={[
+                      styles.detailTxt,
+                      {
+                        color: this.props.ConfigReducer.primaryColor,
+                      },
+                    ]}
+                  >
+                    Discount
+                  </CircularBook>
+                  <CircularBook
+                    style={[
+                      styles.detailTxt,
+                      {
+                        color: this.props.ConfigReducer.primaryColor,
+                      },
+                    ]}
+                  >
                     ${parseFloat(discount).toFixed(2)}
                   </CircularBook>
                 </View>
                 <View style={[styles.detailItem]}>
-                  <CircularBook style={styles.detailTxt}>Total</CircularBook>
-                  <CircularBook style={styles.detailTxt}>
+                  <CircularBook
+                    style={[
+                      styles.detailTxt,
+                      {
+                        color: this.props.ConfigReducer.primaryColor,
+                      },
+                    ]}
+                  >
+                    Total
+                  </CircularBook>
+                  <CircularBook
+                    style={[
+                      styles.detailTxt,
+                      {
+                        color: this.props.ConfigReducer.primaryColor,
+                      },
+                    ]}
+                  >
                     ${this.calculateTotalAmount()}
                   </CircularBook>
                 </View>
 
                 <View style={[styles.detailItem, { borderBottomWidth: 0 }]}>
-                  <CircularBook style={styles.detailTxt}>
+                  <CircularBook
+                    style={[
+                      styles.detailTxt,
+                      {
+                        color: this.props.ConfigReducer.primaryColor,
+                      },
+                    ]}
+                  >
                     Promocode
                   </CircularBook>
                   {this.props.Reducer.coupon ? (
@@ -463,7 +549,14 @@ class Checkout extends React.Component {
                           />
                         </TouchableHOC>
                       </View>
-                      <TextRegular style={styles.promoSucess}>
+                      <TextRegular
+                        style={[
+                          styles.promoSucess,
+                          {
+                            color: this.props.ConfigReducer.primaryColor,
+                          },
+                        ]}
+                      >
                         Promocode applied successfully
                       </TextRegular>
                     </View>
@@ -490,8 +583,8 @@ class Checkout extends React.Component {
                       </TouchableHOC>
                     </View>
                   ) : (
-                        <ActivityIndicator size="small" color="black" />
-                      )}
+                    <ActivityIndicator size="small" color="black" />
+                  )}
                 </View>
               </View>
             )}
@@ -508,14 +601,17 @@ class Checkout extends React.Component {
       case 1:
         return (
           <View style={styles.btnContainer}>
-            <Button title="Go To Cart" btnContainer={{ width: '45%' }} />
+            <Button title="Go To Cart" btnContainer={{ width: "45%" }} />
 
             <Button
               title="Continue"
               onPress={() => {
                 this.onContinue();
               }}
-              btnContainer={{ width: '45%', backgroundColor: primary_font_color }}
+              btnContainer={{
+                width: "45%",
+                backgroundColor: this.props.ConfigReducer.primary_font_color,
+              }}
             />
           </View>
         );
@@ -523,12 +619,15 @@ class Checkout extends React.Component {
       case 2:
         return (
           <View style={styles.btnContainer}>
-            <Button title="Go To Cart" btnContainer={{ width: '47%' }} />
+            <Button title="Go To Cart" btnContainer={{ width: "47%" }} />
             {this.props.Reducer.cartProduct.length > 0 && (
               <Button
                 title="Place Order"
                 onPress={() => this._onPlaceOrder()}
-                btnContainer={{ width: '47%', backgroundColor: primary_font_color }}
+                btnContainer={{
+                  width: "47%",
+                  backgroundColor: this.props.ConfigReducer.primary_font_color,
+                }}
               />
             )}
           </View>
@@ -557,25 +656,25 @@ class Checkout extends React.Component {
         />
 
         <Alert
-          text={'There was some error with\nyour payment'}
+          text={"There was some error with\nyour payment"}
           icon={icons.crossCircle}
           ref={(e) => (this.paymentFail = e)}
           onSuccess={() => this.orderSuccess.show()}
         />
 
         <Alert
-          text={'Your Order Has Been Placed'}
+          text={"Your Order Has Been Placed"}
           ref={(e) => (this.paymentSuccess = e)}
           //    old onSuccess={() => this.paymentFail.show()} // on ok press
 
           onSuccess={(id) => this.onOkPress(id)}
         />
         <Alert
-          text={'Your Order Has Been\nPlacedSuccessfully'}
+          text={"Your Order Has Been\nPlacedSuccessfully"}
           ref={(e) => (this.orderSuccess = e)}
           onSuccess={() => {
             this.state.user == false
-              ? this.props.navigation.navigate('Home')
+              ? this.props.navigation.navigate("Home")
               : this.setState({ step: 1, user: false, discount: false });
           }}
         />
@@ -592,9 +691,9 @@ class Checkout extends React.Component {
           text="Place Order?"
           ref={(e) => (this.placeorder = e)}
           icon={icons.caution}
-          onSuccess2={() => { }}
+          onSuccess2={() => {}}
           onSuccess={() => this.onplaceorder()}
-        // onSuccess={() => { this.orderSuccess.show() }} //place order here, write function
+          // onSuccess={() => { this.orderSuccess.show() }} //place order here, write function
         />
 
         <Payment
@@ -607,24 +706,65 @@ class Checkout extends React.Component {
           <View
             style={[
               styles.option1,
-              { backgroundColor: this.state.step == 1 ? primary_font_color : secondaryColor },
-            ]}>
+              {
+                backgroundColor:
+                  this.state.step == 1
+                    ? this.props.ConfigReducer.primary_font_color
+                    : this.props.ConfigReducer.secondaryColor,
+              },
+            ]}
+          >
             <TextMedium
               style={
-                this.state.step == 1 ? styles.optionTxt1 : styles.optionTxt2
-              }>
+                this.state.step == 1
+                  ? [
+                      styles.optionTxt1,
+                      {
+                        color: this.props.ConfigReducer.secondaryColor,
+                      },
+                    ]
+                  : [
+                      styles.optionTxt2,
+                      {
+                        backgroundColor:
+                          this.props.ConfigReducer.secondaryColor,
+                      },
+                    ]
+              }
+            >
               Personal Details
             </TextMedium>
           </View>
           <View
             style={[
               styles.option2,
-              { backgroundColor: this.state.step == 2 ? primary_font_color : secondaryColor },
-            ]}>
+              {
+                backgroundColor:
+                  this.state.step == 2
+                    ? this.props.ConfigReducer.primary_font_color
+                    : this.props.ConfigReducer.this.props.ConfigReducer
+                        .secondaryColor,
+              },
+            ]}
+          >
             <TextMedium
               style={
-                this.state.step == 2 ? styles.optionTxt1 : styles.optionTxt2
-              }>
+                this.state.step == 2
+                  ? [
+                      styles.optionTxt1,
+                      {
+                        color: this.props.ConfigReducer.secondaryColor,
+                      },
+                    ]
+                  : [
+                      styles.optionTxt2,
+                      {
+                        backgroundColor:
+                          this.props.ConfigReducer.secondaryColor,
+                      },
+                    ]
+              }
+            >
               Place Order
             </TextMedium>
           </View>
@@ -640,5 +780,5 @@ class Checkout extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(Checkout);

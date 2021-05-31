@@ -77,7 +77,7 @@ class ProfileDetails extends React.Component {
                     width: 5.5 * vw,
                     height: 4 * vh,
                     resizeMode: "contain",
-                    tintColor: primary_font_color,
+                    tintColor: this.props.ConfigReducer.primary_font_color,
                   }}
                 />
               </TouchableOpacity>
@@ -116,8 +116,8 @@ class ProfileDetails extends React.Component {
                     height: 4 * vh,
                     resizeMode: "contain",
                     tintColor: !this.state.edit
-                      ? primary_font_color
-                      : primaryColor,
+                      ? this.props.ConfigReducer.primary_font_color
+                      : this.props.ConfigReducer.primaryColor,
                   }}
                 />
               </TouchableOpacity>
@@ -153,12 +153,26 @@ class ProfileDetails extends React.Component {
           />
 
           <TextRegular style={styles.label}>Email</TextRegular>
-          <TextMedium style={styles.userfield}>
+          <TextMedium
+            style={[
+              styles.userfield,
+              {
+                color: this.props.ConfigReducer.primaryColor,
+              },
+            ]}
+          >
             {this.props.Reducer.userInfo.email}
           </TextMedium>
 
           <TouchableHOC onPress={() => this.changePassword.show()}>
-            <CircularBook style={styles.changePassword}>
+            <CircularBook
+              style={[
+                styles.changePassword,
+                {
+                  color: this.props.ConfigReducer.primary_font_color,
+                },
+              ]}
+            >
               Change Password
             </CircularBook>
           </TouchableHOC>
@@ -175,23 +189,58 @@ class ProfileDetails extends React.Component {
       return (
         <>
           <TextRegular style={styles.label}>First Name</TextRegular>
-          <TextMedium style={styles.userfield}>
+          <TextMedium
+            style={[
+              styles.userfield,
+              {
+                color: this.props.ConfigReducer.primaryColor,
+              },
+            ]}
+          >
             {this.props.Reducer.userInfo.first_name}
           </TextMedium>
           <TextRegular style={styles.label}>Last Name</TextRegular>
-          <TextMedium style={styles.userfield}>
+          <TextMedium
+            style={[
+              styles.userfield,
+              {
+                color: this.props.ConfigReducer.primaryColor,
+              },
+            ]}
+          >
             {this.props.Reducer.userInfo.last_name}
           </TextMedium>
           <TextRegular style={styles.label}>Phone Number</TextRegular>
-          <TextMedium style={styles.userfield}>
+          <TextMedium
+            style={[
+              styles.userfield,
+              {
+                color: this.props.ConfigReducer.primaryColor,
+              },
+            ]}
+          >
             {this.props.Reducer.userInfo.billing.phone}
           </TextMedium>
           <TextRegular style={styles.label}>Email</TextRegular>
-          <TextMedium style={styles.userfield}>
+          <TextMedium
+            style={[
+              styles.userfield,
+              {
+                color: this.props.ConfigReducer.primaryColor,
+              },
+            ]}
+          >
             {this.props.Reducer.userInfo.email}
           </TextMedium>
           <TouchableHOC onPress={() => this.changePassword.show()}>
-            <CircularBook style={styles.changePassword}>
+            <CircularBook
+              style={[
+                styles.changePassword,
+                {
+                  color: this.props.ConfigReducer.primary_font_color,
+                },
+              ]}
+            >
               Change Password
             </CircularBook>
           </TouchableHOC>
@@ -232,7 +281,7 @@ class ProfileDetails extends React.Component {
           flex: 1,
           paddingHorizontal: vw * 8,
           paddingTop: vh * 4,
-          backgroundColor: secondary_background_color,
+          backgroundColor: this.props.ConfigReducer.secondary_background_color,
         }}
       >
         {this.props.Reducer.userInfo == null ? null : (

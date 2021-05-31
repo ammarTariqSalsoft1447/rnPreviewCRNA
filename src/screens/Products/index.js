@@ -76,7 +76,7 @@ class Products extends React.Component {
             }
             title="View More"
             btnContainer={{
-              backgroundColor: primary_font_color,
+              backgroundColor: this.props.ConfigReducer.primary_font_color,
               width: "30%",
               height: vh * 4,
               alignSelf: "flex-end",
@@ -217,14 +217,23 @@ class Products extends React.Component {
               style={styles.sort}
               resizeMode="contain"
             />
-            <TextMedium style={styles.sortText}>Sort By</TextMedium>
+            <TextMedium
+              style={[
+                styles.sortText,
+                {
+                  color: this.props.ConfigReducer.primaryColor,
+                },
+              ]}
+            >
+              Sort By
+            </TextMedium>
           </View>
 
           <TouchableOpacity
             style={{
               paddingHorizontal: 1 * vw,
               paddingVertical: 0.5 * vh,
-              backgroundColor: default_color,
+              backgroundColor: this.props.ConfigReducer.default_color,
               borderRadius: 1 * vw,
             }}
             onPress={this.onSelector}
@@ -256,7 +265,7 @@ class Products extends React.Component {
             <RefreshControl
               refreshing={this.state.refreshing}
               onRefresh={() => this._onRefresh()}
-              tintColor={primaryColor}
+              tintColor={this.props.ConfigReducer.primaryColor}
               colors={["black"]}
             />
           }

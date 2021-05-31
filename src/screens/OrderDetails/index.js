@@ -93,10 +93,24 @@ class OrderDetails extends React.Component {
         {this.state.singleorderDetails == null ? null : (
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.orderRow}>
-              <TextMedium style={styles.text}>
+              <TextMedium
+                style={[
+                  styles.text,
+                  {
+                    color: this.props.ConfigReducer.primaryColor,
+                  },
+                ]}
+              >
                 Order # {this.state.singleorderDetails.number}
               </TextMedium>
-              <TextMedium style={styles.text}>
+              <TextMedium
+                style={[
+                  styles.text,
+                  {
+                    color: this.props.ConfigReducer.primaryColor,
+                  },
+                ]}
+              >
                 {moment(this.state.singleorderDetails.date_created).format(
                   "DD-MMM-YYYY"
                 )}
@@ -115,68 +129,215 @@ class OrderDetails extends React.Component {
               <CartItem item={item} cross={true} orderDetailCart={true} />
             ))}
 
-            <View style={styles.detailCont}>
+            <View
+              style={[
+                styles.detailCont,
+                {
+                  backgroundColor: this.props.ConfigReducer.secondaryColor,
+                },
+              ]}
+            >
               <View style={styles.detailItem}>
-                <CircularBook style={styles.detailTxt}>Sub Total</CircularBook>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
+                  Sub Total
+                </CircularBook>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   ${this.state.singleorderDetails.total}
                 </CircularBook>
               </View>
               <View style={styles.detailItem}>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   Delivery Charges
                 </CircularBook>
-                <CircularBook style={styles.detailTxt}>$0</CircularBook>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
+                  $0
+                </CircularBook>
               </View>
               <View style={styles.detailItem}>
-                <CircularBook style={styles.detailTxt}>Tax</CircularBook>
-                <CircularBook style={styles.detailTxt}>$0</CircularBook>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
+                  Tax
+                </CircularBook>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
+                  $0
+                </CircularBook>
               </View>
               <View style={styles.detailItem}>
-                <CircularBook style={styles.detailTxt}>Discount</CircularBook>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
+                  Discount
+                </CircularBook>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   ${this.state.singleorderDetails.discount_total}
                 </CircularBook>
               </View>
               <View style={[styles.detailItem]}>
-                <CircularBook style={styles.detailTxt}>Total</CircularBook>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
+                  Total
+                </CircularBook>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   ${this.state.singleorderDetails.total}
                 </CircularBook>
               </View>
               <View style={[styles.detailItem]}>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   Coupon Code
                 </CircularBook>
-                <CircularBook style={styles.detailTxt}>--</CircularBook>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
+                  --
+                </CircularBook>
               </View>
               <View style={[styles.detailItem]}>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   Payment Status
                 </CircularBook>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   {this.state.singleorderDetails.status}
                 </CircularBook>
               </View>
               <View style={[styles.detailItem]}>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   Payment Method
                 </CircularBook>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   {this.state.singleorderDetails.payment_method_title}
                 </CircularBook>
               </View>
               <View style={[styles.detailItem, { borderBottomWidth: 0 }]}>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   Order Status
                 </CircularBook>
-                <CircularBook style={styles.detailTxt}>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   {this.state.singleorderDetails.status}
                 </CircularBook>
               </View>
               <TextMedium
                 style={{
-                  color: primaryColor,
+                  color: this.props.ConfigReducer.primaryColor,
                   fontSize: vh * 2.2,
                   marginBottom: vh * 0.5,
                 }}
@@ -194,7 +355,7 @@ class OrderDetails extends React.Component {
               </TextRegular>
               <TextMedium
                 style={{
-                  color: primaryColor,
+                  color: this.props.ConfigReducer.primaryColor,
                   fontSize: vh * 2.2,
                   marginBottom: vh * 0.5,
                 }}

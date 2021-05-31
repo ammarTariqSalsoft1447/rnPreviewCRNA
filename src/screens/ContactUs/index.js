@@ -90,7 +90,7 @@ class AboutUs extends React.Component {
           />
           <TextRegular
             style={{
-              color: primaryColor,
+              color: this.props.ConfigReducer.primaryColor,
               fontSize: vh * 2.5,
               marginBottom: vh * 2.5,
             }}
@@ -133,14 +133,32 @@ class AboutUs extends React.Component {
 
           <ImageButton title="Send" onPress={() => this._onSend()} />
 
-          <TextMedium style={styles.contactTxt}>Contact Detail</TextMedium>
+          <TextMedium
+            style={[
+              styles.contactTxt,
+              {
+                color: this.props.ConfigReducer.primaryColor,
+              },
+            ]}
+          >
+            Contact Detail
+          </TextMedium>
           <View style={styles.contactRow}>
             <Image
               source={icons.phone}
               style={styles.contacticon}
               resizeMode="contain"
             />
-            <TextRegular style={styles.contact}>432-631-2028</TextRegular>
+            <TextRegular
+              style={[
+                styles.contact,
+                {
+                  color: this.props.ConfigReducer.primaryColor,
+                },
+              ]}
+            >
+              432-631-2028
+            </TextRegular>
           </View>
           <View style={styles.contactRow}>
             <Image
@@ -158,7 +176,10 @@ class AboutUs extends React.Component {
               style={styles.contacticon}
               resizeMode="contain"
             />
-            <TextRegular style={styles.contact}>
+            <TextRegular style={[styles.contact, {
+              color: this.props.ConfigReducer.
+primaryColor,
+            }]}>
               Walmart, Nuevo León 67117 Mexico, Independence, KS 67301
             </TextRegular>
           </View>

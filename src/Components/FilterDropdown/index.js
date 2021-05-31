@@ -1,28 +1,25 @@
-import React from 'react';
-import { Image } from 'react-native';
-import styles from './styles';
-import vw from '../../Units/vw';
-import vh from '../../Units/vh';
-import { Fonts } from '../../assets/fonts';
-import { icons } from '../../assets/images/index';
-import DropDownPicker from 'react-native-dropdown-picker';
+import React from "react";
+import { Image } from "react-native";
+import styles from "./styles";
+import vw from "../../Units/vw";
+import vh from "../../Units/vh";
+import { Fonts } from "../../assets/fonts";
+import { icons } from "../../assets/images/index";
+import DropDownPicker from "react-native-dropdown-picker";
 
 export default class CategoryDraopdown extends React.Component {
   state = {
-    country: '',
-    defaultVal :'Sort'
+    country: "",
+    defaultVal: "Sort",
   };
 
-
-
   render() {
- 
     return (
       <DropDownPicker
         // zIndex={99999}
         items={this.props.items}
         containerStyle={[styles.containerStyle, this.props.containerStyle]}
-        style={[styles.PickerStyle]}
+        style={[styles.PickerStyle, this.props.ConfigReducer.secondaryColor]}
         customArrowUp={() => (
           <Image
             source={icons.arrowDown}
@@ -37,7 +34,10 @@ export default class CategoryDraopdown extends React.Component {
             resizeMode="contain"
           />
         )}
-        dropDownStyle={styles.dropDownStyle}
+        dropDownStyle={[
+          styles.dropDownStyle,
+          this.props.ConfigReducer.secondaryColor,
+        ]}
         itemStyle={styles.itemStyle}
         labelStyle={styles.labelStyle}
         // onChangeItem={(item) =>

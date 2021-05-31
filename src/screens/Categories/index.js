@@ -71,7 +71,7 @@ class Categories extends React.Component {
         style={{
           height: vh * 20,
           width: vw * 40.5,
-          backgroundColor: primary_section_color,
+          backgroundColor: this.props.ConfigReducer.primary_section_color,
           marginRight: vw * 3,
           marginBottom: vh * 2,
           borderRadius: vw * 1,
@@ -79,12 +79,18 @@ class Categories extends React.Component {
       >
         <View style={{ marginLeft: vw * 3, marginTop: vh * 1 }}>
           <TextSemi
-            style={{ color: primary_heading_color, fontSize: vh * 1.8 }}
+            style={{
+              color: this.props.ConfigReducer.primary_heading_color,
+              fontSize: vh * 1.8,
+            }}
           >
             {item.name}
           </TextSemi>
           <TextRegular
-            style={{ color: primary_heading_color, fontSize: vh * 1.5 }}
+            style={{
+              color: this.props.ConfigReducer.primary_heading_color,
+              fontSize: vh * 1.5,
+            }}
           >
             {item.count} items
           </TextRegular>
@@ -110,7 +116,12 @@ class Categories extends React.Component {
           <FlatList
             showsVerticalScrollIndicator={false}
             data={this.props.Reducer.productcategory}
-            contentContainerStyle={styles.flatlist}
+            contentContainerStyle={[
+              styles.flatlist,
+              {
+                backgroundColor: this.props.ConfigReducer.secondaryColor,
+              },
+            ]}
             renderItem={this._renderItem}
             numColumns={2}
           />

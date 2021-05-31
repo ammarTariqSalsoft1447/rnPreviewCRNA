@@ -74,8 +74,21 @@ class Loader extends React.Component {
         transparent={true}
         animationType="fade"
       >
-        <View style={styles.modalTouchable}>
-          <View style={styles.imageBg}>
+        <View
+          style={[
+            styles.modalTouchable,
+            {
+              backgroundColor:
+                this.props.ConfigReducer.primary_background_color,
+            },
+          ]}
+        >
+          <View
+            style={[
+              styles.imageBg,
+              { backgroundColor: this.props.ConfigReducer.secondaryColor },
+            ]}
+          >
             {/* <TouchableHOC style={styles.crossContainer} onPress={this.onCross}>
               <Image source={icons.cross} style={styles.cross} resizeMode="contain" />
             </TouchableHOC> */}
@@ -83,17 +96,41 @@ class Loader extends React.Component {
               {/* <Image source={this.props.icon?this.props.icon:assets.checkcircle} style={styles.checkMark} resizeMode="contain" /> */}
 
               <ActivityIndicator size="small" color="black" />
-              <TextRegular style={styles.text}>Loading...</TextRegular>
+              <TextRegular
+                style={[
+                  styles.text,
+                  { color: this.props.ConfigReducer.primary_heading_color },
+                ]}
+              >
+                Loading...
+              </TextRegular>
               {this.props.onSuccess2 ? (
                 <View style={styles.btnsContainer}>
                   <Button
-                    btnContainer={styles.yesBtn}
+                    btnContainer={[
+                      styles.yesBtn,
+                      {
+                        backgroundColor:
+                          this.props.ConfigReducer.secondary_font_color,
+                      },
+                    ]}
                     onPress={this.onSuccess}
                     title="Yes"
                   ></Button>
                   <Button
-                    btnContainer={styles.noBtn}
-                    labelStyle={{ color: secondary_font_color }}
+                    btnContainer={[
+                      styles.noBtn,
+                      {
+                        backgroundColor:
+                          this.props.ConfigReducer.secondaryColor,
+                        color: this.props.ConfigReducer.secondary_font_color,
+                        borderColor:
+                          this.props.ConfigReducer.secondary_font_color,
+                      },
+                    ]}
+                    labelStyle={{
+                      color: this.props.ConfigReducer.secondary_font_color,
+                    }}
                     onPress={this.hide}
                     title="No"
                   ></Button>
@@ -102,6 +139,10 @@ class Loader extends React.Component {
                 <Button
                   btnContainer={[
                     styles.request,
+                    {
+                      backgroundColor:
+                        this.props.ConfigReducer.secondary_font_color,
+                    },
                     this.props.btntxt ? { width: "50%" } : {},
                   ]}
                   onPress={this.onSuccess}

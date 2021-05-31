@@ -1,33 +1,38 @@
-import React, { Component, forwardRef } from 'react';
-import { View, Modal, Image, ImageBackground } from 'react-native';
-import styles from './styles';
-import { icons, assets, backgrounds, samplePictures } from '../../assets/images';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import Button from '../../Components/Button';
-import TouchableHOC from '../../Components/TouchableHOC';
+import React, { Component, forwardRef } from "react";
+import { View, Modal, Image, ImageBackground } from "react-native";
+import styles from "./styles";
+import {
+  icons,
+  assets,
+  backgrounds,
+  samplePictures,
+} from "../../assets/images";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import Button from "../../Components/Button";
+import TouchableHOC from "../../Components/TouchableHOC";
 
-import TextRegular from '../../Components/TextRegular';
-import TextSemi from '../../Components/TextSemi';
-import MainInput from '../../Components/MainInput';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import StarRating from 'react-native-star-rating';
-import { connect } from 'react-redux';
-import { withNavigation } from '@react-navigation/compat';
+import TextRegular from "../../Components/TextRegular";
+import TextSemi from "../../Components/TextSemi";
+import MainInput from "../../Components/MainInput";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import StarRating from "react-native-star-rating";
+import { connect } from "react-redux";
+import { withNavigation } from "@react-navigation/compat";
 
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
-import Toast from 'react-native-toast';
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
+import Toast from "react-native-toast";
 class Feedback extends Component {
   constructor(props) {
     super(props);
     this.state = {
       focused: this.props.value ? true : false,
-      text: '',
+      text: "",
       visible: false,
       imagesShown: false,
-      reviewer: this.props.Reducer.userInfo?.first_name ?? '', //name
-      reviewer_email: this.props.Reducer.userInfo?.email ?? '', //email
-      review: '',
+      reviewer: this.props.Reducer.userInfo?.first_name ?? "", //name
+      reviewer_email: this.props.Reducer.userInfo?.email ?? "", //email
+      review: "",
       rating: 0,
       id: 0,
     };
@@ -39,7 +44,7 @@ class Feedback extends Component {
         ...p,
         visible: true,
         id: id,
-        rating
+        rating,
       };
     });
   };
@@ -67,20 +72,19 @@ class Feedback extends Component {
   onPublish = () => {
     // alert('asdad');
     if (this.state.rating == 0) {
-      Toast.show('Please put the rating');
+      Toast.show("Please put the rating");
     }
-    if (this.state.review.trim() == '') {
-      Toast.show('Please enter review');
-    }
-
-    if (this.state.reviewer == '') {
-      Toast.show('Please enter name');
+    if (this.state.review.trim() == "") {
+      Toast.show("Please enter review");
     }
 
-    if (this.state.reviewer_email.trim() == '') {
-      Toast.show('Please enter email');
+    if (this.state.reviewer == "") {
+      Toast.show("Please enter name");
     }
 
+    if (this.state.reviewer_email.trim() == "") {
+      Toast.show("Please enter email");
+    }
 
     this.props.CreateRating(
       {
@@ -97,24 +101,41 @@ class Feedback extends Component {
       (error) => {
         Toast.show(error);
         this.hide();
-      },
+      }
     );
   };
 
   render() {
-    console.log('this.state.rating', this.state.rating);
+    console.log("this.state.rating", this.state.rating);
     return (
       <Modal
-        key={'cbt'}
+        key={"cbt"}
         visible={this.state.visible}
         transparent={true}
-        animationType="fade">
+        animationType="fade"
+      >
         <KeyboardAwareScrollView>
-          <View style={styles.modalTouchable}>
-            <View style={styles.imageBg}>
+          <View
+            style={[
+              styles.modalTouchable,
+              {
+                backgroundColor:
+                  this.props.ConfigReducer.primary_background_color,
+              },
+            ]}
+          >
+            <View
+              style={[
+                styles.imageBg,
+                {
+                  backgroundColor: this.props.ConfigReducer.secondaryColor,
+                },
+              ]}
+            >
               <TouchableHOC
                 style={styles.crossContainer}
-                onPress={this.onCross}>
+                onPress={this.onCross}
+              >
                 <Image
                   source={icons.cross}
                   style={styles.cross}
@@ -122,8 +143,24 @@ class Feedback extends Component {
                 />
               </TouchableHOC>
               <View style={styles.container}>
-                <TextSemi style={styles.feedback}>Feedback</TextSemi>
-                <TextRegular style={styles.description}>
+                <TextSemi
+                  style={[
+                    styles.feedback,
+                    {
+                      color: this.props.ConfigReducer.primary_heading_color,
+                    },
+                  ]}
+                >
+                  Feedback
+                </TextSemi>
+                <TextRegular
+                  style={[
+                    styles.description,
+                    {
+                      color: this.props.ConfigReducer.drawer_inActive_Color,
+                    },
+                  ]}
+                >
                   Rate This Product
                 </TextRegular>
                 <StarRating
@@ -136,7 +173,14 @@ class Feedback extends Component {
                   starSize={vh * 2.2}
                   buttonStyle={{ marginRight: vw * 1.7 }}
                 />
-                <TextRegular style={styles.Message}>
+                <TextRegular
+                  style={[
+                    styles.Message,
+                    {
+                      color: this.props.ConfigReducer.primary_heading_color,
+                    },
+                  ]}
+                >
                   Share your experience with this Product
                 </TextRegular>
                 <MainInput
@@ -146,7 +190,7 @@ class Feedback extends Component {
                   onChangeText={(text) => this.setState({ review: text })}
                   style={styles.txtArea}
                   fieldStyle={{
-                    textAlignVertical: 'top',
+                    textAlignVertical: "top",
                     height: 13 * vh,
                   }}
                 />
@@ -162,7 +206,9 @@ class Feedback extends Component {
                   style={styles.field}
                   label="Email"
                   value={this.state.reviewer_email}
-                  onChangeText={(text) => this.setState({ reviewer_email: text })}
+                  onChangeText={(text) =>
+                    this.setState({ reviewer_email: text })
+                  }
                 />
 
                 {/* old
@@ -188,5 +234,5 @@ export default connect(
   reduxProps.mapStateToProps,
   reduxProps.mapDispatchToProps,
   null,
-  { forwardRef: true },
+  { forwardRef: true }
 )(Feedback);

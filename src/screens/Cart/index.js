@@ -129,7 +129,14 @@ class Cart extends React.Component {
               <CartItem item={item} />
             ))}
 
-            <View style={styles.detailCont}>
+            <View
+              style={[
+                styles.detailCont,
+                {
+                  backgroundColor: this.props.ConfigReducer.secondaryColor,
+                },
+              ]}
+            >
               {/* <View style={styles.detailItem}>
                 <CircularBook style={styles.detailTxt}>Sub Total</CircularBook>
                 <CircularBook style={styles.detailTxt}>
@@ -153,10 +160,22 @@ class Cart extends React.Component {
               <View
                 style={[
                   styles.detailItem,
+                  {
+                    color: this.props.ConfigReducer.primaryColor,
+                  },
                   { borderBottomWidth: 0, marginBottom: 0 },
                 ]}
               >
-                <CircularBook style={styles.detailTxt}>Total</CircularBook>
+                <CircularBook
+                  style={[
+                    styles.detailTxt,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
+                  Total
+                </CircularBook>
                 <CircularBook style={styles.detailTxt}>
                   ${this.getSubTotal().toFixed(2)}
                 </CircularBook>
@@ -181,7 +200,7 @@ class Cart extends React.Component {
                 onPress={() => this.checkout()}
                 btnContainer={{
                   width: "56%",
-                  backgroundColor: primary_font_color,
+                  backgroundColor: this.props.ConfigReducer.primary_font_color,
                 }}
               />
             </View>

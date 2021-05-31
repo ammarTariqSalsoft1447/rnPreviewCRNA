@@ -421,7 +421,17 @@ class ProductDetail extends React.Component {
               />
             </TouchableHOC>
 
-            <View style={styles.card}>
+            <View
+              style={[
+                styles.card,
+                {
+                  backgroundColor:
+                    this.props.ConfigReducer.secondary_background_color,
+
+                  shadowColor: this.props.ConfigReducer.primaryColor,
+                },
+              ]}
+            >
               <ScrollView
                 style={{ flex: 1 }}
                 showsVerticalScrollIndicator={false}
@@ -444,17 +454,43 @@ class ProductDetail extends React.Component {
                   carouselRef={this._carousel}
                   activeDotIndex={this.state.activeSlide}
                   containerStyle={{}}
-                  dotStyle={styles.dot}
+                  dotStyle={[
+                    styles.dot,
+                    {
+                      backgroundColor:
+                        this.props.ConfigReducer.primary_font_color,
+                    },
+                  ]}
                   onScrollToIndexFailed={() => {}}
-                  inactiveDotStyle={styles.inactiveDot}
+                  inactiveDotStyle={[
+                    styles.inactiveDot,
+                    {
+                      backgroundColor:
+                        this.props.ConfigReducer.primary_border_color,
+                    },
+                  ]}
                   dotContainerStyle={{ marginHorizontal: vw * 0.3 }}
                   inactiveDotOpacity={1}
                   inactiveDotScale={1}
                 />
-                <TextMedium style={styles.pname}>
+                <TextMedium
+                  style={[
+                    styles.pname,
+                    {
+                      color: this.props.ConfigReducer.primaryColor,
+                    },
+                  ]}
+                >
                   {this.state.singleProductDetails.name}
                 </TextMedium>
-                <TextRegular style={styles.catName}>
+                <TextRegular
+                  style={[
+                    styles.catName,
+                    {
+                      color: this.props.ConfigReducer.drawer_inActive_Color,
+                    },
+                  ]}
+                >
                   Category
                   {!Object.keys(this.state.singleProductDetails).length == 0
                     ? this.state.singleProductDetails.categories[0].name
@@ -473,7 +509,9 @@ class ProductDetail extends React.Component {
                   /> */}
                 </View>
                 <View style={styles.row}>
-                  <CircularBook style={styles.price}>
+                  <CircularBook style={[styles.price, {
+                    color: this.props.ConfigReducer.primary_font_color,
+                  }]}>
                     ${data.price}
                   </CircularBook>
 
@@ -505,7 +543,7 @@ class ProductDetail extends React.Component {
 
                 <TextMedium
                   style={{
-                    color: primaryColor,
+                    color: this.props.ConfigReducer.primaryColor,
                     fontSize: vh * 2.4,
                     marginTop: vh * 3,
                     marginBottom: vh * 1.5,
@@ -562,7 +600,7 @@ class ProductDetail extends React.Component {
                 >
                   <TextMedium
                     style={{
-                      color: primaryColor,
+                      color: this.props.ConfigReducer.primaryColor,
                       fontSize: vh * 2.4,
                       marginTop: vh * 3,
                     }}

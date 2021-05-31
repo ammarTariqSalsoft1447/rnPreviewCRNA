@@ -52,7 +52,16 @@ class SignUp extends React.Component {
           resizeMode="cover"
           imageStyle={{ borderRadius: vw * 1.5 }}
         >
-          <PlayBold style={styles.bannerTxt}>{item.button}</PlayBold>
+          <PlayBold
+            style={[
+              styles.bannerTxt,
+              {
+                color: this.props.ConfigReducer.secondaryColor,
+              },
+            ]}
+          >
+            {item.button}
+          </PlayBold>
         </ImageBackground>
       </TouchableOpacity>
     );
@@ -124,8 +133,17 @@ class SignUp extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <SafeAreaView style={{ backgroundColor: secondaryColor }}>
-          <View style={styles.headerContainer}>
+        <SafeAreaView
+          style={{ backgroundColor: this.props.ConfigReducer.secondaryColor }}
+        >
+          <View
+            style={[
+              styles.headerContainer,
+              {
+                backgroundColor: this.props.ConfigReducer.secondaryColor,
+              },
+            ]}
+          >
             <View style={styles.headerInner}>
               <TouchableHOC onPress={() => this.props.navigation.openDrawer()}>
                 <Image
@@ -135,13 +153,25 @@ class SignUp extends React.Component {
                 />
               </TouchableHOC>
               <TouchableHOC
-                style={styles.searchbar}
+                style={[
+                  styles.searchbar,
+                  {
+                    borderColor: this.props.ConfigReducer.primary_border_color,
+                  },
+                ]}
                 onPress={() => this.props.navigation.navigate("Search")}
               >
                 <TextInput
                   placeholder="Search Products "
-                  placeholderTextColor={primary_placeholder_Color}
-                  style={styles.input}
+                  placeholderTextColor={
+                    this.props.ConfigReducer.primary_placeholder_Color
+                  }
+                  style={[
+                    styles.input,
+                    {
+                      color: this.props.ConfigReducer.primary_placeholder_Color,
+                    },
+                  ]}
                 />
                 <Image
                   source={assets.search}
@@ -184,8 +214,19 @@ class SignUp extends React.Component {
               activeDotIndex={this.state.activeSlide}
               onScrollToIndexFailed={() => {}}
               // containerStyle={{}}
-              dotStyle={styles.dot}
-              inactiveDotStyle={styles.inactiveDot}
+              dotStyle={[
+                styles.dot,
+                {
+                  backgroundColor: this.props.ConfigReducer.primary_font_color,
+                },
+              ]}
+              inactiveDotStyle={[
+                styles.inactiveDot,
+                {
+                  backgroundColor:
+                    this.props.ConfigReducer.primary_border_color,
+                },
+              ]}
               dotContainerStyle={{ marginRight: vw * 0 }}
               inactiveDotOpacity={1}
               inactiveDotScale={1}
@@ -193,15 +234,39 @@ class SignUp extends React.Component {
           </View>
 
           {this.props.Reducer.homeproductcategory.length > 0 && (
-            <View style={styles.categories}>
+            <View
+              style={[
+                styles.categories,
+                {
+                  backgroundColor: this.props.ConfigReducer.secondaryColor,
+                  shadowColor: this.props.ConfigReducer.primaryColor,
+                },
+              ]}
+            >
               <View style={styles.catHeader}>
-                <TextRegular style={styles.categoriesTxt}>
+                <TextRegular
+                  style={[
+                    styles.categoriesTxt,
+                    {
+                      color: this.props.ConfigReducer.primary_heading_color,
+                    },
+                  ]}
+                >
                   CATEGORIES
                 </TextRegular>
                 <TouchableHOC
                   onPress={() => this.props.navigation.navigate("Categories")}
                 >
-                  <TextMedium style={styles.viewAll}>View All</TextMedium>
+                  <TextMedium
+                    style={[
+                      styles.viewAll,
+                      {
+                        color: this.props.ConfigReducer.primary_font_color,
+                      },
+                    ]}
+                  >
+                    View All
+                  </TextMedium>
                 </TouchableHOC>
               </View>
 
@@ -209,7 +274,13 @@ class SignUp extends React.Component {
               this.props.Reducer.homeproductcategory.length > 3 ? (
                 <View style={styles.catRow}>
                   <TouchableHOC
-                    style={styles.cat1}
+                    style={[
+                      styles.cat1,
+                      {
+                        backgroundColor:
+                          this.props.ConfigReducer.primary_section_color,
+                      },
+                    ]}
                     onPress={() =>
                       this.props.navigation.navigate("Products", {
                         categoryID:
@@ -231,13 +302,26 @@ class SignUp extends React.Component {
                       style={styles.carImg1}
                       resizeMode="cover"
                     />
-                    <TextSemi style={styles.catTxt1}>
+                    <TextSemi
+                      style={[
+                        styles.catTxt1,
+                        {
+                          color: this.props.ConfigReducer.primary_font_color,
+                        },
+                      ]}
+                    >
                       {this.props.Reducer.homeproductcategory[0].name}
                     </TextSemi>
                   </TouchableHOC>
 
                   <TouchableHOC
-                    style={styles.catRow2}
+                    style={[
+                      styles.catRow2,
+                      {
+                        backgroundColor:
+                          this.props.ConfigReducer.primary_section_color,
+                      },
+                    ]}
                     onPress={() =>
                       this.props.navigation.navigate("Products", {
                         categoryID:
@@ -247,7 +331,14 @@ class SignUp extends React.Component {
                       })
                     }
                   >
-                    <TextMedium style={styles.catTxt3}>
+                    <TextMedium
+                      style={[
+                        styles.catTxt3,
+                        {
+                          color: this.props.ConfigReducer.secondary_font_color,
+                        },
+                      ]}
+                    >
                       {this.props.Reducer.homeproductcategory[1].name}
                     </TextMedium>
                     <Image
@@ -265,7 +356,13 @@ class SignUp extends React.Component {
                   </TouchableHOC>
 
                   <TouchableHOC
-                    style={styles.catRow2}
+                    style={[
+                      styles.catRow2,
+                      {
+                        backgroundColor:
+                          this.props.ConfigReducer.primary_section_color,
+                      },
+                    ]}
                     onPress={() =>
                       this.props.navigation.navigate("Products", {
                         categoryID:
@@ -275,7 +372,14 @@ class SignUp extends React.Component {
                       })
                     }
                   >
-                    <TextMedium style={styles.catTxt3}>
+                    <TextMedium
+                      style={[
+                        styles.catTxt3,
+                        {
+                          color: this.props.ConfigReducer.secondary_font_color,
+                        },
+                      ]}
+                    >
                       {this.props.Reducer.homeproductcategory[2].name}
                     </TextMedium>
                     <Image
@@ -314,7 +418,14 @@ class SignUp extends React.Component {
                       style={styles.carImg1}
                       resizeMode="contain"
                     />
-                    <TextSemi style={styles.catTxt1}>
+                    <TextSemi
+                      style={[
+                        styles.catTxt1,
+                        {
+                          color: this.props.ConfigReducer.primary_font_color,
+                        },
+                      ]}
+                    >
                       {this.props.Reducer.homeproductcategory[3].name}
                     </TextSemi>
                   </TouchableHOC>

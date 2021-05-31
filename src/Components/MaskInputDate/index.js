@@ -43,7 +43,14 @@ class MaskInputDate extends React.Component {
     if (this.props.label) {
       return (
         <View style={[styles.labelContainer, this.props.labelContainer]}>
-          <TextRegular style={styles.label}>{[this.props.label, this.props.ConfigReducer.primary_heading_color]}</TextRegular>
+          <TextRegular
+            style={[
+              styles.label,
+              this.props.ConfigReducer.primary_heading_color,
+            ]}
+          >
+            {[this.props.label, this.props.ConfigReducer.primary_heading_color]}
+          </TextRegular>
         </View>
       );
     }
@@ -58,7 +65,13 @@ class MaskInputDate extends React.Component {
     return (
       <>
         {this.renderLabel()}
-        <View style={[styles.container, this.props.style]}>
+        <View
+          style={[
+            styles.container,
+            this.props.style,
+            this.props.ConfigReducer.primary_border_color,
+          ]}
+        >
           {this.props.leftIcon && (
             <IconButton
               iconStyle={styles.leftIcon}
@@ -66,7 +79,9 @@ class MaskInputDate extends React.Component {
             />
           )}
           <RNInputMasking
-            placeholderTextColor={primary_placeholder_Color}
+            placeholderTextColor={
+              this.props.ConfigReducer.primary_placeholder_Color
+            }
             {...this.props}
             blurOnSubmit={true}
             // multiline={true}

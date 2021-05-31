@@ -1,30 +1,35 @@
-import React, { Component } from 'react';
-import { View, Modal, Image, ImageBackground } from 'react-native';
-import styles from './styles';
-import { icons, assets, backgrounds, samplePictures } from '../../assets/images';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import Button from '../../Components/Button';
-import TouchableHOC from '../../Components/TouchableHOC';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { View, Modal, Image, ImageBackground } from "react-native";
+import styles from "./styles";
+import {
+  icons,
+  assets,
+  backgrounds,
+  samplePictures,
+} from "../../assets/images";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import Button from "../../Components/Button";
+import TouchableHOC from "../../Components/TouchableHOC";
+import { connect } from "react-redux";
 
-import TextRegular from '../../Components/TextRegular';
-import TextSemi from '../../Components/TextSemi';
-import MainInput from '../../Components/MainInput';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import StarRating from 'react-native-star-rating';
-import Toast from 'react-native-toast';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
+import TextRegular from "../../Components/TextRegular";
+import TextSemi from "../../Components/TextSemi";
+import MainInput from "../../Components/MainInput";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import StarRating from "react-native-star-rating";
+import Toast from "react-native-toast";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 class Feedback extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       focused: this.props.value ? true : false,
-      text: '',
+      text: "",
       visible: false,
       imagesShown: false,
-      password: '',
-      confirm: '',
+      password: "",
+      confirm: "",
     };
   }
 
@@ -64,28 +69,47 @@ class Feedback extends React.Component {
         if (success) {
           this.onSuccess();
           setTimeout(() => {
-            Toast.show('Password Updated');
+            Toast.show("Password Updated");
           }, 500);
         }
       },
       (error) => {
-        console.log('error', error);
+        console.log("error", error);
 
         Toast.show(error);
-      },
+      }
     );
   };
   render() {
     return (
       <Modal
-        key={'cbt'}
+        key={"cbt"}
         visible={this.state.visible}
         transparent={true}
-        animationType="fade">
+        animationType="fade"
+      >
         <KeyboardAwareScrollView enableOnAndroid>
-          <View style={styles.modalTouchable}>
-            <View style={styles.imageBg}>
-              <TouchableHOC style={styles.crossContainer} onPress={this.onCross}>
+          <View
+            style={[
+              styles.modalTouchable,
+              {
+                backgroundColor:
+                  this.props.ConfigReducer.primary_background_color,
+              },
+            ]}
+          >
+            <View
+              style={[
+                styles.imageBg,
+                {
+                  backgroundColor: this.props.ConfigReducer.secondaryColor,
+                },
+              ]}
+            >
+              <TouchableHOC
+                style={styles.crossContainer}
+                onPress={this.onCross}
+              >
                 <Image
                   source={icons.cross}
                   style={styles.cross}
@@ -98,7 +122,14 @@ class Feedback extends React.Component {
                   style={styles.checkMark}
                   resizeMode="contain"
                 />
-                <TextSemi style={[styles.feedback, this.props.ConfigReducer.feedback]}>Update Password</TextSemi>
+                <TextSemi
+                  style={[
+                    styles.feedback,
+                    (color = this.props.ConfigReducer.feedback),
+                  ]}
+                >
+                  Update Password
+                </TextSemi>
                 {/* <MainInput style={styles.field} secureTextEntry={true} placeholder="Old Password"/> */}
 
                 <MainInput
@@ -137,5 +168,5 @@ export default connect(
   reduxProps.mapStateToProps,
   reduxProps.mapDispatchToProps,
   null,
-  { forwardRef: true },
+  { forwardRef: true }
 )(Feedback);

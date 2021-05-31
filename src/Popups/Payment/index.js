@@ -142,14 +142,21 @@ class Alert extends Component {
             width: 100 * vh,
             position: "absolute",
             top: 0,
-            backgroundColor: primary_background_color,
+            backgroundColor: this.props.ConfigReducer.primary_background_color,
           }}
         />
         <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.modalTouchable}
         >
-          <View style={styles.imageBg}>
+          <View
+            style={[
+              styles.imageBg,
+              {
+                backgroundColor: this.props.ConfigReducer.secondaryColor,
+              },
+            ]}
+          >
             <TouchableHOC style={styles.crossContainer} onPress={this.onCross}>
               <Image
                 source={icons.cross}
@@ -163,8 +170,21 @@ class Alert extends Component {
                 style={styles.checkMark}
                 resizeMode="contain"
               />
-              <TextRegular style={styles.text}>Amount</TextRegular>
-              <TextSemi style={styles.amount}>${this.props.total}</TextSemi>
+              <TextRegular
+                style={[styles.text, { color: primary_heading_color }]}
+              >
+                Amount
+              </TextRegular>
+              <TextSemi
+                style={[
+                  styles.amount,
+                  {
+                    color: this.props.ConfigReducer.secondary_font_color,
+                  },
+                ]}
+              >
+                ${this.props.total}
+              </TextSemi>
               <MainInput
                 placeholder="Cardholder name"
                 style={styles.input}
@@ -206,7 +226,13 @@ class Alert extends Component {
               />
 
               <Button
-                btnContainer={styles.yesBtn}
+                btnContainer={[
+                  styles.yesBtn,
+                  {
+                    backgroundColor:
+                      this.props.ConfigReducer.secondary_font_color,
+                  },
+                ]}
                 onPress={this.onSuccess}
                 title="PAY"
               ></Button>

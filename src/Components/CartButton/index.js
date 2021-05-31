@@ -34,7 +34,7 @@ const CartButton = (props) => {
             position: "absolute",
             width: 3.5 * vw,
             height: 3.5 * vw,
-            backgroundColor: primary_font_color,
+            backgroundColor: this.props.ConfigReducer.primary_font_color,
             right: -1.5 * vw,
             top: -0.2 * vh,
             borderRadius: 1.75 * vw,
@@ -45,7 +45,7 @@ const CartButton = (props) => {
         >
           <TextMedium
             style={{
-              color: secondaryColor,
+              color: this.props.ConfigReducer.secondaryColor,
               fontSize: 1.3 * vh,
               textAlign: "center",
             }}

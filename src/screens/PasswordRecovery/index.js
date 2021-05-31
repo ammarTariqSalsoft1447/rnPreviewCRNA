@@ -1,27 +1,27 @@
-import React from 'react';
-import {View, ImageBackground, Image} from 'react-native';
-import {backgrounds, assets} from '../../assets/images';
-import styles from './styles';
-import vh from '../../Units/vh';
-import vw from '../../Units/vw';
-import TextRegular from '../../Components/TextRegular';
-import MainInput from '../../Components/MainInput';
-import CircleBtn from '../../Components/CircleBtn';
-import Alert from '../../Popups/Alert';
-import TouchableHOC from '../../Components/TouchableHOC';
-import {connect} from 'react-redux';
-import Toast from 'react-native-toast';
-import reduxProps from '../../WooCommerceWrapper/store/reduxProps';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {icons} from '../../assets/images';
+import React from "react";
+import { View, ImageBackground, Image } from "react-native";
+import { backgrounds, assets } from "../../assets/images";
+import styles from "./styles";
+import vh from "../../Units/vh";
+import vw from "../../Units/vw";
+import TextRegular from "../../Components/TextRegular";
+import MainInput from "../../Components/MainInput";
+import CircleBtn from "../../Components/CircleBtn";
+import Alert from "../../Popups/Alert";
+import TouchableHOC from "../../Components/TouchableHOC";
+import { connect } from "react-redux";
+import Toast from "react-native-toast";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { icons } from "../../assets/images";
 
 class LogIn extends React.Component {
   state = {
     step: 1,
-    email: '',
-    code: '',
-    password: '',
-    confirmPassword: '',
+    email: "",
+    code: "",
+    password: "",
+    confirmPassword: "",
   };
   btnPress = () => {
     switch (this.state.step) {
@@ -51,40 +51,40 @@ class LogIn extends React.Component {
   };
   handleCodeVerification = () => {
     this.props.VerifyCode(
-      {code: this.state.code},
+      { code: this.state.code },
       (success) => {
-        Toast.show('Code verified successfully');
-        this.setState({step: 3});
+        Toast.show("Code verified successfully");
+        this.setState({ step: 3 });
       },
       (error) => {
         Toast.show(error);
         this.enterCode.show();
-      },
+      }
     );
   };
 
   handleCodeSendagain = () => {
     this.props.RequestCode(
-      {email: this.state.email},
+      { email: this.state.email },
       (success) => {
-        Toast.show('Email sent successfully');
+        Toast.show("Email sent successfully");
       },
       (error) => {
         Toast.show(error);
-      },
+      }
     );
   };
 
   handleCodeSend = () => {
     this.props.RequestCode(
-      {email: this.state.email},
+      { email: this.state.email },
       (success) => {
-        Toast.show('Email sent successfully');
-        this.setState({step: this.state.step + 1});
+        Toast.show("Email sent successfully");
+        this.setState({ step: this.state.step + 1 });
       },
       (error) => {
         Toast.show(error);
-      },
+      }
     );
   };
   handlePasswordSet = () => {
@@ -95,13 +95,13 @@ class LogIn extends React.Component {
         confirm: this.state.confirmPassword,
       },
       (success) => {
-        Toast.show('Password reset successfully');
+        Toast.show("Password reset successfully");
         this.success.show();
         // this.props.navigation.pop();
       },
       (error) => {
         Toast.show(error);
-      },
+      }
     );
   };
   renderBody = () => {
@@ -109,12 +109,21 @@ class LogIn extends React.Component {
       case 1:
         return (
           <>
-            <TextRegular style={styles.SignUp}>PASSWORD RECOVERY</TextRegular>
+            <TextRegular
+              style={[
+                styles.SignUp,
+                {
+                  color: this.props.ConfigReducer.secondary_font_color,
+                },
+              ]}
+            >
+              PASSWORD RECOVERY
+            </TextRegular>
 
             <MainInput
               placeholder="Email Address"
               value={this.state.email.email}
-              onChangeText={(text) => this.setState({email: text})}
+              onChangeText={(text) => this.setState({ email: text })}
               label="Enter your email address"
               key="email"
               style={styles.field}
@@ -127,29 +136,43 @@ class LogIn extends React.Component {
         return (
           <>
             <KeyboardAwareScrollView>
-              <TextRegular style={[styles.SignUp, {marginBottom: 0}]}>
+              <TextRegular
+                style={[
+                  styles.SignUp,
+                  { marginBottom: 0 },
+                  {
+                    color: this.props.ConfigReducer.secondary_font_color,
+                  },
+                ]}
+              >
                 PASSWORD RECOVERY
               </TextRegular>
-              <TextRegular style={styles.message}>
+              <TextRegular style={[styles.message, {
+                color: this.props.ConfigReducer.primary_heading_color,
+              }]}>
                 A Verification email was sent to your email address:
-                {this.state.email.trim() != ''
+                {this.state.email.trim() != ""
                   ? this.state.email
-                  : 'example@email.com'}
+                  : "example@email.com"}
               </TextRegular>
-              <View style={styles.sendAgainRow}>
-                <TextRegular style={styles.haveAccount}>
-                  Didn't receive it yet ?{' '}
+              <View style={[styles.sendAgainRow]}>
+                <TextRegular style={[styles.haveAccount, {
+                  color: this.props.ConfigReducer.primary_heading_color,
+                }]}>
+                  Didn't receive it yet ?{" "}
                 </TextRegular>
 
                 <TouchableHOC onPress={() => this.handleCodeSendagain()}>
-                  <TextRegular style={styles.sendAgain}>
-                    {' '}
+                  <TextRegular style={[styles.sendAgain, {
+                    color: this.props.ConfigReducer.primary_font_color,
+                  }]}>
+                    {" "}
                     Send it Again
                   </TextRegular>
                 </TouchableHOC>
               </View>
               <MainInput
-                onChangeText={(text) => this.setState({code: text})}
+                onChangeText={(text) => this.setState({ code: text })}
                 key="code"
                 placeholder="Code"
                 label="Enter Verification Code"
@@ -166,7 +189,7 @@ class LogIn extends React.Component {
             <MainInput
               key="password"
               onChangeText={(t) => {
-                this.setState({password: t});
+                this.setState({ password: t });
               }}
               placeholder="password"
               secureTextEntry={true}
@@ -176,7 +199,7 @@ class LogIn extends React.Component {
             <MainInput
               key="passwordXC"
               onChangeText={(t) => {
-                this.setState({confirmPassword: t});
+                this.setState({ confirmPassword: t });
               }}
               placeholder="Re-enter Password"
               secureTextEntry={true}
@@ -215,18 +238,22 @@ class LogIn extends React.Component {
           <View
             style={{
               flex: 1,
-              justifyContent: 'flex-end',
+              justifyContent: "flex-end",
               paddingBottom: vh * 8,
-            }}>
+            }}
+          >
             <TouchableHOC
               style={styles.row}
-              onPress={() => this.props.navigation.navigate('Login')}>
+              onPress={() => this.props.navigation.navigate("Login")}
+            >
               <Image
                 source={assets.arrowBack}
                 style={styles.arrow}
                 resizeMode="contain"
               />
-              <TextRegular style={styles.signin}> Back to login</TextRegular>
+              <TextRegular style={[styles.signin, {
+                color: this.props.ConfigReducer.primary_font_color,
+              }]}> Back to login</TextRegular>
             </TouchableHOC>
           </View>
         </View>
@@ -237,5 +264,5 @@ class LogIn extends React.Component {
 
 export default connect(
   reduxProps.mapStateToProps,
-  reduxProps.mapDispatchToProps,
+  reduxProps.mapDispatchToProps
 )(LogIn);

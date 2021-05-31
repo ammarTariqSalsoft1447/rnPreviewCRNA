@@ -40,7 +40,13 @@ class MainInput extends React.Component {
   renderLabel = () => {
     if (this.props.label) {
       return (
-        <View style={[styles.labelContainer, this.props.labelContainer]}>
+        <View
+          style={[
+            styles.labelContainer,
+            this.props.labelContainer,
+            this.props.ConfigReducer.primary_heading_color,
+          ]}
+        >
           <TextRegular
             style={[
               styles.label,
@@ -63,7 +69,13 @@ class MainInput extends React.Component {
     return (
       <>
         {this.renderLabel()}
-        <View style={[styles.container, this.props.style]}>
+        <View
+          style={[
+            styles.container,
+            this.props.style,
+            this.props.ConfigReducer.primary_border_color,
+          ]}
+        >
           {this.props.leftIcon && (
             <IconButton
               iconStyle={styles.leftIcon}
@@ -72,7 +84,9 @@ class MainInput extends React.Component {
           )}
           <TextInput
             selectionColor={this.props.ConfigReducer.secondary_font_color}
-            placeholderTextColor={primary_placeholder_Color}
+            placeholderTextColor={
+              this.props.ConfigReducer.primary_placeholder_Color
+            }
             {...this.props}
             blurOnSubmit={true}
             // multiline={true}

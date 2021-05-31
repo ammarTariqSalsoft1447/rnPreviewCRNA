@@ -1,11 +1,11 @@
-import React from 'react';
-import {Image, View} from 'react-native';
-import styles from './styles';
-import vw from '../../Units/vw';
-import vh from '../../Units/vh';
-import CircularBook from '../CircularBook';
-import {icons} from '../../assets/images/index';
-import TouchableHOC from '../TouchableHOC';
+import React from "react";
+import { Image, View } from "react-native";
+import styles from "./styles";
+import vw from "../../Units/vw";
+import vh from "../../Units/vh";
+import CircularBook from "../CircularBook";
+import { icons } from "../../assets/images/index";
+import TouchableHOC from "../TouchableHOC";
 
 export default class CategoryDraopdown extends React.Component {
   constructor(props) {
@@ -18,11 +18,11 @@ export default class CategoryDraopdown extends React.Component {
         width: props.size,
         borderRadius: props.size / 2,
       };
-      this.icon = {width: props.size - vh * 1, height: props.size - vh * 1};
-      this.text = {fontSize: props.size};
+      this.icon = { width: props.size - vh * 1, height: props.size - vh * 1 };
+      this.text = { fontSize: props.size };
     }
   }
-  state = {quantity: 1};
+  state = { quantity: 1 };
   // plus = () => {
   //   console.log('called plus :');
   //   this.setState({
@@ -48,9 +48,14 @@ export default class CategoryDraopdown extends React.Component {
             left: 2 * vw,
             right: 2 * vw,
           }}
-          style={[styles.btn, this.btn]}
+          style={[
+            styles.btn,
+            this.btn,
+            this.props.ConfigReducer.primary_border_color,
+          ]}
           // style={{backgroundColor: 'red'}}
-          onPress={() => this.props.minus()}>
+          onPress={() => this.props.minus()}
+        >
           <Image
             source={icons.minus}
             style={[styles.icon, this.icon]}
@@ -58,7 +63,13 @@ export default class CategoryDraopdown extends React.Component {
           />
         </TouchableHOC>
 
-        <CircularBook style={[styles.text, this.text]}>
+        <CircularBook
+          style={[
+            styles.text,
+            this.text,
+            this.props.ConfigReducer.primary_font_color,
+          ]}
+        >
           {this.props.quantity}
         </CircularBook>
         <TouchableHOC
@@ -68,8 +79,13 @@ export default class CategoryDraopdown extends React.Component {
             left: 2 * vw,
             right: 2 * vw,
           }}
-          style={[styles.btn, this.btn]}
-          onPress={() => this.props.plus()}>
+          style={[
+            styles.btn,
+            this.btn,
+            this.props.ConfigReducer.primary_border_color,
+          ]}
+          onPress={() => this.props.plus()}
+        >
           <Image
             source={icons.plus}
             style={[styles.icon, this.icon]}
