@@ -41,7 +41,7 @@ class MainInput extends React.Component {
     if (this.props.label) {
       return (
         <View style={[styles.labelContainer, this.props.labelContainer]}>
-          <TextRegular style={styles.label}>{this.props.label}</TextRegular>
+          <TextRegular style={[styles.label,{}]}>{this.props.label}</TextRegular>
         </View>
       );
     }

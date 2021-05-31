@@ -1,9 +1,11 @@
 import api from '../Api';
 import axios from 'axios';
-import config from './../config/index';
+// import config from './../config/index';
 import customApi from './../CustomApi/index';
 import Toast from 'react-native-toast';
-
+import { store } from '../store';
+const state = store.getState()
+const config = state.ConfigReducer
 const { baseUrl } = config;
 
 const email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

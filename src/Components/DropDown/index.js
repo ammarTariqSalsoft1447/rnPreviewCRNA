@@ -1,11 +1,9 @@
 import React from 'react'
 import {
-    View, TouchableOpacity, Animated, Dimensions, Keyboard, Text
+    View, TouchableOpacity, Animated, Dimensions, Keyboard, Text, Platform
 } from 'react-native'
-// import { WheelPicker } from 'react-native-wheel-picker-android'
-
 import styles from './styles'
-import TextRegular from '../TextRegular'; 
+import TextRegular from '../TextRegular';
 class DropDown extends React.Component {
     constructor(props) {
         super(props);
@@ -113,17 +111,22 @@ class DropDown extends React.Component {
     }
     renderWheel = () => {
         if (this.state.dataToShow.length > 0) {
-            return(
-                <Text>
-                    Not available in preview
-                </Text>
+            if (Platform.OS != 'web') {
+                return (
+                    <Text>
+                        Not available in preview
+                    </Text>
+                )
+            }
+            if (Platform.OS != 'web') {
+                // const { WheelPicker } = require('react-native-wheel-picker-android')
+            }
+            return (
+                <WheelPicker
+                    selectedItem={this.state.selectedItem}
+                    data={this.state.dataToShow}
+                    onItemSelected={this.onItemSelected} />
             )
-            // return (
-            //     <WheelPicker
-            //         selectedItem={this.state.selectedItem}
-            //         data={this.state.dataToShow}
-            //         onItemSelected={this.onItemSelected} />
-            // )
         } else {
             return null
         }
@@ -174,4 +177,4 @@ class DropDown extends React.Component {
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity)
 const AmatedRegularText = Animated.createAnimatedComponent(TextRegular)
 const vh = Dimensions.get('window').height * 0.01
-export default DropDown 
+export default DropDown

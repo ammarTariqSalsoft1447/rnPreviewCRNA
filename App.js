@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {Platform, StatusBar} from 'react-native';
 // import { Signup,LogIn } from './src/screens'
 import SignUp from './src/screens/SignUp';
 import Login from './src/screens/Login';
@@ -36,8 +36,9 @@ import Loader from './src/Popups/Loader';
 const Root = createStackNavigator();
 const App1 = createStackNavigator();
 import Drawer from './src/navigation';
-
-// SplashScreen.hide();
+if(Platform.OS != 'web'){
+  SplashScreen.hide();
+}
 
 const RootStack = () => {
   return (

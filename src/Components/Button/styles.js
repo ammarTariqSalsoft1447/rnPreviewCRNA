@@ -3,7 +3,6 @@ import vh from '../../Units/vh';
 import vw from '../../Units/vw';
 import {Fonts} from '../../assets/fonts';
 import {
-  primary_heading_color,
   primary_section_color,
   primary_font_color,
   secondary_font_color,

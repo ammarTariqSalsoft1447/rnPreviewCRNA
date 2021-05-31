@@ -1,9 +1,11 @@
-import config from '../config';
+// import config from '../config';
 import {EventRegister} from 'react-native-event-listeners';
-
+import {store} from '../store'
+const state = store.getState()
+const config = state.ConfigReducer
 export const checkConfig = () => {
   if (
-    config.url === '' ||
+    config.baseUrl === '' ||
     config.consumerKey === '' ||
     config.consumerSecret === '' ||
     config.consumerKey === undefined ||
@@ -20,7 +22,7 @@ export default {
     // //console.log('post ', data)
     if (checkConfig()) {
       let url =
-        config.url +
+        config.baseUrl +
         endpoint +
         '?consumer_key=' +
         config.consumerKey +
@@ -134,7 +136,7 @@ export default {
         parameter = prev + val;
       });
       let url =
-        config.url +
+        config.baseUrl +
         endpoint +
         '?consumer_key=' +
         config.consumerKey +
@@ -226,7 +228,7 @@ export default {
   customApi: (endpoint, data, success, error) => {
     if (checkConfig()) {
       if (data) {
-        let url = config.url + endpoint;
+        let url = config.baseUrl + endpoint;
         let h = {
           'Content-Type': 'application/json',
           'Cache-Control': 'no-cache',
@@ -257,7 +259,7 @@ export default {
   },
   customGet: (endpoint, success, error) => {
     if (checkConfig()) {
-      let url = config.url + endpoint;
+      let url = config.baseUrl + endpoint;
       fetch(url).then((res) => {
         res
           .json()
