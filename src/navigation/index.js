@@ -1,6 +1,6 @@
 import React from 'react';
-import {Image, StyleSheet, View, Text, Alert} from 'react-native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { Image, StyleSheet, View, Text, Alert } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -10,8 +10,8 @@ import {
 import Home from '../screens/Home';
 // import { ChatScreen } from '../screens';
 // import Tabs from '../tabs';
-import {options} from './navigationHeader';
-import {backgrounds, samplePictures, icons} from '../assets/images';
+import { options } from './navigationHeader';
+import { backgrounds, samplePictures, icons } from '../assets/images';
 import vw from '../Units/vw';
 import vh from '../Units/vh';
 // import CircularBold from '../Components/CircularBold';
@@ -32,48 +32,48 @@ import Login from '../screens/Login';
 import Donations from '../screens/Donations';
 import PasswordRecovery from '../screens/PasswordRecovery';
 import SignUp from '../screens/SignUp';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import reduxProps from '../WooCommerceWrapper/store/reduxProps';
 import {
   drawer_Active_Color,
   drawer_inActive_Color
 } from '../../config.json';
-
+import socketIOClient from 'socket.io-client'
 const App = createStackNavigator();
 const Auth = createStackNavigator();
 const Drawer = createDrawerNavigator();
 const ROUTES = [
-  {name: 'HOME', route: 'Home', image: icons.drawer},
-  {name: 'MY CART', route: 'Cart', image: icons.cart},
-  {name: 'ABOUT US', route: 'AboutUs', image: icons.drawer1},
-  {name: 'CONTACT US', route: 'ContactUs', image: icons.drawer2},
-  {name: 'PRODUCTS', route: 'Products', image: icons.drawer3},
-  {name: 'CATEGORIES', route: 'Categories', image: icons.drawer4},
-  {name: 'WISH LIST', route: 'WishList', image: icons.drawer5},
-  {name: 'PROFILE', route: 'ProfileDetails', image: icons.drawer6},
-  {name: 'MY ORDERS', route: 'MyOrders', image: icons.drawer7},
-  {name: 'DONATIONS', route: 'Donations', image: icons.drawer7},
-  {name: 'LOGOUT', route: 'Auth', image: icons.drawer8},
+  { name: 'HOME', route: 'Home', image: icons.drawer },
+  { name: 'MY CART', route: 'Cart', image: icons.cart },
+  { name: 'ABOUT US', route: 'AboutUs', image: icons.drawer1 },
+  { name: 'CONTACT US', route: 'ContactUs', image: icons.drawer2 },
+  { name: 'PRODUCTS', route: 'Products', image: icons.drawer3 },
+  { name: 'CATEGORIES', route: 'Categories', image: icons.drawer4 },
+  { name: 'WISH LIST', route: 'WishList', image: icons.drawer5 },
+  { name: 'PROFILE', route: 'ProfileDetails', image: icons.drawer6 },
+  { name: 'MY ORDERS', route: 'MyOrders', image: icons.drawer7 },
+  { name: 'DONATIONS', route: 'Donations', image: icons.drawer7 },
+  { name: 'LOGOUT', route: 'Auth', image: icons.drawer8 },
 ];
 
 const LOGIN_ROUTES = [
-  {name: 'HOME', route: 'Home', image: icons.drawer},
+  { name: 'HOME', route: 'Home', image: icons.drawer },
   // { name: 'MY CART', route: 'Cart', image: icons.cart },
 
-  {name: 'ABOUT US', route: 'AboutUs', image: icons.drawer1},
-  {name: 'CONTACT US', route: 'ContactUs', image: icons.drawer2},
-  {name: 'PRODUCTS', route: 'Products', image: icons.drawer3},
+  { name: 'ABOUT US', route: 'AboutUs', image: icons.drawer1 },
+  { name: 'CONTACT US', route: 'ContactUs', image: icons.drawer2 },
+  { name: 'PRODUCTS', route: 'Products', image: icons.drawer3 },
   // { name: 'WISH LIST', route: 'WishList', image: icons.drawer5 },
   // { name: 'MY CART', route: 'Cart', image: icons.cart },
-  {name: 'DONATIONS', route: 'Donations', image: icons.drawer7},
-  {name: 'CATEGORIES', route: 'Categories', image: icons.drawer4},
-  {name: 'LOGIN', route: 'Auth', image: icons.drawer8},
+  { name: 'DONATIONS', route: 'Donations', image: icons.drawer7 },
+  { name: 'CATEGORIES', route: 'Categories', image: icons.drawer4 },
+  { name: 'LOGIN', route: 'Auth', image: icons.drawer8 },
   // {name: 'DONATIONS', route: 'Donations', image: icons.drawer7},
 ];
 
 const AuthStack = () => {
   return (
-    <Auth.Navigator screenOptions={{headerShown: false}}>
+    <Auth.Navigator screenOptions={{ headerShown: false }}>
       <Auth.Screen name="Login" component={Login} />
       <Auth.Screen name="PasswordRecovery" component={PasswordRecovery} />
 
@@ -114,7 +114,19 @@ const AppStack = () => {
     </App.Navigator>
   );
 };
+const ENDPOINT = "http://localhost:3002";
 class DrawerContent extends React.Component {
+  componentDidMount() {
+    this.socket = socketIOClient(ENDPOINT);
+    this.socket.on('update-config', payload => {
+      this.props.updateConfigs(payload)
+    })
+  }
+
+
+
+
+
   //   logout= ()=>{
   //     Alert.alert("Logout", "Are you sure you want to logout?",
   //     [{
@@ -134,13 +146,13 @@ class DrawerContent extends React.Component {
   //       }
   //     }], {})
   //   }\
-  state = {activeRouteName: 'Home'};
+  state = { activeRouteName: 'Home' };
   IconButton = (icon, color) => {
     return (
       <View style={styles.iconContainer}>
         <Image
           source={icon}
-          style={[styles.icon, {tintColor: color}]}
+          style={[styles.icon, { tintColor: color }]}
           resizeMode="contain"
         />
       </View>
@@ -179,61 +191,61 @@ class DrawerContent extends React.Component {
         <View style={styles.optionContainer}>
           {this.props.Reducer.userId == null
             ? LOGIN_ROUTES.map((item, index) => (
-                <DrawerItem
-                  key={index}
-                  label={item.name}
-                  icon={() =>
-                    this.IconButton(
-                      item.image,
+              <DrawerItem
+                key={index}
+                label={item.name}
+                icon={() =>
+                  this.IconButton(
+                    item.image,
+                    this.state.activeRouteName == item.route
+                      ? this.props.activeTintColor
+                      : this.props.inactiveTintColor,
+                  )
+                }
+                onPress={() => {
+                  this.setState({ activeRouteName: item.route });
+                  props.navigation.navigate(item.route);
+                }}
+                style={styles.option}
+                labelStyle={[
+                  styles.optionLabel,
+                  {
+                    color:
                       this.state.activeRouteName == item.route
                         ? this.props.activeTintColor
                         : this.props.inactiveTintColor,
-                    )
-                  }
-                  onPress={() => {
-                    this.setState({activeRouteName: item.route});
-                    props.navigation.navigate(item.route);
-                  }}
-                  style={styles.option}
-                  labelStyle={[
-                    styles.optionLabel,
-                    {
-                      color:
-                        this.state.activeRouteName == item.route
-                          ? this.props.activeTintColor
-                          : this.props.inactiveTintColor,
-                    },
-                  ]}
-                />
-              ))
+                  },
+                ]}
+              />
+            ))
             : ROUTES.map((item, index) => (
-                <DrawerItem
-                  key={index}
-                  label={item.name}
-                  icon={() =>
-                    this.IconButton(
-                      item.image,
+              <DrawerItem
+                key={index}
+                label={item.name}
+                icon={() =>
+                  this.IconButton(
+                    item.image,
+                    this.state.activeRouteName == item.route
+                      ? this.props.activeTintColor
+                      : this.props.inactiveTintColor,
+                  )
+                }
+                onPress={() => {
+                  this.setState({ activeRouteName: item.route });
+                  this._logout(item.route);
+                }}
+                style={styles.option}
+                labelStyle={[
+                  styles.optionLabel,
+                  {
+                    color:
                       this.state.activeRouteName == item.route
                         ? this.props.activeTintColor
                         : this.props.inactiveTintColor,
-                    )
-                  }
-                  onPress={() => {
-                    this.setState({activeRouteName: item.route});
-                    this._logout(item.route);
-                  }}
-                  style={styles.option}
-                  labelStyle={[
-                    styles.optionLabel,
-                    {
-                      color:
-                        this.state.activeRouteName == item.route
-                          ? this.props.activeTintColor
-                          : this.props.inactiveTintColor,
-                    },
-                  ]}
-                />
-              ))}
+                  },
+                ]}
+              />
+            ))}
         </View>
       </DrawerContentScrollView>
     );
@@ -266,13 +278,13 @@ export default () => {
       drawerType="slide"
       overlayColor="transparent"
       drawerStyle={styles.drawerStyles}
-      contentContainerStyle={{flex: 1}}
+      contentContainerStyle={{ flex: 1 }}
       drawerContentOptions={{
         activeBackgroundColor: 'transparent',
         activeTintColor: drawer_Active_Color,
         inactiveTintColor: drawer_inActive_Color,
       }}
-      sceneContainerStyle={{backgroundColor: 'transparent'}}
+      sceneContainerStyle={{ backgroundColor: 'transparent' }}
       drawerContent={(props) => {
         //   setProgress(props.progress);
         return <DrawerContent {...props} />;

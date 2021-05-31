@@ -217,16 +217,9 @@ class Products extends React.Component {
               style={styles.sort}
               resizeMode="contain"
             />
-            <TextMedium
-              style={[
-                styles.sortText,
-                {
-                  color: this.props.ConfigReducer.primaryColor,
-                },
-              ]}
-            >
-              Sort By
-            </TextMedium>
+            <TextMedium style={[styles.sortText,{
+              color: this.props.ConfigReducer.primaryColor
+            }]}>Sort By</TextMedium>
           </View>
 
           <TouchableOpacity

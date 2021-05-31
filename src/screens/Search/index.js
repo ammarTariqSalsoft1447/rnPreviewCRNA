@@ -65,12 +65,18 @@ class Search extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, paddingHorizontal: vw * 5 }}>
-        <View style={styles.searchbar}>
+        <View style={[styles.searchbar,{
+          borderColor:this.props.ConfigReducer.primary_border_color,
+          backgroundColor: this.props.ConfigReducer.secondaryColor,
+
+        }]}>
           <TextInput
             placeholder="Search Products"
-            placeholderTextColor={primary_placeholder_Color}
-            selectionColor={secondary_font_color}
-            style={styles.input}
+            placeholderTextColor={this.props.ConfigReducer.primary_placeholder_Color}
+            selectionColor={this.props.ConfigReducer.secondary_font_color}
+            style={[styles.input,{
+              color:this.props.ConfigReducer.primary_placeholder_Color
+            }]}
             value={this.state.searchProduct}
             autoCorrect={false}
             onChangeText={(text) => {
