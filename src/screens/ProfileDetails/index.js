@@ -129,21 +129,7 @@ class ProfileDetails extends React.Component {
   };
 
   renderFields = () => {
-    styles.label={
-      ...styles.label,
-      color: this.props.ConfigReducer.drawer_inActive_Color
-    }
-    styles.label = {
-      ...styles.label,
 
-      color: this.props.ConfigReducer.primaryColor,
-
-    }
-    styles.changePassword = {
-      ...styles.changePassword,
-      color: this.props.ConfigReducer.primary_font_color,
-
-    }
     if (this.state.edit) {
       return (
         <>

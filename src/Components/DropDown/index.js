@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import styles from "./styles";
 import TextRegular from "../TextRegular";
+import { connect } from "react-redux";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 class DropDown extends React.Component {
   constructor(props) {
     super(props);
@@ -24,7 +26,7 @@ class DropDown extends React.Component {
     this.onCancel = null;
     this.animatedBackdrop = new Animated.Value(0);
   }
-  componentDidMount() {}
+  componentDidMount() { }
   animateIn = () => {
     Animated.timing(this.animatedBackdrop, {
       toValue: 100 * vh,
@@ -184,14 +186,18 @@ class DropDown extends React.Component {
           style={[
             styles.conetntContainer,
             animatedContentContainerStyle,
-            this.props.ConfigReducer.secondaryColor,
+            {
+              backgroundColor: this.props.ConfigReducer.secondaryColor
+            }
           ]}
         >
           <Animated.View
             style={[
               styles.titleBar,
               animatedtitleBarStyle,
-              this.props.ConfigReducer.secondaryColor,
+              {
+                backgroundColor: this.props.ConfigReducer.secondaryColor,
+              }
             ]}
           >
             <TouchableOpacity
@@ -224,4 +230,8 @@ class DropDown extends React.Component {
 const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
 const AmatedRegularText = Animated.createAnimatedComponent(TextRegular);
 const vh = Dimensions.get("window").height * 0.01;
-export default DropDown;
+
+export default connect(
+  reduxProps.mapStateToProps,
+  reduxProps.mapDispatchToProps
+)(DropDown);

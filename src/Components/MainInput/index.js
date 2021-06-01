@@ -9,6 +9,8 @@ import vh from "../../Units/vh";
 import TextRegular from "../TextRegular";
 
 import { store } from "../../WooCommerceWrapper/store";
+import { connect } from "react-redux";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 const state = store.getState();
 const config = state.ConfigReducer;
 const { secondary_font_color, primary_placeholder_Color } = config;
@@ -44,13 +46,13 @@ class MainInput extends React.Component {
           style={[
             styles.labelContainer,
             this.props.labelContainer,
-            this.props.ConfigReducer.primary_heading_color,
+            {backgroundColor: this.props.ConfigReducer.primary_heading_color,}
           ]}
         >
           <TextRegular
             style={[
               styles.label,
-              this.props.ConfigReducer.primary_heading_color,
+              {color: this.props.ConfigReducer.primary_heading_color,}
             ]}
           >
             {this.props.label}
@@ -73,7 +75,7 @@ class MainInput extends React.Component {
           style={[
             styles.container,
             this.props.style,
-            this.props.ConfigReducer.primary_border_color,
+            {borderColor: this.props.ConfigReducer.primary_border_color,}
           ]}
         >
           {this.props.leftIcon && (
@@ -84,9 +86,7 @@ class MainInput extends React.Component {
           )}
           <TextInput
             selectionColor={this.props.ConfigReducer.secondary_font_color}
-            placeholderTextColor={
-              this.props.ConfigReducer.primary_placeholder_Color
-            }
+            placeholderTextColor={this.props.ConfigReducer.primary_placeholder_Color}
             {...this.props}
             blurOnSubmit={true}
             // multiline={true}
@@ -106,4 +106,9 @@ class MainInput extends React.Component {
     );
   }
 }
-export default MainInput;
+export default connect(
+  reduxProps.mapStateToProps,
+  reduxProps.mapDispatchToProps,
+  null,
+  { forwardRef: true }
+)(MainInput);

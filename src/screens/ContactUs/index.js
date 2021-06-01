@@ -177,8 +177,7 @@ class AboutUs extends React.Component {
               resizeMode="contain"
             />
             <TextRegular style={[styles.contact, {
-              color: this.props.ConfigReducer.
-primaryColor,
+              color: this.props.ConfigReducer.primaryColor,
             }]}>
               Walmart, Nuevo León 67117 Mexico, Independence, KS 67301
             </TextRegular>

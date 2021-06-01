@@ -9,9 +9,11 @@ export default (props) => {
     <TouchableHOC
       style={[
         styles.container,
-        props.btnContainer,
-        this.props.ConfigReducer.secondary_font_color,
-        this.props.ConfigReducer.primaryColor,
+        props.btnContainer, {
+
+          backgroundColor: this.props.ConfigReducer.secondary_font_color,
+          shadowColor: this.props.ConfigReducer.primaryColor,
+        }
       ]}
       onPress={props.onPress}
     >
@@ -19,7 +21,7 @@ export default (props) => {
         style={[
           styles.label,
           props.labelStyle,
-          this.props.ConfigReducer.secondaryColor,
+          {color:this.props.ConfigReducer.secondaryColor,}
         ]}
       >
         {props.title}

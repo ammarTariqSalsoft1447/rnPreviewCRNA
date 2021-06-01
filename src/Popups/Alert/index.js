@@ -16,10 +16,12 @@ import MainInput from "../../Components/MainInput";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { store } from "../../WooCommerceWrapper/store";
+import { connect } from "react-redux";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 const state = store.getState();
 const config = state.ConfigReducer;
 const { secondary_font_color } = config;
-export default class extends Component {
+class Alert extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -164,3 +166,9 @@ export default class extends Component {
     );
   }
 }
+export default connect(
+  reduxProps.mapStateToProps,
+  reduxProps.mapDispatchToProps,
+  null,
+  { forwardRef: true }
+)(Alert)

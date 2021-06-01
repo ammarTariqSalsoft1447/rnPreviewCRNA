@@ -3,7 +3,6 @@ import Dispatcher from '../actions/Dispatcher';
 
 export default {
   mapStateToProps: (state) => {
-    console.log('mapStateToProps : ',state)
     return {...state};
   },
   mapDispatchToProps: (dispatch) => {

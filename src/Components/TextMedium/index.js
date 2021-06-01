@@ -1,16 +1,24 @@
 import React from "react";
 import { Text } from "react-native";
+import { connect } from "react-redux";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 import styles from "./styles";
 
-export default (props) => {
-  return (
-    <Text
-      ellipsizeMode="tail"
-      allowFontScaling={false}
-      {...props}
-      style={[styles.text, props.style, this.props.ConfigReducer.primaryColor]}
-    >
-      {props.children}
-    </Text>
-  );
-};
+class TextMedium extends React.Component{
+  render(){
+    return (
+      <Text
+        ellipsizeMode="tail"
+        allowFontScaling={false}
+        {...this.props}
+        style={[styles.text, this.props.style, {color:this.props.ConfigReducer.primaryColor}]}
+      >
+        {this.props.children}
+      </Text>
+    );
+  }
+}
+export default connect(
+  reduxProps.mapStateToProps,
+  reduxProps.mapDispatchToProps
+)(TextMedium)

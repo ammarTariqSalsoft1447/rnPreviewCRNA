@@ -43,7 +43,7 @@ class CartItem extends React.Component {
 
   render() {
     return (
-      <View style={[styles.card, this.props.ConfigReducer.secondaryColor]}>
+      <View style={[styles.card, {backgroundColor:this.props.ConfigReducer.secondaryColor}]}>
         {/* here checking if iamges exist or not */}
         {this.props.item.images && (
           <Image

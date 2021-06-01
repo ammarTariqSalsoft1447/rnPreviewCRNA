@@ -114,12 +114,21 @@ const AppStack = () => {
     </App.Navigator>
   );
 };
-const ENDPOINT = "http://localhost:3002";
+
 class DrawerContent extends React.Component {
   componentDidMount() {
+    const ENDPOINT = "http://localhost:3002";
     this.socket = socketIOClient(ENDPOINT);
     this.socket.on('update-config', payload => {
-      this.props.updateConfigs(payload)
+      const id = document.location.search.replace('?sessionId=', '')
+      if (payload.sessionId) {
+        if (payload.sessionId == parseInt(id)) {
+          // alert(id)
+          console.log('update-config : ', payload)
+
+          this.props.updateConfigs(payload)
+        }
+      }
     })
   }
 

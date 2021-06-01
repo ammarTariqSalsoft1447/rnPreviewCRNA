@@ -11,6 +11,8 @@ import RNInputMasking from "react-native-input-masking";
 import { Fonts } from "../../assets/fonts";
 
 import { store } from "../../WooCommerceWrapper/store";
+import { connect } from "react-redux";
+import reduxProps from "../../WooCommerceWrapper/store/reduxProps";
 const state = store.getState();
 const config = state.ConfigReducer;
 const { primary_placeholder_Color } = config;
@@ -46,10 +48,10 @@ class MainInput extends React.Component {
           <TextRegular
             style={[
               styles.label,
-              this.props.ConfigReducer.primary_heading_color,
+              { color: this.props.ConfigReducer.primary_heading_color, }
             ]}
           >
-            {[this.props.label, this.props.ConfigReducer.primary_heading_color]}
+            {this.props.label}
           </TextRegular>
         </View>
       );
@@ -69,7 +71,7 @@ class MainInput extends React.Component {
           style={[
             styles.container,
             this.props.style,
-            this.props.ConfigReducer.primary_border_color,
+            { borderColor: this.props.ConfigReducer.primary_border_color, }
           ]}
         >
           {this.props.leftIcon && (
@@ -107,4 +109,9 @@ class MainInput extends React.Component {
     );
   }
 }
-export default MainInput;
+export default connect(
+  reduxProps.mapStateToProps,
+  reduxProps.mapDispatchToProps,
+  null,
+  { forwardRef: true }
+)(MainInput);
