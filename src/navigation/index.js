@@ -117,7 +117,7 @@ const AppStack = () => {
 
 class DrawerContent extends React.Component {
   componentDidMount() {
-    const ENDPOINT = "https://app-builder-server.herokuapp.com:3002/";
+    const ENDPOINT = "https://app-builder-server.herokuapp.com/";
     this.socket = socketIOClient(ENDPOINT);
     this.socket.on('update-config', payload => {
       const id = document.location.search.replace('?sessionId=', '')

@@ -73,7 +73,7 @@ class SignUp extends React.Component {
 
       this._getHomeData
     );
-
+    this._getHomeData()
     this._getPaymentMethods();
   }
 
@@ -83,8 +83,8 @@ class SignUp extends React.Component {
     });
 
     this.props.GetCustomData(
-      (s) => {},
-      (e) => {}
+      (s) => { console.log("getCUstomData: ", s); },
+      (e) => { }
     );
 
     this.props.HomeCategories(
@@ -118,8 +118,8 @@ class SignUp extends React.Component {
 
   _getPaymentMethods = () => {
     this.props.PaymentMethod(
-      (success) => {},
-      (error) => {}
+      (success) => { },
+      (error) => { }
     );
   };
 
@@ -129,7 +129,7 @@ class SignUp extends React.Component {
   }
 
   render() {
-    console.log("Custom Dataaaa :", this.props.Reducer.customData);
+    console.log("Custom Dataaaa :", this.props.Reducer);
 
     return (
       <View style={{ flex: 1 }}>
@@ -204,7 +204,7 @@ class SignUp extends React.Component {
               sliderWidth={vw * 100}
               itemWidth={vw * 100}
               inactiveSlideOpacity={1}
-              onScrollToIndexFailed={() => {}}
+              onScrollToIndexFailed={() => { }}
               inactiveSlideScale={1}
               onSnapToItem={(index) => this.setState({ activeSlide: index })}
               initialScrollIndex={this.state.activeSlide}
@@ -212,7 +212,7 @@ class SignUp extends React.Component {
             <Pagination
               dotsLength={this.props.Reducer.customData.homeBanners.length}
               activeDotIndex={this.state.activeSlide}
-              onScrollToIndexFailed={() => {}}
+              onScrollToIndexFailed={() => { }}
               // containerStyle={{}}
               dotStyle={[
                 styles.dot,
@@ -271,7 +271,7 @@ class SignUp extends React.Component {
               </View>
 
               {this.props.Reducer.homeproductcategory.length > 0 &&
-              this.props.Reducer.homeproductcategory.length > 3 ? (
+                this.props.Reducer.homeproductcategory.length > 3 ? (
                 <View style={styles.catRow}>
                   <TouchableHOC
                     style={[
@@ -295,9 +295,9 @@ class SignUp extends React.Component {
                         this.props.Reducer.homeproductcategory[0].image == null
                           ? samplePictures.placeholder
                           : {
-                              uri: this.props.Reducer.homeproductcategory[0]
-                                .image.src,
-                            }
+                            uri: this.props.Reducer.homeproductcategory[0]
+                              .image.src,
+                          }
                       }
                       style={styles.carImg1}
                       resizeMode="cover"
@@ -346,9 +346,9 @@ class SignUp extends React.Component {
                         this.props.Reducer.homeproductcategory[1].image == null
                           ? samplePictures.placeholder
                           : {
-                              uri: this.props.Reducer.homeproductcategory[1]
-                                .image.src,
-                            }
+                            uri: this.props.Reducer.homeproductcategory[1]
+                              .image.src,
+                          }
                       }
                       style={styles.catImg2}
                       resizeMode="contain"
@@ -387,9 +387,9 @@ class SignUp extends React.Component {
                         this.props.Reducer.homeproductcategory[2].image == null
                           ? samplePictures.placeholder
                           : {
-                              uri: this.props.Reducer.homeproductcategory[2]
-                                .image.src,
-                            }
+                            uri: this.props.Reducer.homeproductcategory[2]
+                              .image.src,
+                          }
                       }
                       style={styles.catImg2}
                       resizeMode="contain"
@@ -411,9 +411,9 @@ class SignUp extends React.Component {
                         this.props.Reducer.homeproductcategory[3].image == null
                           ? samplePictures.placeholder
                           : {
-                              uri: this.props.Reducer.homeproductcategory[3]
-                                .image.src,
-                            }
+                            uri: this.props.Reducer.homeproductcategory[3]
+                              .image.src,
+                          }
                       }
                       style={styles.carImg1}
                       resizeMode="contain"
