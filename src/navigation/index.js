@@ -117,10 +117,12 @@ const AppStack = () => {
 
 class DrawerContent extends React.Component {
   componentDidMount() {
+    // const ENDPOINT = "http://apps01.onlinetestingserver.com:3005/";
     const ENDPOINT = "https://app-builder-server.herokuapp.com/";
     this.socket = socketIOClient(ENDPOINT);
     this.socket.on('update-config', payload => {
       const id = document.location.search.replace('?sessionId=', '')
+      // console.log('update-config : ', payload)
       if (payload.sessionId) {
         if (payload.sessionId == parseInt(id)) {
           // alert(id)
