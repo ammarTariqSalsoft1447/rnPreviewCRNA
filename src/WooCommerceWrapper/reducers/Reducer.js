@@ -1,4 +1,4 @@
-import {LayoutAnimation} from 'react-native';
+import { LayoutAnimation } from 'react-native';
 
 let initialState = {
   badge: 0,
@@ -48,29 +48,29 @@ let initialState = {
     aboutUs: null,
     homeBanners: [],
   },
-  color:'red'
+  color: 'red'
 };
 
 export const Reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SET_APPLICATION': {
-      return {...state, application: action.application};
+      return { ...state, application: action.application };
     }
 
     case 'SET_NAVIGATION_FIELD': {
-      return {...state, navigationField: action.payload};
+      return { ...state, navigationField: action.payload };
     }
 
     case 'CLEAR_APPLICATION': {
-      return {...state, application: ''};
+      return { ...state, application: '' };
     }
 
     case 'CLEAR_NAVIGATION_FIELD': {
-      return {...state, navigationField: action.payload};
+      return { ...state, navigationField: action.payload };
     }
 
     case 'STORE_GETDATA': {
-      return {...state, nav_fieldData: action.payload};
+      return { ...state, nav_fieldData: action.payload };
     }
 
     case 'CHECKOUT_ADDRESS': {
@@ -99,51 +99,51 @@ export const Reducer = (state = initialState, action) => {
 
     case 'DISCOUNT': {
       // console.log("ddd", action.payload);
-      return {...state, discount: action.payload.discount};
+      return { ...state, discount: action.payload.discount };
     }
 
     case 'CLEAR_DISCOUNT': {
-      return {...state, discount: 0};
+      return { ...state, discount: 0 };
     }
 
     case 'START_LOAD': {
-      return {...state, loading: true};
+      return { ...state, loading: true };
     }
 
     case 'CLOSE_LOAD': {
-      return {...state, loading: false};
+      return { ...state, loading: false };
     }
     case 'EMPTY_SEARCHLIST': {
-      return {...state, searchList: []};
+      return { ...state, searchList: [] };
     }
     case 'EMPTY_COUPON': {
       // console.log('Discount :', state.discount);
       state.cartTotal = state.cartTotal + state.discount;
-      return {...state, coupon: null, discount: 0};
+      return { ...state, coupon: null, discount: 0 };
     }
 
     case 'LOGIN': {
-      return {...state, userId: action.loginsuccess.user.id, loading: false};
+      return { ...state, userId: action.loginsuccess.user.id, loading: false };
     }
 
     case 'USER_GET': {
-      return {...state, userInfo: action.userData, loading: false};
+      return { ...state, userInfo: action.userData, loading: false };
     }
 
     case 'ORDERS': {
-      return {...state, order: action.orderssuccess};
+      return { ...state, order: action.orderssuccess };
     }
 
     case 'PRODUCT_CATEGORY': {
-      return {...state, productcategory: action.success, loading: false};
+      return { ...state, productcategory: action.success, loading: false };
     }
     case 'HOME_PRODUCT_CATEGORY': {
-      return {...state, homeproductcategory: action.success, loading: false};
+      return { ...state, homeproductcategory: action.success, loading: false };
     }
-    case 'CHANGE_COLOR':{
+    case 'CHANGE_COLOR': {
       return {
         ...state,
-        color:action.color
+        color: action.color
       }
     }
     case 'SUB_CATEGORY': {
@@ -164,7 +164,7 @@ export const Reducer = (state = initialState, action) => {
         }
       });
 
-      if (flag) return {...state, loading: false, alerts: 'no-sub-category'};
+      if (flag) return { ...state, loading: false, alerts: 'no-sub-category' };
 
       return {
         ...state,
@@ -175,14 +175,15 @@ export const Reducer = (state = initialState, action) => {
     }
 
     case 'RELATED_PRODUCT': {
-      return {...state, relatedproduct: action.success};
+      return { ...state, relatedproduct: action.success };
     }
 
     case 'PRODUCT': {
-      return {...state, product: action.success};
+      return { ...state, product: action.success };
     }
 
     case 'CUSTOM_DATA': {
+      console.log("CUSTOM_DATA: ", action.payload);
       return {
         ...state,
         customData: {
@@ -202,7 +203,7 @@ export const Reducer = (state = initialState, action) => {
         };
       } else {
         // LayoutAnimation.configureNext(CustomLayoutSpring)
-        return {...state, order: action.payload.success, loading: false};
+        return { ...state, order: action.payload.success, loading: false };
       }
     }
 
@@ -210,30 +211,30 @@ export const Reducer = (state = initialState, action) => {
       // console.log(action.success);
 
       // LayoutAnimation.configureNext(CustomLayoutSpring)
-      return {...state, singleproduct: action.success, loading: false};
+      return { ...state, singleproduct: action.success, loading: false };
     }
 
     case 'CAT_PRODUCT': {
       if (action.success.length > 0) {
         // console.log('early')
         // return { ...state, allproduct: [...state.allproduct,...action.success] }
-        return {...state, categoryProducts: action.success, loading: false};
+        return { ...state, categoryProducts: action.success, loading: false };
       } else {
         // console.log('late')
-        return {...state, categoryProducts: [], loading: false};
+        return { ...state, categoryProducts: [], loading: false };
       }
     }
 
     case 'GET_ZONES': {
-      return {...state, zonelocations: action.payload};
+      return { ...state, zonelocations: action.payload };
     }
 
     case 'SHIPPING_METHODS': {
-      return {...state, shippingMethods: action.payload};
+      return { ...state, shippingMethods: action.payload };
     }
 
     case 'EMPTY_SIGNLE_PROD': {
-      return {...state, singleproduct: null};
+      return { ...state, singleproduct: null };
     }
 
     case 'ALL_PRODUCT': {
@@ -246,35 +247,35 @@ export const Reducer = (state = initialState, action) => {
         };
       } else {
         // LayoutAnimation.configureNext(CustomLayoutSpring)
-        return {...state, allproduct: action.payload.success, loading: false};
+        return { ...state, allproduct: action.payload.success, loading: false };
       }
     }
 
     case 'SEARCH_PRODUCT': {
-      return {...state, searchList: action.payload, loading: false};
+      return { ...state, searchList: action.payload, loading: false };
     }
 
     case 'FILTER_DATA': {
-      return {...state, allproduct: action.payload, loading: false};
+      return { ...state, allproduct: action.payload, loading: false };
     }
 
     case 'ADD_COUPON': {
-      return {...state, coupon: action.payload};
+      return { ...state, coupon: action.payload };
     }
     case 'EMPTY_FILTER': {
-      return {...state, filterProducts: []};
+      return { ...state, filterProducts: [] };
     }
 
     case 'SINGLE_COUPON': {
-      return {...state, singlecoupon: action.Couponsuccess};
+      return { ...state, singlecoupon: action.Couponsuccess };
     }
 
     case 'ALL_COUPONS': {
-      return {...state, allcoupon: action.success};
+      return { ...state, allcoupon: action.success };
     }
 
     case 'SINGLE_ORDER': {
-      return {...state, singleorder: action.Ordersuccess, loading: false};
+      return { ...state, singleorder: action.Ordersuccess, loading: false };
     }
 
     case 'CURRENCY': {
@@ -298,7 +299,7 @@ export const Reducer = (state = initialState, action) => {
         },
       );
 
-      return {...state, currency: action.success};
+      return { ...state, currency: action.success };
     }
 
     case 'ADD_TO_CART': {
@@ -414,9 +415,9 @@ export const Reducer = (state = initialState, action) => {
     case 'ADD_TO_WISHLIST': {
       if (state.wishlist.find((val) => val == action.payload) == undefined) {
         state.wishlist.push(action.payload);
-        return {...state, alerts: 'Added to wishlist'};
+        return { ...state, alerts: 'Added to wishlist' };
       } else {
-        return {...state, alerts: 'Already In wishlist'};
+        return { ...state, alerts: 'Already In wishlist' };
       }
     }
 
@@ -429,11 +430,11 @@ export const Reducer = (state = initialState, action) => {
       );
 
       if (wishlistindex == -1) {
-        return {...state, alerts: 'Item Not in wishlist'};
+        return { ...state, alerts: 'Item Not in wishlist' };
       } else {
         state.wishlist.splice(wishlistindex, 1);
         state.wishlistproduct.splice(wishlistproductindex, 1);
-        return {...state, alerts: 'Removed from the wishlist'};
+        return { ...state, alerts: 'Removed from the wishlist' };
       }
     }
 
@@ -453,7 +454,7 @@ export const Reducer = (state = initialState, action) => {
       if (index > -1) {
         state.cart[index].quantity = state.cart[index].quantity + 1;
       }
-      return {...state};
+      return { ...state };
     }
 
     case 'DECREMENT_PRODUCT': {
@@ -482,13 +483,13 @@ export const Reducer = (state = initialState, action) => {
       if (index > -1 && state.cart[index].quantity > 1) {
         state.cart[index].quantity = state.cart[index].quantity - 1;
       }
-      return {...state};
+      return { ...state };
     }
 
     case 'GET_WISHLIST': {
       state.wishlistproduct = [];
       if (state.wishlist.length == 0) {
-        return {...state, alerts: 'wishlist is empty', loading: false};
+        return { ...state, alerts: 'wishlist is empty', loading: false };
       } else {
         // console.log('in else');
         state.wishlist.map((value) => {
@@ -504,12 +505,12 @@ export const Reducer = (state = initialState, action) => {
           });
         });
       }
-      return {...state, wishlistproduct: state.wishlistproduct, loading: false};
+      return { ...state, wishlistproduct: state.wishlistproduct, loading: false };
     }
 
     case 'WISHLIST_API': {
       state.wishlistproduct = [];
-      return {...state, wishlistproduct: action.payload, loading: false};
+      return { ...state, wishlistproduct: action.payload, loading: false };
     }
 
     case 'CART_PRODUCT': {
@@ -526,7 +527,7 @@ export const Reducer = (state = initialState, action) => {
 
       if (state.cart.length == 0) {
         // console.log('in else 1');
-        return {...state, alerts: 'Cart is empty', loading: false};
+        return { ...state, alerts: 'Cart is empty', loading: false };
       } else {
         state.cart.map((value) => {
           // console.log('cart map', value);
@@ -557,11 +558,11 @@ export const Reducer = (state = initialState, action) => {
           });
         });
       }
-      return {...state, loading: false};
+      return { ...state, loading: false };
     }
 
     case 'PAYMENT_METHOD': {
-      return {...state, paymentmethods: action.Paymentsuccess};
+      return { ...state, paymentmethods: action.Paymentsuccess };
     }
 
     case 'MANAGE_CART': {
@@ -593,7 +594,7 @@ export const Reducer = (state = initialState, action) => {
             }
           }
 
-          return {...state};
+          return { ...state };
         }
 
         case 'BILLING_VIEW': {
@@ -613,11 +614,11 @@ export const Reducer = (state = initialState, action) => {
             state.userInfo.billing.country = '';
             state.userInfo.billing.email = state.userInfo.email;
             state.userInfo.billing.phone = '';
-            state.cartDetail.billing = {...state.userInfo.billing}; //billing object
-            state.cartDetail.shipping = {...state.userInfo.billing}; //shipping object
+            state.cartDetail.billing = { ...state.userInfo.billing }; //billing object
+            state.cartDetail.shipping = { ...state.userInfo.billing }; //shipping object
             state.cartDetail.customer_note = action.data.customer_note ?? '';
 
-            return {...state};
+            return { ...state };
           } else {
             state.userInfo = {
               ...state,
@@ -639,12 +640,12 @@ export const Reducer = (state = initialState, action) => {
               },
             };
 
-            state.cartDetail.billing = {...state.userInfo.billing}; //billing object
-            state.cartDetail.shipping = {...state.userInfo.billing}; //shipping object
+            state.cartDetail.billing = { ...state.userInfo.billing }; //billing object
+            state.cartDetail.shipping = { ...state.userInfo.billing }; //shipping object
 
             state.cartDetail.customer_note = action.data.customer_note ?? '';
             // state.cartDetail.status ='pending'
-            return {...state};
+            return { ...state };
           }
         }
 
@@ -655,13 +656,13 @@ export const Reducer = (state = initialState, action) => {
           state.cartDetail.set_paid = false;
           state.cartDetail.customer_id = state.userId;
 
-          return {...state};
+          return { ...state };
         }
         case 'SET_IS_PAID': {
           // state.cartDetail.set_paid = action.data.enabled;
           state.cartDetail.set_paid = true;
 
-          return {...state};
+          return { ...state };
         }
 
         case 'SHIPPING_VIEW': {
@@ -673,7 +674,7 @@ export const Reducer = (state = initialState, action) => {
             },
           ];
 
-          return {...state};
+          return { ...state };
         }
 
         case 'CONFIRM_VIEW': {
@@ -695,7 +696,7 @@ export const Reducer = (state = initialState, action) => {
         default:
           // console.log('case 6');
           // console.log('The cart Details after placing order ::', state.cartDetail);
-          return {...state};
+          return { ...state };
       }
     }
 
@@ -720,7 +721,7 @@ export const Reducer = (state = initialState, action) => {
     case 'ALERTS': {
       // console.log('in alert', action.payload);
 
-      return {...state, alerts: action.payload};
+      return { ...state, alerts: action.payload };
     }
 
     case 'EMPTY_STATE': {
@@ -736,15 +737,15 @@ export const Reducer = (state = initialState, action) => {
     }
 
     case 'EMPTY_ALERTS': {
-      return {...state, alerts: null};
+      return { ...state, alerts: null };
     }
 
     case 'EMPTY_PRODUCTS': {
-      return {...state, allproduct: []};
+      return { ...state, allproduct: [] };
     }
 
     case 'SPINNER_LOAD': {
-      return {...state, spinnerLoading: true};
+      return { ...state, spinnerLoading: true };
     }
 
     case 'API_DATA': {
@@ -759,23 +760,23 @@ export const Reducer = (state = initialState, action) => {
 
     case 'EMPTY_VARIATIONS': {
       // console.log('hit e')
-      return {...state, productVariation: [], addedVariation: []};
+      return { ...state, productVariation: [], addedVariation: [] };
     }
 
     case 'GET_VARIATIONS': {
-      return {...state, productVariation: action.payload};
+      return { ...state, productVariation: action.payload };
     }
 
     case 'ADD_VARIATION': {
       if (state.addedVariation && state.addedVariation.length > 0) {
         if (state.addedVariation.find((val) => val.id == action.payload.id)) {
-          return {...state, alerts: 'Already in cart'};
+          return { ...state, alerts: 'Already in cart' };
         } else {
           state.addedVariation.push(action.payload);
-          return {...state};
+          return { ...state };
         }
       } else {
-        return {...state, addedVariation: [action.payload]};
+        return { ...state, addedVariation: [action.payload] };
       }
     }
 

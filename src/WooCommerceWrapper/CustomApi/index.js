@@ -1,6 +1,11 @@
 // const customURL =
 //   'https://dev57.onlinetestingserver.com/cindy-walling/wp-json/api/v1/';
-const customURL = 'https://pinkpoppy-boutique.com/wp-json/api/v1/';
+
+import { store } from '../store'
+const state = store.getState()
+const config = state.ConfigReducer
+
+const customURL = config.customUrl;
 const customApi = {
   post: (endpoint, data, success, error) => {
     let url = customURL + endpoint;
