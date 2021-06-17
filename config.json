@@ -19,5 +19,7 @@
     "primary_message_color": "#00AF41",
     "drawer_Active_Color": "#FB5378",
     "drawer_inActive_Color": "#999999",
+    "banner": false,
+    "categories": false,
     "default_color": "#ccc"
 }

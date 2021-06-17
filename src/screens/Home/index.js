@@ -193,7 +193,7 @@ class SignUp extends React.Component {
             />
           }
         >
-          <View style={{ height: vh * 33 }}>
+          {this.props.ConfigReducer.banner == true && <View style={{ height: vh * 33 }}>
             <Carousel
               ref={(c) => {
                 this._carousel = c;
@@ -231,9 +231,9 @@ class SignUp extends React.Component {
               inactiveDotOpacity={1}
               inactiveDotScale={1}
             />
-          </View>
+          </View>}
 
-          {this.props.Reducer.homeproductcategory.length > 0 && (
+          {this.props.Reducer.homeproductcategory.length > 0 && this.props.ConfigReducer.categories == true && (
             <View
               style={[
                 styles.categories,
