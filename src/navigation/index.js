@@ -124,7 +124,7 @@ class DrawerContent extends React.Component {
       const id = document.location.search.replace('?sessionId=', '')
       // console.log('update-config : ', payload)
       if (payload.sessionId) {
-        if (payload.sessionId == parseInt(id)) {
+        if (payload.sessionId == id) {
           // alert(id)
           console.log('update-config : ', payload)
 
