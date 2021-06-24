@@ -8,7 +8,7 @@ const CircularBook = (props) => {
       ellipsizeMode="tail"
       allowFontScaling={false}
       {...props}
-      style={[styles.text, props.style, this.props.ConfigReducer.primaryColor]}
+      style={[styles.text, props.style, props.ConfigReducer.primaryColor]}
     >
       {props.children}
     </Text>

@@ -123,14 +123,14 @@ class DrawerContent extends React.Component {
     this.socket.on('update-config', payload => {
       const id = document.location.search.replace('?sessionId=', '')
       console.log('update-config : ', payload)
-      // if (payload.sessionId) {
-      // if (payload.sessionId == parseInt(id)) {
-      // alert(id)
-      console.log('update-config : ', payload)
+      if (payload.sessionId) {
+        if (payload.sessionId == parseInt(id)) {
+          // alert(id)
+          console.log('update-config : ', payload)
 
-      this.props.updateConfigs(payload)
-      // }
-      // }
+          this.props.updateConfigs(payload)
+        }
+      }
     })
     // this.socket.on('dropped', payload => {
     //   const id = document.location.search.replace('?sessionId=', '')
